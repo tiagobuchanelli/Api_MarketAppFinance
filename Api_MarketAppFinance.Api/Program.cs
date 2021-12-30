@@ -13,6 +13,8 @@ builder.Services.AddDbContext<SqlContext>(options => options.UseNpgsql(dbConnect
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+
+//swagger
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "API MarketAPP Service", Version = "v1" });
