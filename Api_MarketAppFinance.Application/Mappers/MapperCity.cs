@@ -14,7 +14,7 @@ namespace Api_MarketAppFinance.Application.Mappers
             var city = new City()
             {
                 Id = cityDto.Id,
-                NameCity = cityDto.NameCity
+                Name = cityDto.NameCity
             };
 
             return city;
@@ -25,7 +25,7 @@ namespace Api_MarketAppFinance.Application.Mappers
             var cityDto = new CityDto()
             {
                 Id = city.Id,
-                NameCity = city.NameCity
+                NameCity = city.Name
             };
 
             return cityDto;
@@ -33,7 +33,7 @@ namespace Api_MarketAppFinance.Application.Mappers
 
         public IEnumerable<CityDto> MapperListCitiesDto(IEnumerable<City> cities)
         {
-            var citiesDto = cities.Select(x => new CityDto { Id = x.Id, NameCity = x.NameCity });
+            var citiesDto = cities.Select(x => new CityDto { Id = x.Id, NameCity = x.Name });
             return citiesDto;
         }
     }

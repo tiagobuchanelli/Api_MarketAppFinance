@@ -13,8 +13,35 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
 
             builder
                 .Property(a => a.Name)
+                .HasColumnType("varchar(50)")
+                .IsRequired();
+
+            builder
+                .Property(a => a.LastName)
                 .HasColumnType("varchar(250)")
                 .IsRequired();
+
+            builder
+                .Property(a => a.Email)
+                .HasColumnType("varchar(250)")
+                .IsRequired();
+
+            builder
+                .Property(a => a.DocumentNumber)
+                .HasColumnType("varchar(50)");
+
+            builder
+                .Property(a => a.IsActive)
+                .HasDefaultValue(false)
+                .IsRequired();
+            
+
+            builder
+               .Property(a => a.Image)
+               .HasColumnType("text");
+
+
+
 
         }
     }

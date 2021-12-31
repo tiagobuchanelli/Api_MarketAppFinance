@@ -22,6 +22,8 @@ namespace Api_MarketAppFinance.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UsersConfiguration());
+            modelBuilder.ApplyConfiguration(new CityConfiguration());
+            modelBuilder.ApplyConfiguration(new AddressConfiguration());
         }
 
         public override int SaveChanges()
@@ -45,6 +47,8 @@ namespace Api_MarketAppFinance.Data
             return base.SaveChanges();
         }
 
-        public virtual DbSet<User> Usuarios { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Address> Adresses { get; set; }
     }
 }
