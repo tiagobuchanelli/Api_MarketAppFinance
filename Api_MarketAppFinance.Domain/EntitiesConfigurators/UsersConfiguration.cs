@@ -9,24 +9,13 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder
-                .ToTable("Usuarios");
+                .ToTable("Users");
 
             builder
                 .Property(a => a.Name)
                 .HasColumnType("varchar(250)")
                 .IsRequired();
 
-            builder
-                .Property<DateTime>("DateLastUpdate")
-                .HasColumnType("datetime")
-                .HasDefaultValueSql("getdate()")
-                .IsRequired();
-
-            builder
-               .Property<DateTime>("DateCreated")
-               .HasColumnType("datetime")
-               .HasDefaultValueSql("getdate()")
-               .IsRequired();
         }
     }
 }
