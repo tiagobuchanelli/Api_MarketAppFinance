@@ -5,14 +5,10 @@ using Microsoft.EntityFrameworkCore;
 namespace Api_MarketAppFinance.Data
 {
     public class SqlContext : DbContext
-    {
-        public SqlContext()
-        {
-
-        }
+    {    /*   
         public SqlContext(DbContextOptions<SqlContext> options) : base(options)
         {
-        }
+        }*/
 
         /* TEORICAMENTE NÃO PRECISA DESSE CARA DESDE QUE O MESMO ESTEJA SENDO DECLARADO EM STARTUP/PROGRAM .CS
          * EX: https://prnt.sc/25ek49m
@@ -28,6 +24,9 @@ namespace Api_MarketAppFinance.Data
             modelBuilder.ApplyConfiguration(new UsersConfiguration());
             modelBuilder.ApplyConfiguration(new CityConfiguration());
             modelBuilder.ApplyConfiguration(new AddressConfiguration());
+            modelBuilder.ApplyConfiguration(new LicenseConfiguration());
+            modelBuilder.ApplyConfiguration(new LicensesAccessControllConfiguration());
+            modelBuilder.ApplyConfiguration(new DeviceConfiguration());
         }
 
         public override int SaveChanges()
@@ -55,5 +54,8 @@ namespace Api_MarketAppFinance.Data
         public DbSet<User> Users { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Address> Adresses { get; set; }
+        public DbSet<License> Licenses { get; set; }
+        public DbSet<Device> Devices { get; set; }
+       
     }
 }

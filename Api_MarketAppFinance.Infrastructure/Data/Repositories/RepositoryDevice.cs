@@ -5,13 +5,13 @@ using Api_MarketAppFinance.Infrastructure.Repositories;
 
 namespace Api_MarketAppFinance.Infrastructure.Data.Repositories
 {
-    public class RepositoryUser : RepositoryBase<User>, IRepositoryUser
+    public class RepositoryDevice : RepositoryBase<Device>, IRepositoryDevice
     {
         private readonly SqlContext _sqlContext;
 
-        public RepositoryUser(SqlContext sqlContext) : base(sqlContext)
+        public RepositoryDevice(SqlContext sqlContext) : base(sqlContext)
         {
-            _sqlContext = sqlContext;    
+            _sqlContext = sqlContext;
         }
     }
 }

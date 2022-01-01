@@ -3,6 +3,7 @@ using System;
 using Api_MarketAppFinance.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Api_MarketAppFinance.Infrastructure.Migrations
 {
     [DbContext(typeof(SqlContext))]
-    partial class SqlContextModelSnapshot : ModelSnapshot
+    [Migration("20220101172733_CreateDevicesAndControllAcess")]
+    partial class CreateDevicesAndControllAcess
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -143,12 +145,7 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("now()");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Devices", (string)null);
                 });
@@ -300,17 +297,6 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("City");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entities.Device", b =>
-                {
-                    b.HasOne("Api_MarketAppFinance.Domain.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.Navigation("User");
                 });

@@ -14,6 +14,6 @@
 
         public string? StateSymbol { get; set; }
 
-        public IEnumerable<Address>? Adresses { get; set; }
+        //public IEnumerable<Address>? Adresses { get; set; }
     }
 }

@@ -2,59 +2,103 @@
 using Api_MarketAppFinance.Data;
 using Api_MarketAppFinance.Domain.Entities;
 using Api_MarketAppFinance.Infrastructure.Data.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 Console.WriteLine("Hello, World!");
-
-var testeData = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
-var testeData2 = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Local);
-
-var resultado = "";
-
-
 
 
 RepositoryAddress _repoAddress = new RepositoryAddress(new SqlContext());
 RepositoryCity _repoCity = new RepositoryCity(new SqlContext());
 RepositoryUser _repoUser = new RepositoryUser(new SqlContext());
+RepositoryDevice _repoDevice = new RepositoryDevice(new SqlContext());
+RepositoryLicense _repoLicense = new RepositoryLicense(new SqlContext());
+RepositoryLicenseAccessControll _repoAccessControll = new RepositoryLicenseAccessControll(new SqlContext());
 
+var dadosUsuario2 = _repoUser.GetById(2);
+var deviceUsuario = _repoDevice.GetAll().FirstOrDefault();
+var licensadoUsuario2 = _repoLicense.GetAll().Where(x => x.UserId == dadosUsuario2.Id).FirstOrDefault();
 
-var city = new City()
-{
-    Name = "Porto Alegre",
-    ZipCode = "1245456465",
-    IsActive = true,
-    CodeIgbe = "4314902",
-    StateCodeIgbe = "43",
-    StateSymbol = "RS"
-
-
+var controleDeAcesso = new LicensesAccessControll() { 
+    Description = "Adicionado novo acesso",
+    LicenseId = licensadoUsuario2.Id,
+    DeviceId = deviceUsuario.Id
 };
 
-_repoCity.Add(city);
+_repoAccessControll.Add(controleDeAcesso);
 
-var user = new User()
-{
-    Name = "Tiago",
-    LastName = "Buchanelli",
-    Email = "tiagobuchanelli@gmail.com",
-    DocumentNumber = "014524658",
-    IsActive = true,
-    Phone = "55996489002",
-    Image = "www.imagem.com"
+/*
+var licenca = new License() { 
+    Key = "XASDASDASYI", 
+    Description = "Licença Liberada", 
+    Type = "PREMIUM", 
+    MaxAcess = 5, 
+    ExpirationLicense = DateTime.Now.Date, 
+    UserId = 4
 };
 
-_repoUser.Add(user);
+_repoLicense.Add(licenca);
+*/
+var teste = "";
 
+
+/*
+var users = _repoUser.GetAll();
+var adresses = _repoAddress.GetAll();
+var cities = _repoCity.GetAll();
+
+var teste = new SqlContext();
+var dadosUsuario2 = _repoUser.GetById(2);
+var dadosUsuario2new = _repoUser._context.Users.Where(u => u.Id == 2).Include(e => e.Adresses).ThenInclude(c => c.City).ToList();
+
+var cidadeUsuario2 = "";
+*/
+
+
+/*
 var address = new Address()
 {
-    UserId = user.Id,
-    CityId = city.Id,
-    Street = "Rua dos Andradas",
+    UserId = 4,
+    CityId = 3,
+    Street = "Avenida Rio GRande",
     StreetNumber = "150",
-    ZipCode = "984587542",
+    ZipCode = "48787878",
     District = "Centro",
     Complement = "Apto"
 
 };
 
 _repoAddress.Add(address);
+
+
+
+
+var city = new City()
+{
+    Name = "São Paulo",
+    ZipCode = "48878545",
+    IsActive = true,
+    CodeIgbe = "3550308",
+    StateCodeIgbe = "35",
+    StateSymbol = "SP"
+
+
+};
+
+_repoCity.Add(city);
+
+
+var user = new User()
+{
+    Name = "Felipe",
+    LastName = "Alves",
+    Email = "felipe@gmail.com",
+    DocumentNumber = "9854874",
+    IsActive = true,
+    Phone = "5599999998",
+    Image = "www.imagem.com"
+};
+
+
+_repoUser.Add(user);
+
+*/
