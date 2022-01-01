@@ -8,9 +8,9 @@
 
         public bool IsActive { get; set; }
 
-        public int CodeIgbe { get; set; }
+        public string CodeIgbe { get; set; }
 
-        public int StateCodeIgbe { get; set; }
+        public string StateCodeIgbe { get; set; }
 
         public string? StateSymbol { get; set; }
 

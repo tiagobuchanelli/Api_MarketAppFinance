@@ -20,7 +20,19 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
                 .Property(a => a.Street)
                 .HasColumnType("varchar(300)")
                 .IsRequired();
-                        
+
+            builder
+              .Property(a => a.CreateAt)
+              .ValueGeneratedOnAdd()
+              .HasDefaultValueSql("now()");
+
+            builder
+                .Property(a => a.UpdateAt)
+                .ValueGeneratedOnAddOrUpdate()
+                .HasDefaultValueSql("now()")
+                .IsRequired();
+
+
         }
     }
 }

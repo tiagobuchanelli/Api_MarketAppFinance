@@ -31,6 +31,10 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
                 .HasColumnType("varchar(50)");
 
             builder
+                .Property(a => a.Phone)
+                .HasColumnType("varchar(50)");
+
+            builder
                 .Property(a => a.IsActive)
                 .HasDefaultValue(false)
                 .IsRequired();
@@ -40,6 +44,16 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
                .Property(a => a.Image)
                .HasColumnType("text");
 
+            builder
+               .Property(a => a.CreateAt)
+               .ValueGeneratedOnAdd()
+               .HasDefaultValueSql("now()");
+
+            builder
+                .Property(a => a.UpdateAt)
+                .ValueGeneratedOnAddOrUpdate()
+                .HasDefaultValueSql("now()")
+                .IsRequired();
 
 
 

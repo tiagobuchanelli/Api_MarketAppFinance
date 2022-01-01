@@ -6,6 +6,10 @@ namespace Api_MarketAppFinance.Data
 {
     public class SqlContext : DbContext
     {
+        public SqlContext()
+        {
+
+        }
         public SqlContext(DbContextOptions<SqlContext> options) : base(options)
         {
         }
@@ -28,6 +32,7 @@ namespace Api_MarketAppFinance.Data
 
         public override int SaveChanges()
         {
+            /*
             foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("UpdateAt") != null))
             {
                 entry.Property("UpdateAt").CurrentValue = DateTime.Now;
@@ -43,7 +48,7 @@ namespace Api_MarketAppFinance.Data
                 {
                     entry.Property("CreateAt").IsModified = false;
                 }
-            }
+            }*/
             return base.SaveChanges();
         }
 

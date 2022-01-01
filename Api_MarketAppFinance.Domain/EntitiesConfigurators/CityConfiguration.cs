@@ -34,6 +34,27 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
             builder
                .Property(a => a.StateSymbol)
                .HasColumnType("varchar(10)");
+
+            builder
+                .Property(a => a.CodeIgbe)
+                .HasColumnType("varchar(50)")
+                .IsRequired();
+
+            builder
+                .Property(a => a.StateCodeIgbe)
+                .HasColumnType("varchar(50)")
+                .IsRequired();
+
+            builder
+              .Property(a => a.CreateAt)
+              .ValueGeneratedOnAdd()
+              .HasDefaultValueSql("now()");
+
+            builder
+                .Property(a => a.UpdateAt)
+                .ValueGeneratedOnAddOrUpdate()
+                .HasDefaultValueSql("now()")
+                .IsRequired();
         }
     }
 }

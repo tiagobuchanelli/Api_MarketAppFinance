@@ -13,17 +13,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infrastructure", "4 - I
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Test", "5 - Test", "{4AAD85E5-FD6D-45DA-ACD2-19A275D1865E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api_MarketAppFinance.Api", "Api_MarketAppFinance.Api\Api_MarketAppFinance.Api.csproj", "{02671E71-FFEA-4660-AC0B-8292E838542A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api_MarketAppFinance.Api", "Api_MarketAppFinance.Api\Api_MarketAppFinance.Api.csproj", "{02671E71-FFEA-4660-AC0B-8292E838542A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api_MarketAppFinance.Application", "Api_MarketAppFinance.Application\Api_MarketAppFinance.Application.csproj", "{E3FDBB96-CC0B-4DC9-A3C7-6A62789F804E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api_MarketAppFinance.Application", "Api_MarketAppFinance.Application\Api_MarketAppFinance.Application.csproj", "{E3FDBB96-CC0B-4DC9-A3C7-6A62789F804E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api_MarketAppFinance.Domain", "Api_MarketAppFinance.Domain\Api_MarketAppFinance.Domain.csproj", "{73440295-C5E4-4A21-AF7F-636F509ED113}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api_MarketAppFinance.Domain", "Api_MarketAppFinance.Domain\Api_MarketAppFinance.Domain.csproj", "{73440295-C5E4-4A21-AF7F-636F509ED113}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api_MarketAppFinance.Domain.Core", "Api_MarketAppFinance.Domain.Core\Api_MarketAppFinance.Domain.Core.csproj", "{96EBFFC6-FE1A-461E-9622-23804631F433}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api_MarketAppFinance.Domain.Core", "Api_MarketAppFinance.Domain.Core\Api_MarketAppFinance.Domain.Core.csproj", "{96EBFFC6-FE1A-461E-9622-23804631F433}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api_MarketAppFinance.Domain.Services", "Api_MarketAppFinance.Domain.Services\Api_MarketAppFinance.Domain.Services.csproj", "{ADF14CF5-67E0-44FC-B7E1-66A1DD19991B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api_MarketAppFinance.Domain.Services", "Api_MarketAppFinance.Domain.Services\Api_MarketAppFinance.Domain.Services.csproj", "{ADF14CF5-67E0-44FC-B7E1-66A1DD19991B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api_MarketAppFinance.Infrastructure", "Api_MarketAppFinance.Infrastructure\Api_MarketAppFinance.Infrastructure.csproj", "{7FA6E93F-1716-49E9-A076-93477A2EFF22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api_MarketAppFinance.Infrastructure", "Api_MarketAppFinance.Infrastructure\Api_MarketAppFinance.Infrastructure.csproj", "{7FA6E93F-1716-49E9-A076-93477A2EFF22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api_MarketAppFinance.Test", "Api_MarketAppFinance.Test\Api_MarketAppFinance.Test.csproj", "{A1BFC5BE-2510-4A27-B020-9BFCB8DD1D75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{7FA6E93F-1716-49E9-A076-93477A2EFF22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FA6E93F-1716-49E9-A076-93477A2EFF22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FA6E93F-1716-49E9-A076-93477A2EFF22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1BFC5BE-2510-4A27-B020-9BFCB8DD1D75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1BFC5BE-2510-4A27-B020-9BFCB8DD1D75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1BFC5BE-2510-4A27-B020-9BFCB8DD1D75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1BFC5BE-2510-4A27-B020-9BFCB8DD1D75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +72,7 @@ Global
 		{96EBFFC6-FE1A-461E-9622-23804631F433} = {92988655-D2A0-434D-BC97-CB653F4B1451}
 		{ADF14CF5-67E0-44FC-B7E1-66A1DD19991B} = {92988655-D2A0-434D-BC97-CB653F4B1451}
 		{7FA6E93F-1716-49E9-A076-93477A2EFF22} = {7BE3053D-1BDE-4C7C-8019-C21D78109281}
+		{A1BFC5BE-2510-4A27-B020-9BFCB8DD1D75} = {4AAD85E5-FD6D-45DA-ACD2-19A275D1865E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {166E2EC0-1360-432D-8BB2-3FBDD9516C67}
