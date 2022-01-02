@@ -14,6 +14,7 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             _applicationServiceCity = applicationService;
         }
+
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
@@ -36,7 +37,6 @@ namespace Api_MarketAppFinance.Api.Controllers
 
                 _applicationServiceCity.Add(cityDto);
                 return Ok("Usuário Cadastrado com sucesso!");
-
             }
             catch (Exception e)
             {
@@ -54,7 +54,6 @@ namespace Api_MarketAppFinance.Api.Controllers
 
                 _applicationServiceCity.Update(cityDto);
                 return Ok("Usuário Atualizado com sucesso!");
-
             }
             catch (Exception e)
             {
@@ -72,7 +71,6 @@ namespace Api_MarketAppFinance.Api.Controllers
 
                 _applicationServiceCity.Remove(cityDto);
                 return Ok("Usuário Removido com sucesso!");
-
             }
             catch (Exception e)
             {

@@ -1,7 +1,6 @@
 ﻿using Api_MarketAppFinance.Data;
 using Api_MarketAppFinance.Domain.Core.Interfaces.Repositories;
 
-
 namespace Api_MarketAppFinance.Infrastructure.Repositories
 {
     public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class

@@ -1,11 +1,6 @@
 ﻿using Api_MarketAppFinance.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
 {
@@ -15,7 +10,6 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
         {
             builder
                .ToTable("Licenses");
-                   
 
             builder
                 .Property(a => a.Description)
@@ -47,7 +41,6 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
                 .ValueGeneratedOnAddOrUpdate()
                 .HasDefaultValueSql("now()")
                 .IsRequired();
-
         }
     }
 }

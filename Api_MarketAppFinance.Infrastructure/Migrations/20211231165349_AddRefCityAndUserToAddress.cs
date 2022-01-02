@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
@@ -9,7 +8,7 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
     public partial class AddRefCityAndUserToAddress : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
-        {  
+        {
             migrationBuilder.CreateTable(
                 name: "Adresses",
                 columns: table => new

@@ -1,5 +1,4 @@
-﻿
-using Api_MarketAppFinance.Domain.Entities;
+﻿using Api_MarketAppFinance.Domain.Entities;
 
 namespace Api_MarketAppFinance.Domain.Core.Interfaces.Services
 {

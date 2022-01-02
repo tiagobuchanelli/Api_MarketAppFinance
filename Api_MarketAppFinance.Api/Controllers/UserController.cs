@@ -14,7 +14,8 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             _applicationServiceUser = applicationService;
         }
-        [HttpGet]   
+
+        [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
             return Ok(_applicationServiceUser.GetAll());
@@ -26,7 +27,7 @@ namespace Api_MarketAppFinance.Api.Controllers
             return Ok(_applicationServiceUser.GetById(id));
         }
 
-        [HttpPost]  
+        [HttpPost]
         public ActionResult Post([FromBody] UserDto userDto)
         {
             try
@@ -36,7 +37,6 @@ namespace Api_MarketAppFinance.Api.Controllers
 
                 _applicationServiceUser.Add(userDto);
                 return Ok("Usuário Cadastrado com sucesso!");
-
             }
             catch (Exception e)
             {
@@ -54,7 +54,6 @@ namespace Api_MarketAppFinance.Api.Controllers
 
                 _applicationServiceUser.Update(userDto);
                 return Ok("Usuário Atualizado com sucesso!");
-
             }
             catch (Exception e)
             {
@@ -72,7 +71,6 @@ namespace Api_MarketAppFinance.Api.Controllers
 
                 _applicationServiceUser.Remove(userDto);
                 return Ok("Usuário Removido com sucesso!");
-
             }
             catch (Exception e)
             {

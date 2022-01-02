@@ -1,7 +1,7 @@
 ﻿namespace Api_MarketAppFinance.Domain.Entities
 {
     public class City : Base
-    {        
+    {
         public string Name { get; set; }
 
         public string? ZipCode { get; set; }

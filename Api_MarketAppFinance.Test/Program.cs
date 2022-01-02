@@ -2,10 +2,8 @@
 using Api_MarketAppFinance.Data;
 using Api_MarketAppFinance.Domain.Entities;
 using Api_MarketAppFinance.Infrastructure.Data.Repositories;
-using Microsoft.EntityFrameworkCore;
 
 Console.WriteLine("Hello, World!");
-
 
 RepositoryAddress _repoAddress = new RepositoryAddress(new SqlContext());
 RepositoryCity _repoCity = new RepositoryCity(new SqlContext());
@@ -14,32 +12,66 @@ RepositoryDevice _repoDevice = new RepositoryDevice(new SqlContext());
 RepositoryLicense _repoLicense = new RepositoryLicense(new SqlContext());
 RepositoryLicenseAccessControll _repoAccessControll = new RepositoryLicenseAccessControll(new SqlContext());
 
+var dadosCidade = _repoCity.GetAll().First();
+var dadosUsuario2 = _repoUser.GetById(2);
+var listaenderecos = _repoAddress.GetAll().Where(x => x.UserId == dadosUsuario2.Id).ToList();
+
+/*
+var address = new Address()
+{
+    Street = "Rua Central do Brasil",
+    StreetNumber = "149",
+    ZipCode = "22255",
+    District = "Bairro",
+    Complement = "Apto",
+    CityId = 4,
+    UserId = 2,
+
+};
+_repoAddress.Add(address);
+
+listaenderecos.Add(address);
+
+
+//dadosUsuario2.Adresses = listaenderecos;
+//_repoUser.Update(dadosUsuario2);
+
+
+/*
 var dadosUsuario2 = _repoUser.GetById(2);
 var deviceUsuario = _repoDevice.GetAll().FirstOrDefault();
+
+var devices = new List<Device>();
+devices.Add(new Device { Name = "Teste", Key = "ASDADAD" });
+dadosUsuario2.Devices = devices;
+
+_repoUser.Update(dadosUsuario2);
+
+/*
 var licensadoUsuario2 = _repoLicense.GetAll().Where(x => x.UserId == dadosUsuario2.Id).FirstOrDefault();
 
-var controleDeAcesso = new LicensesAccessControll() { 
+var controleDeAcesso = new LicensesAccessControll()
+{
     Description = "Adicionado novo acesso",
     LicenseId = licensadoUsuario2.Id,
     DeviceId = deviceUsuario.Id
 };
 
 _repoAccessControll.Add(controleDeAcesso);
-
+*/
 /*
-var licenca = new License() { 
-    Key = "XASDASDASYI", 
-    Description = "Licença Liberada", 
-    Type = "PREMIUM", 
-    MaxAcess = 5, 
-    ExpirationLicense = DateTime.Now.Date, 
+var licenca = new License() {
+    Key = "XASDASDASYI",
+    Description = "Licença Liberada",
+    Type = "PREMIUM",
+    MaxAcess = 5,
+    ExpirationLicense = DateTime.Now.Date,
     UserId = 4
 };
 
 _repoLicense.Add(licenca);
 */
 var teste = "";
-
 
 /*
 var users = _repoUser.GetAll();
@@ -53,7 +85,6 @@ var dadosUsuario2new = _repoUser._context.Users.Where(u => u.Id == 2).Include(e 
 var cidadeUsuario2 = "";
 */
 
-
 /*
 var address = new Address()
 {
@@ -64,13 +95,9 @@ var address = new Address()
     ZipCode = "48787878",
     District = "Centro",
     Complement = "Apto"
-
 };
 
 _repoAddress.Add(address);
-
-
-
 
 var city = new City()
 {
@@ -80,12 +107,9 @@ var city = new City()
     CodeIgbe = "3550308",
     StateCodeIgbe = "35",
     StateSymbol = "SP"
-
-
 };
 
 _repoCity.Add(city);
-
 
 var user = new User()
 {
@@ -97,7 +121,6 @@ var user = new User()
     Phone = "5599999998",
     Image = "www.imagem.com"
 };
-
 
 _repoUser.Add(user);
 

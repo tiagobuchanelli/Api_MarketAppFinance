@@ -12,9 +12,6 @@ namespace Api_MarketAppFinance.Infrastructure.Data.Repositories
         public RepositoryAddress(SqlContext sqlContext) : base(sqlContext)
         {
             _sqlContext = sqlContext;
-            
         }
-                
-                
     }
 }

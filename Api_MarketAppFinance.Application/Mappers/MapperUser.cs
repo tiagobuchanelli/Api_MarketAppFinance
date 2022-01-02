@@ -1,5 +1,4 @@
-﻿
-using Api_MarketAppFinance.Application.Dtos;
+﻿using Api_MarketAppFinance.Application.Dtos;
 using Api_MarketAppFinance.Application.Interfaces.Mappers;
 using Api_MarketAppFinance.Domain.Entities;
 

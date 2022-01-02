@@ -38,7 +38,6 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
                 .Property(a => a.IsActive)
                 .HasDefaultValue(false)
                 .IsRequired();
-            
 
             builder
                .Property(a => a.Image)
@@ -54,9 +53,6 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
                 .ValueGeneratedOnAddOrUpdate()
                 .HasDefaultValueSql("now()")
                 .IsRequired();
-
-
-
         }
     }
 }
