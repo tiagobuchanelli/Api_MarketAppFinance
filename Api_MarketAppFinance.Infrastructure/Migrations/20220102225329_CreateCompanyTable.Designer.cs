@@ -3,6 +3,7 @@ using System;
 using Api_MarketAppFinance.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Api_MarketAppFinance.Infrastructure.Migrations
 {
     [DbContext(typeof(SqlContext))]
-    partial class SqlContextModelSnapshot : ModelSnapshot
+    [Migration("20220102225329_CreateCompanyTable")]
+    partial class CreateCompanyTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -138,6 +140,9 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
+                    b.Property<int>("LicenseId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("varchar(500)");
@@ -158,6 +163,8 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LicenseId");
 
                     b.HasIndex("UserId");
 
@@ -208,9 +215,6 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CompanyId")
-                        .HasColumnType("integer");
-
                     b.Property<DateTime>("CreateAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
@@ -239,9 +243,12 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("now()");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("CompanyId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Licenses", (string)null);
                 });
@@ -353,11 +360,19 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
 
             modelBuilder.Entity("Api_MarketAppFinance.Domain.Entities.Company", b =>
                 {
+                    b.HasOne("Api_MarketAppFinance.Domain.Entities.License", "License")
+                        .WithMany()
+                        .HasForeignKey("LicenseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Api_MarketAppFinance.Domain.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("License");
 
                     b.Navigation("User");
                 });
@@ -375,13 +390,13 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
 
             modelBuilder.Entity("Api_MarketAppFinance.Domain.Entities.License", b =>
                 {
-                    b.HasOne("Api_MarketAppFinance.Domain.Entities.Company", "Company")
-                        .WithMany("Licenses")
-                        .HasForeignKey("CompanyId")
+                    b.HasOne("Api_MarketAppFinance.Domain.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Company");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Api_MarketAppFinance.Domain.Entities.LicensesAccessControll", b =>
@@ -401,11 +416,6 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     b.Navigation("Device");
 
                     b.Navigation("License");
-                });
-
-            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entities.Company", b =>
-                {
-                    b.Navigation("Licenses");
                 });
 
             modelBuilder.Entity("Api_MarketAppFinance.Domain.Entities.User", b =>

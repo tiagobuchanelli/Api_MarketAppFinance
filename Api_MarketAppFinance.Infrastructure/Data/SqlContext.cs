@@ -27,6 +27,7 @@ namespace Api_MarketAppFinance.Data
             modelBuilder.ApplyConfiguration(new LicenseConfiguration());
             modelBuilder.ApplyConfiguration(new LicensesAccessControllConfiguration());
             modelBuilder.ApplyConfiguration(new DeviceConfiguration());
+            modelBuilder.ApplyConfiguration(new CompanyConfiguration());
         }
 
         public override int SaveChanges()
@@ -56,5 +57,6 @@ namespace Api_MarketAppFinance.Data
         public DbSet<Address> Adresses { get; set; }
         public DbSet<License> Licenses { get; set; }
         public DbSet<Device> Devices { get; set; }
+        public DbSet<Company> Companies { get; set; }
     }
 }

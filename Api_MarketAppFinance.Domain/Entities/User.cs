@@ -19,8 +19,8 @@
         public IEnumerable<Address>? Adresses { get; set; }
 
         public IEnumerable<Device>? Devices { get; set; }
-        
 
-        
+
+
     }
 }
