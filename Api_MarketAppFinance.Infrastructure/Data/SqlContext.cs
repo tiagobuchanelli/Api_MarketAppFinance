@@ -5,18 +5,18 @@ using Microsoft.EntityFrameworkCore;
 namespace Api_MarketAppFinance.Data
 {
     public class SqlContext : DbContext
-    {    /*
+    {
+        public SqlContext()
+        {
+
+        }
         public SqlContext(DbContextOptions<SqlContext> options) : base(options)
         {
-        }*/
-
-        /* TEORICAMENTE NÃO PRECISA DESSE CARA DESDE QUE O MESMO ESTEJA SENDO DECLARADO EM STARTUP/PROGRAM .CS
-         * EX: https://prnt.sc/25ek49m
-        */
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Server=127.0.0.1;Port=15432;Database=marketapp;User Id=postgres;Password=joomla11080;");
+            //optionsBuilder.UseNpgsql("Server=127.0.0.1;Port=15432;Database=marketapp;User Id=postgres;Password=joomla11080;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

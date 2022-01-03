@@ -1,48 +1,49 @@
 ﻿using Api_MarketAppFinance.Application.Dtos;
 using Api_MarketAppFinance.Application.Interfaces;
-using Api_MarketAppFinance.Application.Interfaces.Mappers;
 using Api_MarketAppFinance.Domain.Core.Interfaces.Services;
+using Api_MarketAppFinance.Domain.Entities;
+using AutoMapper;
 
 namespace Api_MarketAppFinance.Application
 {
     public class ApplicationServiceCity : IApplicationServiceCity
     {
         private readonly IServiceCity _serviceCity;
-        private readonly IMapperCity _mapperCity;
+        private readonly IMapper _mapper;
 
-        public ApplicationServiceCity(IServiceCity serviceCity, IMapperCity mapperCity)
+        public ApplicationServiceCity(IServiceCity serviceCity, IMapper mapper)
         {
             _serviceCity = serviceCity;
-            _mapperCity = mapperCity;
+            _mapper = mapper;
         }
 
         public void Add(CityDto cityDto)
         {
-            var city = _mapperCity.MapperDtoToEntity(cityDto);
+            var city = _mapper.Map<City>(cityDto);
             _serviceCity.Add(city);
         }
 
         public IEnumerable<CityDto> GetAll()
         {
             var cities = _serviceCity.GetAll();
-            return _mapperCity.MapperListCitiesDto(cities);
+            return _mapper.Map<IEnumerable<CityDto>>(cities);
         }
 
         public CityDto GetById(int id)
         {
             var city = _serviceCity.GetById(id);
-            return _mapperCity.MapperEntityToDto(city);
+            return _mapper.Map<CityDto>(city);
         }
 
         public void Remove(CityDto cityDto)
         {
-            var city = _mapperCity.MapperDtoToEntity(cityDto);
+            var city = _mapper.Map<City>(cityDto);
             _serviceCity.Remove(city);
         }
 
         public void Update(CityDto cityDto)
         {
-            var city = _mapperCity.MapperDtoToEntity(cityDto);
+            var city = _mapper.Map<City>(cityDto);
             _serviceCity.Update(city);
         }
     }
