@@ -1,11 +1,11 @@
 ﻿namespace Api_MarketAppFinance.Domain.Entities
 {
-    public class Base
+    public abstract class Base
     {
-        public int Id { get; set; }
+        public virtual int Id { get; protected set; }
 
-        public DateTime UpdateAt { get; set; }
+        public virtual DateTime UpdateAt { get; protected set; }
 
-        public DateTime CreateAt { get; set; }
+        public virtual DateTime CreateAt { get; protected set; }
     }
 }

@@ -2,23 +2,81 @@
 {
     public class Company : Base
     {
-        public string Name { get; set; }
+        #region Constructos
 
-        public string ShortName { get; set; }
+        private Company()
+        { }
 
-        public bool IsActive { get; set; }
+        public Company(string name, string shortName, string? phone, User user)
+        {
+            Name = name;
+            ShortName = shortName;
+            Phone = phone;
+            UserId = user.Id;
 
-        public string? Phone { get; set; }
+            _licenses = new List<License>();
 
-        public string? Image { get; set; }
+            Valdidate();
+        }
 
-        public int UserId { get; set; }
+        #endregion Constructos
 
-        public User User { get; set; }
+        #region Actributes Private
 
-        public List<License> Licenses { get; set; }
-        
+        private IList<License> _licenses;
 
-        
+        #endregion
+
+        #region Actributes Public
+
+        public string Name { get; private set; }
+
+        public string ShortName { get; private set; }
+
+        public bool IsActive { get; private set; }
+
+        public string? Phone { get; private set; }
+
+        public string? Image { get; private set; }
+
+        public int UserId { get; private set; }
+
+        public User User { get; private set; }
+
+        public IReadOnlyCollection<License> Licenses { get { return _licenses.ToList(); } }
+
+        #endregion Actributes
+
+        #region Private Methods
+
+        private void Valdidate()
+        {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(ShortName))
+            {
+                throw new Exception("Não é possível inserir valores vazio ou nulo");
+            }
+
+            if (UserId == default)
+                throw new Exception("Obrigatório informar um usuário valido");
+        }
+
+        #endregion Private Methods
+
+        #region Public Methods
+
+        public void SetCompanyImage(string imageCompany) => Image = imageCompany;
+
+        public void SetCompanyPhone(string phone) => Phone = phone;
+
+        public void SetCompanyStatusActive() => IsActive = true;
+
+        public void SetCompanyStatusInactive() => IsActive = true;
+
+        public void GenerateLicense(License license)
+        {            
+            _licenses.Add(license);
+        }
+
+        #endregion Public Methods
     }
 }
