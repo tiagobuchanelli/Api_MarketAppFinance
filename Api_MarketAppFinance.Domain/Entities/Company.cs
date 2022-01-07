@@ -51,10 +51,11 @@
 
         private void Valdidate()
         {
-            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(ShortName))
-            {
-                throw new Exception("Não é possível inserir valores vazio ou nulo");
-            }
+            if (string.IsNullOrEmpty(Name))
+                throw new Exception("Obrigatório informar o nome da empresa.");
+
+            if(string.IsNullOrEmpty(ShortName))
+                throw new Exception("Obrigatório informar o nome curto da empresa.");
 
             if (UserId == default)
                 throw new Exception("Obrigatório informar um usuário valido");

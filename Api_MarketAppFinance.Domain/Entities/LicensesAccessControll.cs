@@ -2,14 +2,40 @@
 {
     public class LicensesAccessControll : Base
     {
-        public string Description { get; set; }
+        #region Constructos
+        private LicensesAccessControll()
+        {
+        }
 
-        public int LicenseId { get; set; }
+        public LicensesAccessControll(string description, License license, Device device)
+        {
+            this.Description = description;
+            this.LicenseId = license.Id;
+            this.DeviceId = device.Id;
 
-        public int DeviceId { get; set; }
+            Validate();
+        }
+        #endregion
 
-        public License License { get; set; }
+        #region Actributes Public
+        public string Description { get; private set; }
 
-        public Device Device { get; set; }
+        public int LicenseId { get; private set; }
+
+        public int DeviceId { get; private set; }
+
+        public License License { get; private set; }
+
+        public Device Device { get; private set; }
+        #endregion
+
+        #region Private Methos
+        private void Validate()
+        {
+            if (string.IsNullOrEmpty(Description))
+                throw new Exception("Obrigatório informar a descrição.");
+        }
+        #endregion
+
     }
 }

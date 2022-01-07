@@ -42,12 +42,14 @@
         #region Private Methods
         private void Valdidate()
         {
-            if (string.IsNullOrEmpty(Description) || string.IsNullOrEmpty(Type))
-                throw new Exception("Não é possível inserir valores vazio ou nulo");
+            if (string.IsNullOrEmpty(Description))
+                throw new Exception("Obrigatório informar a descrição.");
+
+            if(string.IsNullOrEmpty(Type))
+                throw new Exception("Obrigatório informar o tipo.");
 
             if (ExpirationLicense < DateTime.Now.Date)
-                throw new Exception("Não é possível inserir data de validade menor que a data atual");
-                        
+                throw new Exception("Não é possível inserir data de validade menor que a data atual");                        
         }
 
         #endregion
