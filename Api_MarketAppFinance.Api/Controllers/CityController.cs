@@ -8,9 +8,9 @@ namespace Api_MarketAppFinance.Api.Controllers
     [ApiController]
     public class CityController : Controller
     {
-        private readonly IApplicationServiceCity _applicationServiceCity;
+        private readonly ICidadeAplicacaoServico _applicationServiceCity;
 
-        public CityController(IApplicationServiceCity applicationService)
+        public CityController(ICidadeAplicacaoServico applicationService)
         {
             _applicationServiceCity = applicationService;
         }
@@ -28,7 +28,7 @@ namespace Api_MarketAppFinance.Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] CityDto cityDto)
+        public ActionResult Post([FromBody] CidadeDto cityDto)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace Api_MarketAppFinance.Api.Controllers
         }
 
         [HttpPut]
-        public ActionResult Put([FromBody] CityDto cityDto)
+        public ActionResult Put([FromBody] CidadeDto cityDto)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace Api_MarketAppFinance.Api.Controllers
         }
 
         [HttpDelete]
-        public ActionResult Delete([FromBody] CityDto cityDto)
+        public ActionResult Delete([FromBody] CidadeDto cityDto)
         {
             try
             {

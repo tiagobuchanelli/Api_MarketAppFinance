@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Api_MarketAppFinance.Infrastructure.Migrations
 {
-    [DbContext(typeof(SqlContext))]
+    [DbContext(typeof(ContextoBase))]
     [Migration("20220101114917_AjustPhoneClassUser")]
     partial class AjustPhoneClassUser
     {

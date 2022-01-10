@@ -17,22 +17,22 @@ namespace Api_MarketAppFinance.Infrastructure.CrossCutting.IOC
         {
             #region IOC
 
-            builder.RegisterType<ApplicationServiceUser>().As<IApplicationServiceUser>();
-            builder.RegisterType<ApplicationServiceCity>().As<IApplicationServiceCity>();
+            builder.RegisterType<UsuarioAplicacaoServico>().As<IUsuarioAplicacaoServico>();
+            builder.RegisterType<CidadeAplicacaoServico>().As<ICidadeAplicacaoServico>();
 
-            builder.RegisterType<ServiceUser>().As<IServiceUser>();
-            builder.RegisterType<ServiceCity>().As<IServiceCity>();
+            builder.RegisterType<UsuarioServico>().As<IUsuarioServico>();
+            builder.RegisterType<CidadeSErvico>().As<ICidadeSErvico>();
 
-            builder.RegisterType<RepositoryUser>().As<IRepositoryUser>();
-            builder.RegisterType<RepositoryCity>().As<IRepositoryCity>();
+            builder.RegisterType<UsuarioRepositorio>().As<IUsuarioRepositorio>();
+            builder.RegisterType<CidadeRepositorio>().As<ICidadeRepositorio>();
             
 
             builder.Register(ctx => new MapperConfiguration(cfg =>
            {
-               cfg.AddProfile(new DtoToModelMappingUser());
-               cfg.AddProfile(new ModelToDtoMappingUser());
-               cfg.AddProfile(new ModelToDtoMappingCity());
-               cfg.AddProfile(new DtoToModelMappingCity());
+               cfg.AddProfile(new DtoParaEntidadeUsuario());
+               cfg.AddProfile(new EntidadeUsuarioParaDto());
+               cfg.AddProfile(new EntidadeCidadeParaDto());
+               cfg.AddProfile(new DtoParaEntidadeCidade());
            }));
 
             builder.Register(ctx => ctx.Resolve<MapperConfiguration>().CreateMapper()).As<IMapper>().InstancePerLifetimeScope();

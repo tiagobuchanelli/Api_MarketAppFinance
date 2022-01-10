@@ -13,33 +13,33 @@ namespace Api_MarketAppFinance.Test
 {    
     public class FunctionsTest
     {
-        RepositoryAddress _repoAddress = new RepositoryAddress(new SqlContext());
-        RepositoryCity _repoCity = new RepositoryCity(new SqlContext());
-        RepositoryUser _repoUser = new RepositoryUser(new SqlContext());
-        RepositoryCompany _repoCompany = new RepositoryCompany(new SqlContext());
-        RepositoryDevice _repoDevice = new RepositoryDevice(new SqlContext());
-        RepositoryLicense _repoLicense = new RepositoryLicense(new SqlContext());
-        RepositoryLicenseAccessControll _repoAccessControll = new RepositoryLicenseAccessControll(new SqlContext());
+        EnderecoRepositorio _repoAddress = new EnderecoRepositorio(new ContextoBase());
+        CidadeRepositorio _repoCity = new CidadeRepositorio(new ContextoBase());
+        UsuarioRepositorio _repoUser = new UsuarioRepositorio(new ContextoBase());
+        EmpresaRepositorio _repoCompany = new EmpresaRepositorio(new ContextoBase());
+        Dispositvo _repoDevice = new Dispositvo(new ContextoBase());
+        LicencaRepositorio _repoLicense = new LicencaRepositorio(new ContextoBase());
+        LicensaDispositivoRepositorio _repoAccessControll = new LicensaDispositivoRepositorio(new ContextoBase());
 
-        public IEnumerable<User> GetUsuarios()
+        public IEnumerable<Usuario> GetUsuarios()
         => _repoUser.GetAll();
 
-        public IEnumerable<City> GetCidades()
+        public IEnumerable<Cidade> GetCidades()
         => _repoCity.GetAll();
 
-        public IEnumerable<Address> GetEnderecos()
+        public IEnumerable<Endereco> GetEnderecos()
         => _repoAddress.GetAll();
 
-        public IEnumerable<Device> GetDevices()
+        public IEnumerable<LicencaDispositivo> GetDevices()
         => _repoDevice.GetAll();
 
-        public IEnumerable<License> GetLicenses()
+        public IEnumerable<Licenca> GetLicenses()
         => _repoLicense.GetAll();
         
-        public IEnumerable<LicensesAccessControll> GetLicensesAcessControll()
+        public IEnumerable<LicencaAcesso> GetLicensesAcessControll()
         => _repoAccessControll.GetAll();
 
-        public IEnumerable<Company> GetEmpresas()
+        public IEnumerable<Empresa> GetEmpresas()
        => _repoCompany.GetAll();
 
         /*

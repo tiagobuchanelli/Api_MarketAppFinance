@@ -8,9 +8,9 @@ namespace Api_MarketAppFinance.Api.Controllers
     [ApiController]
     public class UserController : Controller
     {
-        private readonly IApplicationServiceUser _applicationServiceUser;
+        private readonly IUsuarioAplicacaoServico _applicationServiceUser;
 
-        public UserController(IApplicationServiceUser applicationService)
+        public UserController(IUsuarioAplicacaoServico applicationService)
         {
             _applicationServiceUser = applicationService;
         }
@@ -28,7 +28,7 @@ namespace Api_MarketAppFinance.Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] UserDto userDto)
+        public ActionResult Post([FromBody] UsuarioDto userDto)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace Api_MarketAppFinance.Api.Controllers
         }
 
         [HttpPut]
-        public ActionResult Put([FromBody] UserDto userDto)
+        public ActionResult Put([FromBody] UsuarioDto userDto)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace Api_MarketAppFinance.Api.Controllers
         }
 
         [HttpDelete]
-        public ActionResult Delete([FromBody] UserDto userDto)
+        public ActionResult Delete([FromBody] UsuarioDto userDto)
         {
             try
             {
