@@ -9,7 +9,7 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
         public void Configure(EntityTypeBuilder<Empresa> builder)
         {
             builder
-                .ToTable("Companies");
+                .ToTable("Empresas");
 
             builder
                 .Property(a => a.Nome)
@@ -17,7 +17,7 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
                 .IsRequired();
 
             builder
-                .Property(a => a.Sobrenome)
+                .Property(a => a.NomeCurto)
                 .HasColumnType("varchar(250)")
                 .IsRequired();
 

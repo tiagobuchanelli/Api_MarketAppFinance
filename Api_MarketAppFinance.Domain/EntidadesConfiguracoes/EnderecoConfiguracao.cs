@@ -9,7 +9,7 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
         public void Configure(EntityTypeBuilder<Endereco> builder)
         {
             builder
-               .ToTable("Adresses");
+               .ToTable("Enderecos");
 
             builder
                 .Property(a => a.Rua)

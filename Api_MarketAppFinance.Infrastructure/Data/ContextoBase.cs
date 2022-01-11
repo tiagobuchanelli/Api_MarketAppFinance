@@ -16,7 +16,7 @@ namespace Api_MarketAppFinance.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Server=127.0.0.1;Port=15432;Database=marketapp;User Id=postgres;Password=joomla11080;");
+            optionsBuilder.UseNpgsql("Server=127.0.0.1;Port=15432;Database=MarketApp;User Id=postgres;Password=joomla11080;");
         }
 
 

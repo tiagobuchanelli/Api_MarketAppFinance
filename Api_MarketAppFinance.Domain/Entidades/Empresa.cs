@@ -10,7 +10,7 @@
         public Empresa(string name, string shortName, string? phone, Usuario user)
         {
             Nome = name;
-            Sobrenome = shortName;
+            NomeCurto = shortName;
             Telefone = phone;
             UsuarioId = user.Id;
 
@@ -31,7 +31,7 @@
 
         public string Nome { get; private set; }
 
-        public string Sobrenome { get; private set; }
+        public string NomeCurto { get; private set; }
 
         public bool IsActive { get; private set; }
 
@@ -54,7 +54,7 @@
             if (string.IsNullOrEmpty(Nome))
                 throw new Exception("Obrigatório informar o nome da empresa.");
 
-            if(string.IsNullOrEmpty(Sobrenome))
+            if(string.IsNullOrEmpty(NomeCurto))
                 throw new Exception("Obrigatório informar o nome curto da empresa.");
 
             if (UsuarioId == default)

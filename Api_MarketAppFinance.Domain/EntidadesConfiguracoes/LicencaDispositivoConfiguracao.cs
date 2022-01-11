@@ -9,7 +9,7 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
         public void Configure(EntityTypeBuilder<LicencaAcesso> builder)
         {
             builder
-               .ToTable("LicensesAccessControll");
+               .ToTable("LicencaDispositivos");
 
             builder
                 .Property(a => a.Descricao)

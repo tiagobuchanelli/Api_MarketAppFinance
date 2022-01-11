@@ -9,7 +9,7 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
         public void Configure(EntityTypeBuilder<Usuario> builder)
         {
             builder
-                .ToTable("Users");
+                .ToTable("Usuarios");
 
             builder
                 .Property(a => a.Nome)
