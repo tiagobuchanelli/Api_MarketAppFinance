@@ -26,12 +26,12 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
                 .HasColumnType("varchar(50)");
 
             builder
-                .Property(a => a.IsActive)
+                .Property(a => a.Ativo)
                 .HasDefaultValue(false)
                 .IsRequired();
 
             builder
-               .Property(a => a.Image)
+               .Property(a => a.Imagem)
                .HasColumnType("text");
 
             builder

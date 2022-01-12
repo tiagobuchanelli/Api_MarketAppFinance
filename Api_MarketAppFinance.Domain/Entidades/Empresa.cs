@@ -7,12 +7,14 @@
         private Empresa()
         { }
 
-        public Empresa(string name, string shortName, string? phone, Usuario user)
+        public Empresa(string name, string nomeCurto, Usuario usuario, string? telefone = null, string? imagem = null)
         {
             Nome = name;
-            NomeCurto = shortName;
-            Telefone = phone;
-            UsuarioId = user.Id;
+            NomeCurto = nomeCurto;
+            Telefone = telefone;
+            UsuarioId = usuario.Id;
+            Ativo = true;
+            Imagem = imagem;
 
             _licenses = new List<Licenca>();
 
@@ -33,11 +35,11 @@
 
         public string NomeCurto { get; private set; }
 
-        public bool IsActive { get; private set; }
+        public bool Ativo { get; private set; }
 
         public string? Telefone { get; private set; }
 
-        public string? Image { get; private set; }
+        public string? Imagem { get; private set; }
 
         public int UsuarioId { get; private set; }
 
@@ -65,16 +67,19 @@
 
         #region Public Methods
 
-        public void AlterarImagem(string imageCompany) => Image = imageCompany;
+        public void AlterarImagem(string imageCompany) => Imagem = imageCompany;
 
         public void AlterarTelefone(string phone) => Telefone = phone;
 
-        public void Ativar() => IsActive = true;
+        public void Ativar() => Ativo = true;
 
-        public void Inativar() => IsActive = true;
+        public void Inativar() => Ativo = false;
 
         public void GerarLicenca(Licenca license)
         {            
+            if(license is null)
+                throw new Exception("Obrigatório informar uma licença válida.");
+
             _licenses.Add(license);
         }
 

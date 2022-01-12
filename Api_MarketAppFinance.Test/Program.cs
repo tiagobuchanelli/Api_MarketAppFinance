@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Api_MarketAppFinance.Data;
+using Api_MarketAppFinance.Domain.Entidades;
 using Api_MarketAppFinance.Domain.Entities;
 using Api_MarketAppFinance.Infrastructure.Data.Repositories;
 using Api_MarketAppFinance.Test;
@@ -62,6 +63,10 @@ _repoCompany.Update(empresas4);
 */
 
 var teste23 = "";
+var empresaTeste = new Empresa("nome", "nome curto", new Usuario("nome", "sobrenome", "teste@gmail.com"));
+var categoriaTeste = new Categoria("Categoria 1", empresaTeste);
+
+var produto = new Produto(descricao: "Produto 1", categoria: categoriaTeste, empresa: empresaTeste, valorVenda: 10);
 
 
 

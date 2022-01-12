@@ -7,14 +7,14 @@
         {
         }
 
-        public Cidade(string name, string zipCode, string codeIbge, string stateCodeIbge, string stateSymbol)
+        public Cidade(string name, string codeIbge, string stateCodeIbge, string? sigla = null, string? cep = null)
         {
-            this.Nome = name;
-            this.Cep = zipCode;
-            this.CdIbge = codeIbge;
-            this.CdIbgeEstado = stateCodeIbge;
-            this.SiglaEstado = stateSymbol;
-            this.Ativo = true;           
+            Nome = name;
+            Cep = cep;
+            CdIbge = codeIbge;
+            CdIbgeEstado = stateCodeIbge;
+            SiglaEstado = sigla;
+            Ativo = true;
 
             Validar();
         }        

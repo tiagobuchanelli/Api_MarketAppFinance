@@ -7,14 +7,14 @@
         {
         }
 
-        public Usuario(string name, string lastName, string email, string docNumber, string phone, string image)
+        public Usuario(string nome, string sobrenome, string email, string? documento = null, string? telefone = null, string? imagem = null)
         {
-            this.Nome = name;
-            this.Sobrenome = lastName;
-            this.Email = email;
-            this.Telefone = phone;
-            this.NumeroDocumento = docNumber;
-            this.Imagem = image;
+            Nome = nome;
+            Sobrenome = sobrenome;
+            Email = email;
+            Telefone = telefone;
+            NumeroDocumento = documento;
+            Imagem = imagem;
 
             _dispositivos = new List<LicencaDispositivo>();
             _enderecos = new List<Endereco>();

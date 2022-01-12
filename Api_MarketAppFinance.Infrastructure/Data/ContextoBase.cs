@@ -1,4 +1,5 @@
-﻿using Api_MarketAppFinance.Domain.Entities;
+﻿using Api_MarketAppFinance.Domain.Entidades;
+using Api_MarketAppFinance.Domain.Entities;
 using Api_MarketAppFinance.Domain.EntitiesConfigurators;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,6 +30,11 @@ namespace Api_MarketAppFinance.Data
             modelBuilder.ApplyConfiguration(new LicencaDispositivoConfiguracao());
             modelBuilder.ApplyConfiguration(new DispositivoConfiguracao());
             modelBuilder.ApplyConfiguration(new EmpresaConfiguracao());
+            modelBuilder.ApplyConfiguration(new CategoriaConfiguracao());
+            modelBuilder.ApplyConfiguration(new SubCategoriaConfiguracao());
+            modelBuilder.ApplyConfiguration(new ClassificacaoConfiguracao());
+            modelBuilder.ApplyConfiguration(new MarcaConfiguracao());
+            modelBuilder.ApplyConfiguration(new ProdutoConfiguracao());
         }
 
         public override int SaveChanges()
@@ -54,10 +60,25 @@ namespace Api_MarketAppFinance.Data
         }
 
         public DbSet<Usuario> Users { get; set; }
+
         public DbSet<Cidade> Cities { get; set; }
+        
         public DbSet<Endereco> Adresses { get; set; }
+        
         public DbSet<Licenca> Licenses { get; set; }
+        
         public DbSet<LicencaDispositivo> Devices { get; set; }
+        
         public DbSet<Empresa> Companies { get; set; }
+        
+        public DbSet<Categoria> Categorias { get; set; }
+
+        public DbSet<SubCategoria> SubCategorias { get; set; }
+
+        public DbSet<Classificacao> Classificacao { get; set; }
+
+        public DbSet<Marca> Marcas { get; set; }
+
+        public DbSet<Produto> Produtos { get; set; }
     }
 }

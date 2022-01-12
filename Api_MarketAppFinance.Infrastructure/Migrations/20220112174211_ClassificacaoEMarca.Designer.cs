@@ -3,6 +3,7 @@ using System;
 using Api_MarketAppFinance.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Api_MarketAppFinance.Infrastructure.Migrations
 {
     [DbContext(typeof(ContextoBase))]
-    partial class ContextoBaseModelSnapshot : ModelSnapshot
+    [Migration("20220112174211_ClassificacaoEMarca")]
+    partial class ClassificacaoEMarca
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,9 +33,7 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("Ativo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(false);
+                        .HasColumnType("boolean");
 
                     b.Property<DateTime>("CreateAt")
                         .ValueGeneratedOnAdd()
@@ -68,9 +68,7 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("Ativo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(false);
+                        .HasColumnType("boolean");
 
                     b.Property<DateTime>("CreateAt")
                         .ValueGeneratedOnAdd()
@@ -105,9 +103,7 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("Ativo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(false);
+                        .HasColumnType("boolean");
 
                     b.Property<DateTime>("CreateAt")
                         .ValueGeneratedOnAdd()
@@ -133,123 +129,6 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     b.ToTable("Marcas", (string)null);
                 });
 
-            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.Produto", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("AliquotaIcmsDentroUf")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal>("AliquotaIpi")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal>("Altura")
-                        .HasColumnType("numeric");
-
-                    b.Property<bool>("Ativo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(false);
-
-                    b.Property<int>("CategoriaId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ClassificacaoId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("CodigoBarras")
-                        .HasColumnType("varchar(30)");
-
-                    b.Property<string>("CodigoIdentificacao")
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<bool>("ControlaEstoqueLote")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime>("CreateAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasDefaultValueSql("now()");
-
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasColumnType("varchar(300)");
-
-                    b.Property<string>("DescricaoVenda")
-                        .HasColumnType("varchar(300)");
-
-                    b.Property<int>("EmpresaId")
-                        .HasColumnType("integer");
-
-                    b.Property<decimal>("Espessura")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal>("EstoqueMinimo")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal>("Largura")
-                        .HasColumnType("numeric");
-
-                    b.Property<int>("MarcaId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Observacao")
-                        .HasColumnType("varchar(500)");
-
-                    b.Property<string>("ObservacaoVenda")
-                        .HasColumnType("varchar(500)");
-
-                    b.Property<decimal>("PercentualDesconto")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal>("PercentualLucro")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal>("PesoBruto")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal>("PesoLiquido")
-                        .HasColumnType("numeric");
-
-                    b.Property<int>("SubCategoriaId")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("UpdateAt")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp with time zone")
-                        .HasDefaultValueSql("now()");
-
-                    b.Property<decimal>("ValorCusto")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal>("ValorDesconto")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal>("ValorMinimoVenda")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal>("ValorVenda")
-                        .HasColumnType("numeric");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoriaId");
-
-                    b.HasIndex("ClassificacaoId");
-
-                    b.HasIndex("EmpresaId");
-
-                    b.HasIndex("MarcaId");
-
-                    b.HasIndex("SubCategoriaId");
-
-                    b.ToTable("Produtos", (string)null);
-                });
-
             modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.SubCategoria", b =>
                 {
                     b.Property<int>("Id")
@@ -259,9 +138,7 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("Ativo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(false);
+                        .HasColumnType("boolean");
 
                     b.Property<int>("CategoriaId")
                         .HasColumnType("integer");
@@ -356,7 +233,7 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("now()");
 
-                    b.Property<string>("Imagem")
+                    b.Property<string>("Image")
                         .HasColumnType("text");
 
                     b.Property<string>("Nome")
@@ -633,49 +510,6 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Empresa");
-                });
-
-            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.Produto", b =>
-                {
-                    b.HasOne("Api_MarketAppFinance.Domain.Entidades.Categoria", "Categoria")
-                        .WithMany()
-                        .HasForeignKey("CategoriaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Api_MarketAppFinance.Domain.Entidades.Classificacao", "Classificacao")
-                        .WithMany()
-                        .HasForeignKey("ClassificacaoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Api_MarketAppFinance.Domain.Entities.Empresa", "Empresa")
-                        .WithMany()
-                        .HasForeignKey("EmpresaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Api_MarketAppFinance.Domain.Entidades.Marca", "Marca")
-                        .WithMany()
-                        .HasForeignKey("MarcaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Api_MarketAppFinance.Domain.Entidades.SubCategoria", "SubCategoria")
-                        .WithMany()
-                        .HasForeignKey("SubCategoriaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Categoria");
-
-                    b.Navigation("Classificacao");
-
-                    b.Navigation("Empresa");
-
-                    b.Navigation("Marca");
-
-                    b.Navigation("SubCategoria");
                 });
 
             modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.SubCategoria", b =>

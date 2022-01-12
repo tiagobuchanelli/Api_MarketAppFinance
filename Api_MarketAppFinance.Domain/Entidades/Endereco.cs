@@ -7,15 +7,15 @@
         {
         }
 
-        public Endereco(string street, string streetNumber, string zipCode, string district, string complement, Usuario user, Cidade city)
+        public Endereco(string rua, Usuario usuario, Cidade cidade, string? numero = null, string? cep = null, string? bairro = null, string? complemento = null)
         {
-            this.Rua = street;
-            this.Numero = streetNumber;   
-            this.Cep = zipCode;  
-            this.Bairro = district;
-            this.Complemento = complement;
-            this.UsuarioId = user.Id;
-            this.CidadeId = city.Id;
+            this.Rua = rua;
+            this.Numero = numero;   
+            this.Cep = cep;  
+            this.Bairro = bairro;
+            this.Complemento = complemento;
+            this.UsuarioId = usuario.Id;
+            this.CidadeId = cidade.Id;
 
             Validar();
 

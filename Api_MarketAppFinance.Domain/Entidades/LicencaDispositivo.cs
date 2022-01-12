@@ -43,7 +43,12 @@
         #endregion
 
         #region Public Methods
-        public void AlterarNome(string nameDevice) => Nome = nameDevice;
+        public void AlterarNome(string nameDevice) 
+        {
+            if (string.IsNullOrEmpty(nameDevice))
+                throw new Exception("Obrigatório informar um nome de dispositivo.");
+            Nome = nameDevice; 
+        }
         #endregion
     }
 }
