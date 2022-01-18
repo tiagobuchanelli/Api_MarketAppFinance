@@ -21,12 +21,12 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
                 .HasColumnType("varchar(500)");
 
             builder
-              .Property(a => a.CreateAt)
+              .Property(a => a.DataCriacao)
               .ValueGeneratedOnAdd()
               .HasDefaultValueSql("now()");
 
             builder
-                .Property(a => a.UpdateAt)
+                .Property(a => a.DataAtualizacao)
                 .ValueGeneratedOnAddOrUpdate()
                 .HasDefaultValueSql("now()")
                 .IsRequired();

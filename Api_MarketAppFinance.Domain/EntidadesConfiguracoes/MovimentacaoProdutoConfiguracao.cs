@@ -5,21 +5,16 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
 {
-    public class CategoriaConfiguracao : IEntityTypeConfiguration<Categoria>
+    public class MovimentacaoProdutoConfiguracao : IEntityTypeConfiguration<MovimentacaoProduto>
     {
-        public void Configure(EntityTypeBuilder<Categoria> builder)
+        public void Configure(EntityTypeBuilder<MovimentacaoProduto> builder)
         {
             builder
-               .ToTable("Categorias");
+               .ToTable("MovimentacaoProdutos");
 
             builder
-                .Property(a => a.Descricao)
-                .HasColumnType("varchar(300)")
-                .IsRequired();
-
-            builder
-               .Property(a => a.Ativo)
-               .HasDefaultValue(false)
+               .Property(a => a.DataLancamento)
+               .HasColumnType("date")
                .IsRequired();
 
             builder

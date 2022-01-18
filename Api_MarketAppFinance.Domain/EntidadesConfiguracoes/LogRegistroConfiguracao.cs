@@ -5,22 +5,28 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
 {
-    public class CategoriaConfiguracao : IEntityTypeConfiguration<Categoria>
+    public class LogRegistroConfiguracao : IEntityTypeConfiguration<LogRegistro>
     {
-        public void Configure(EntityTypeBuilder<Categoria> builder)
+        public void Configure(EntityTypeBuilder<LogRegistro> builder)
         {
             builder
-               .ToTable("Categorias");
+               .ToTable("LogsRegistros");
 
             builder
-                .Property(a => a.Descricao)
+                .Property(a => a.Tabela)
                 .HasColumnType("varchar(300)")
                 .IsRequired();
 
             builder
-               .Property(a => a.Ativo)
-               .HasDefaultValue(false)
-               .IsRequired();
+                .Property(a => a.ValorAnterior)
+                .HasColumnType("varchar(500)")
+                .IsRequired();
+
+            builder
+                .Property(a => a.ValorAtual)
+                .HasColumnType("varchar(500)")
+                .IsRequired();
+
 
             builder
               .Property(a => a.DataCriacao)

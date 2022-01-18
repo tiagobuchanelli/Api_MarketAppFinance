@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
 {
-    public class CategoriaConfiguracao : IEntityTypeConfiguration<Categoria>
+    public class OrigemMovimentacaoProdutosConfiguracao : IEntityTypeConfiguration<OrigemMovimentacaoProduto>
     {
-        public void Configure(EntityTypeBuilder<Categoria> builder)
+        public void Configure(EntityTypeBuilder<OrigemMovimentacaoProduto> builder)
         {
             builder
-               .ToTable("Categorias");
+               .ToTable("OrigemMovimentacaoProdutos");
 
             builder
                 .Property(a => a.Descricao)

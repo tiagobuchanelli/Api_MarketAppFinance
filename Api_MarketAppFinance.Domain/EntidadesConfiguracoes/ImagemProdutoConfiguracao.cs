@@ -5,16 +5,16 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
 {
-    public class CategoriaConfiguracao : IEntityTypeConfiguration<Categoria>
+    public class ImagemProdutoConfiguracao : IEntityTypeConfiguration<ImagemProduto>
     {
-        public void Configure(EntityTypeBuilder<Categoria> builder)
+        public void Configure(EntityTypeBuilder<ImagemProduto> builder)
         {
             builder
-               .ToTable("Categorias");
+               .ToTable("ImagensProduto");
 
             builder
-                .Property(a => a.Descricao)
-                .HasColumnType("varchar(300)")
+                .Property(a => a.Url)
+                .HasColumnType("text")
                 .IsRequired();
 
             builder

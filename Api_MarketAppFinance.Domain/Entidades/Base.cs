@@ -4,8 +4,8 @@
     {
         public virtual int Id { get; protected set; }
 
-        public virtual DateTime UpdateAt { get; protected set; }
+        public virtual DateTime DataAtualizacao { get; protected set; }
 
-        public virtual DateTime CreateAt { get; protected set; }
+        public virtual DateTime DataCriacao { get; protected set; }
     }
 }

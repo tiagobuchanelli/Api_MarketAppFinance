@@ -3,6 +3,7 @@ using System;
 using Api_MarketAppFinance.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Api_MarketAppFinance.Infrastructure.Migrations
 {
     [DbContext(typeof(ContextoBase))]
-    partial class ContextoBaseModelSnapshot : ModelSnapshot
+    [Migration("20220118184752_CriadoTabelaMovimentacaoProdutosLote")]
+    partial class CriadoTabelaMovimentacaoProdutosLote
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -800,54 +802,6 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     b.ToTable("Dispositivos", (string)null);
                 });
 
-            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entities.LogRegistro", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ChaveTabela")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("DataAtualizacao")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp with time zone")
-                        .HasDefaultValueSql("now()");
-
-                    b.Property<DateTime>("DataCriacao")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasDefaultValueSql("now()");
-
-                    b.Property<int>("EmpresaId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Tabela")
-                        .IsRequired()
-                        .HasColumnType("varchar(300)");
-
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("ValorAnterior")
-                        .IsRequired()
-                        .HasColumnType("varchar(500)");
-
-                    b.Property<string>("ValorAtual")
-                        .IsRequired()
-                        .HasColumnType("varchar(500)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmpresaId");
-
-                    b.HasIndex("UsuarioId");
-
-                    b.ToTable("LogsRegistros", (string)null);
-                });
-
             modelBuilder.Entity("Api_MarketAppFinance.Domain.Entities.Usuario", b =>
                 {
                     b.Property<int>("Id")
@@ -1143,25 +1097,6 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entities.LogRegistro", b =>
-                {
-                    b.HasOne("Api_MarketAppFinance.Domain.Entities.Empresa", "Empresa")
-                        .WithMany()
-                        .HasForeignKey("EmpresaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Api_MarketAppFinance.Domain.Entities.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Empresa");
 
                     b.Navigation("Usuario");
                 });

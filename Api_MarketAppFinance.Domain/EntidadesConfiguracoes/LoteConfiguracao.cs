@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
 {
-    public class CategoriaConfiguracao : IEntityTypeConfiguration<Categoria>
+    public class LoteConfiguracao : IEntityTypeConfiguration<Lote>
     {
-        public void Configure(EntityTypeBuilder<Categoria> builder)
+        public void Configure(EntityTypeBuilder<Lote> builder)
         {
             builder
-               .ToTable("Categorias");
+               .ToTable("Lotes");
 
             builder
                 .Property(a => a.Descricao)
@@ -21,6 +21,27 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
                .Property(a => a.Ativo)
                .HasDefaultValue(false)
                .IsRequired();
+
+            builder
+                .Property(a => a.DataFabricacao)
+                .HasColumnType("date");
+
+            builder
+                .Property(a => a.DataVencimento)
+                .HasColumnType("date");
+
+            builder
+                .Property(a => a.Observacao)
+                .HasColumnType("varchar(500)");
+
+            builder
+                .Property(a => a.NumeroLote)
+                .HasColumnType("varchar(500)");
+
+            builder
+                .Property(a => a.NumeroEmbalagem)
+                .HasColumnType("varchar(500)");
+
 
             builder
               .Property(a => a.DataCriacao)

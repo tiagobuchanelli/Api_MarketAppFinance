@@ -35,6 +35,12 @@ namespace Api_MarketAppFinance.Data
             modelBuilder.ApplyConfiguration(new ClassificacaoConfiguracao());
             modelBuilder.ApplyConfiguration(new MarcaConfiguracao());
             modelBuilder.ApplyConfiguration(new ProdutoConfiguracao());
+            modelBuilder.ApplyConfiguration(new ImagemProdutoConfiguracao());
+            modelBuilder.ApplyConfiguration(new LoteConfiguracao());
+            modelBuilder.ApplyConfiguration(new OrigemMovimentacaoProdutosConfiguracao());
+            modelBuilder.ApplyConfiguration(new MovimentacaoProdutoConfiguracao());
+            modelBuilder.ApplyConfiguration(new MovimentacaoProdutoLoteConfiguracao());
+            modelBuilder.ApplyConfiguration(new LogRegistroConfiguracao());
         }
 
         public override int SaveChanges()
@@ -80,5 +86,17 @@ namespace Api_MarketAppFinance.Data
         public DbSet<Marca> Marcas { get; set; }
 
         public DbSet<Produto> Produtos { get; set; }
+
+        public DbSet<ImagemProduto> ImagensProduto { get; set; }
+
+        public DbSet<Lote> Lotes { get; set; }
+
+        public DbSet<OrigemMovimentacaoProduto> OrigemMovimentacaoProdutos { get; set; }
+
+        public DbSet<MovimentacaoProduto> MovimentacaoProdutos { get; set; }
+
+        public DbSet<MovimentacaoProdutoLote> MovimentacaoProdutoLotes { get; set; }
+
+        public DbSet<LogRegistro> LogsRegistros { get; set; }
     }
 }
