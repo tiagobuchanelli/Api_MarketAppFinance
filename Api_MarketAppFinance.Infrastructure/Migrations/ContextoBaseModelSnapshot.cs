@@ -649,6 +649,9 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     b.Property<int>("CidadeId")
                         .HasColumnType("integer");
 
+                    b.Property<int>("CodigoEntidade")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Complemento")
                         .HasColumnType("text");
 
@@ -1096,7 +1099,7 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("Api_MarketAppFinance.Domain.Entities.Usuario", "Usuario")
-                        .WithMany("Adresses")
+                        .WithMany()
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1178,8 +1181,6 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
 
             modelBuilder.Entity("Api_MarketAppFinance.Domain.Entities.Usuario", b =>
                 {
-                    b.Navigation("Adresses");
-
                     b.Navigation("Devices");
                 });
 #pragma warning restore 612, 618

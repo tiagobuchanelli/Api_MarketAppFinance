@@ -30,4 +30,8 @@
     <ProjectReference Include="..\Api_MarketAppFinance.Domain\Api_MarketAppFinance.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

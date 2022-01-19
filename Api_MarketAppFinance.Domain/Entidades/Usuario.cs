@@ -17,7 +17,6 @@
             Imagem = imagem;
 
             _dispositivos = new List<LicencaDispositivo>();
-            _enderecos = new List<Endereco>();
 
             Validate();
         }
@@ -29,7 +28,6 @@
         #region Actributes Private
 
         private IList<LicencaDispositivo> _dispositivos;
-        private IList<Endereco> _enderecos;
 
         #endregion
 
@@ -47,8 +45,6 @@
         public string? Telefone { get; private set; }
 
         public string? Imagem { get; private set; }        
-
-        public IEnumerable<Endereco> Adresses { get { return _enderecos.ToList(); } }
 
         public IEnumerable<LicencaDispositivo> Devices { get { return _dispositivos.ToList(); } }
         #endregion
@@ -69,11 +65,7 @@
         #endregion
 
         #region Public Methods
-        public void GerarEndereco(Endereco address)
-        {
-            _enderecos.Add(address);
-        }
-
+        
         public void GerarDispositivoLicenca(LicencaDispositivo device)
         {
             _dispositivos.Add(device);

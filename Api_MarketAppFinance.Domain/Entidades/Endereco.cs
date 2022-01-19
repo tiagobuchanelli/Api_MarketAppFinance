@@ -7,14 +7,14 @@
         {
         }
 
-        public Endereco(string rua, Usuario usuario, Cidade cidade, string? numero = null, string? cep = null, string? bairro = null, string? complemento = null)
+        public Endereco(string rua, int codigoEntidade, Cidade cidade, string? numero = null, string? cep = null, string? bairro = null, string? complemento = null)
         {
             this.Rua = rua;
             this.Numero = numero;   
             this.Cep = cep;  
             this.Bairro = bairro;
             this.Complemento = complemento;
-            this.UsuarioId = usuario.Id;
+            this.CodigoEntidade = codigoEntidade;
             this.CidadeId = cidade.Id;
 
             Validar();
@@ -25,7 +25,7 @@
 
         #region Actributes Public
 
-        public int UsuarioId { get; private set; }
+        public int CodigoEntidade { get; private set; }
 
         public int CidadeId { get; private set; }
 
@@ -51,7 +51,7 @@
             if(string.IsNullOrEmpty(Rua))
                 throw new Exception("Obrigatório informar a rua.");
 
-            if (UsuarioId == default)
+            if (CodigoEntidade == default)
                 throw new Exception("Obrigatório informar um usuário válido");
 
             if(CidadeId == default)
