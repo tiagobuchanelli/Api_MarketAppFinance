@@ -7,10 +7,10 @@
         private Empresa()
         { }
 
-        public Empresa(string name, string nomeCurto, Usuario usuario, string? telefone = null, string? imagem = null)
+        public Empresa(string nomeFantasia, string razaoSocial, Usuario usuario, string? telefone = null, string? imagem = null)
         {
-            Nome = name;
-            NomeCurto = nomeCurto;
+            NomeFantasia = nomeFantasia;
+            RazaoSocial = razaoSocial;
             Telefone = telefone;
             UsuarioId = usuario.Id;
             Ativo = true;
@@ -31,9 +31,9 @@
 
         #region Actributes Public
 
-        public string Nome { get; private set; }
+        public string NomeFantasia { get; private set; }
 
-        public string NomeCurto { get; private set; }
+        public string RazaoSocial { get; private set; }
 
         public bool Ativo { get; private set; }
 
@@ -53,10 +53,10 @@
 
         private void Validar()
         {
-            if (string.IsNullOrEmpty(Nome))
+            if (string.IsNullOrEmpty(NomeFantasia))
                 throw new Exception("Obrigatório informar o nome da empresa.");
 
-            if(string.IsNullOrEmpty(NomeCurto))
+            if(string.IsNullOrEmpty(RazaoSocial))
                 throw new Exception("Obrigatório informar o nome curto da empresa.");
 
             if (UsuarioId == default)

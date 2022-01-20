@@ -12,12 +12,12 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
                 .ToTable("Empresas");
 
             builder
-                .Property(a => a.Nome)
+                .Property(a => a.NomeFantasia)
                 .HasColumnType("varchar(500)")
                 .IsRequired();
 
             builder
-                .Property(a => a.NomeCurto)
+                .Property(a => a.RazaoSocial)
                 .HasColumnType("varchar(250)")
                 .IsRequired();
 

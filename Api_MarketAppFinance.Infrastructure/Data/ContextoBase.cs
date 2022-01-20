@@ -41,6 +41,8 @@ namespace Api_MarketAppFinance.Data
             modelBuilder.ApplyConfiguration(new MovimentacaoProdutoConfiguracao());
             modelBuilder.ApplyConfiguration(new MovimentacaoProdutoLoteConfiguracao());
             modelBuilder.ApplyConfiguration(new LogRegistroConfiguracao());
+            modelBuilder.ApplyConfiguration(new FornecedorConfiguracao());
+            modelBuilder.ApplyConfiguration(new ClienteConfiguracao());
         }
 
         public override int SaveChanges()
@@ -98,5 +100,9 @@ namespace Api_MarketAppFinance.Data
         public DbSet<MovimentacaoProdutoLote> MovimentacaoProdutoLotes { get; set; }
 
         public DbSet<LogRegistro> LogsRegistros { get; set; }
+
+        public DbSet<Fornecedor> Fornecedores { get; set; }
+
+        public DbSet<Cliente> Clientes { get; set; }
     }
 }

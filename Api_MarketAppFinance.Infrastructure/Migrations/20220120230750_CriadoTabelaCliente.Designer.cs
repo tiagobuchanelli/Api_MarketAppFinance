@@ -3,6 +3,7 @@ using System;
 using Api_MarketAppFinance.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Api_MarketAppFinance.Infrastructure.Migrations
 {
     [DbContext(typeof(ContextoBase))]
-    partial class ContextoBaseModelSnapshot : ModelSnapshot
+    [Migration("20220120230750_CriadoTabelaCliente")]
+    partial class CriadoTabelaCliente
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -888,6 +890,9 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     b.Property<int>("EmpresaId")
                         .HasColumnType("integer");
 
+                    b.Property<int?>("FornecedorId")
+                        .HasColumnType("integer");
+
                     b.Property<int>("MaxAcesso")
                         .HasColumnType("integer");
 
@@ -898,6 +903,8 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("EmpresaId");
+
+                    b.HasIndex("FornecedorId");
 
                     b.ToTable("Licencas", (string)null);
                 });
@@ -1311,6 +1318,10 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Api_MarketAppFinance.Domain.Entidades.Fornecedor", null)
+                        .WithMany("Licenses")
+                        .HasForeignKey("FornecedorId");
+
                     b.Navigation("Empresa");
                 });
 
@@ -1366,6 +1377,11 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
             modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.Categoria", b =>
                 {
                     b.Navigation("SubCategorias");
+                });
+
+            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.Fornecedor", b =>
+                {
+                    b.Navigation("Licenses");
                 });
 
             modelBuilder.Entity("Api_MarketAppFinance.Domain.Entities.Empresa", b =>

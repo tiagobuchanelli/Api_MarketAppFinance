@@ -3,6 +3,7 @@ using System;
 using Api_MarketAppFinance.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Api_MarketAppFinance.Infrastructure.Migrations
 {
     [DbContext(typeof(ContextoBase))]
-    partial class ContextoBaseModelSnapshot : ModelSnapshot
+    [Migration("20220120225325_CriadoTabelaFornecedor")]
+    partial class CriadoTabelaFornecedor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,92 +96,6 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     b.HasIndex("EmpresaId");
 
                     b.ToTable("Classificacao", (string)null);
-                });
-
-            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.Cliente", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("Ativo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(false);
-
-                    b.Property<string>("Bairro")
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("Cep")
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<string>("Complemento")
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<DateTime>("DataAtualizacao")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp with time zone")
-                        .HasDefaultValueSql("now()");
-
-                    b.Property<DateTime>("DataCriacao")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasDefaultValueSql("now()");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("varchar(250)");
-
-                    b.Property<int>("EmpresaId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Imagem")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Letra")
-                        .HasColumnType("varchar(10)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("varchar(500)");
-
-                    b.Property<string>("Numero")
-                        .HasColumnType("varchar(10)");
-
-                    b.Property<string>("NumeroDocumento")
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("Observacao")
-                        .HasColumnType("varchar(500)");
-
-                    b.Property<decimal>("PrDesconto")
-                        .HasColumnType("numeric");
-
-                    b.Property<string>("Rua")
-                        .HasColumnType("varchar(300)");
-
-                    b.Property<string>("Sobrenome")
-                        .IsRequired()
-                        .HasColumnType("varchar(250)");
-
-                    b.Property<string>("Telefone1")
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("Telefone2")
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<decimal>("ValorLimiteVenda")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal>("ValorMinimoVenda")
-                        .HasColumnType("numeric");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmpresaId");
-
-                    b.ToTable("Clientes", (string)null);
                 });
 
             modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.Fornecedor", b =>
@@ -888,6 +804,9 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     b.Property<int>("EmpresaId")
                         .HasColumnType("integer");
 
+                    b.Property<int?>("FornecedorId")
+                        .HasColumnType("integer");
+
                     b.Property<int>("MaxAcesso")
                         .HasColumnType("integer");
 
@@ -898,6 +817,8 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("EmpresaId");
+
+                    b.HasIndex("FornecedorId");
 
                     b.ToTable("Licencas", (string)null);
                 });
@@ -1084,17 +1005,6 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                 });
 
             modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.Classificacao", b =>
-                {
-                    b.HasOne("Api_MarketAppFinance.Domain.Entities.Empresa", "Empresa")
-                        .WithMany()
-                        .HasForeignKey("EmpresaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Empresa");
-                });
-
-            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.Cliente", b =>
                 {
                     b.HasOne("Api_MarketAppFinance.Domain.Entities.Empresa", "Empresa")
                         .WithMany()
@@ -1311,6 +1221,10 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Api_MarketAppFinance.Domain.Entidades.Fornecedor", null)
+                        .WithMany("Licenses")
+                        .HasForeignKey("FornecedorId");
+
                     b.Navigation("Empresa");
                 });
 
@@ -1366,6 +1280,11 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
             modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.Categoria", b =>
                 {
                     b.Navigation("SubCategorias");
+                });
+
+            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.Fornecedor", b =>
+                {
+                    b.Navigation("Licenses");
                 });
 
             modelBuilder.Entity("Api_MarketAppFinance.Domain.Entities.Empresa", b =>
