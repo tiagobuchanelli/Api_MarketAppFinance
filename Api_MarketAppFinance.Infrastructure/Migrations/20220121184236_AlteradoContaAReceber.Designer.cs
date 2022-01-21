@@ -3,6 +3,7 @@ using System;
 using Api_MarketAppFinance.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Api_MarketAppFinance.Infrastructure.Migrations
 {
     [DbContext(typeof(ContextoBase))]
-    partial class ContextoBaseModelSnapshot : ModelSnapshot
+    [Migration("20220121184236_AlteradoContaAReceber")]
+    partial class AlteradoContaAReceber
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -357,61 +359,6 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     b.HasIndex("FormaPagamentoId");
 
                     b.ToTable("ContasAReceber", (string)null);
-                });
-
-            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.ContaAReceberParcela", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ContaAReceberId")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("DataAtualizacao")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp with time zone")
-                        .HasDefaultValueSql("now()");
-
-                    b.Property<DateTime>("DataCriacao")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasDefaultValueSql("now()");
-
-                    b.Property<DateTime>("DataPagamento")
-                        .HasColumnType("date");
-
-                    b.Property<DateTime>("DataVencimento")
-                        .HasColumnType("date");
-
-                    b.Property<int>("FormaPagamentoId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("NumeroParcela")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Observacao")
-                        .IsRequired()
-                        .HasColumnType("varchar(2000)");
-
-                    b.Property<decimal>("ValorAcrescimo")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal>("ValorDesconto")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal>("ValorParcela")
-                        .HasColumnType("numeric");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ContaAReceberId");
-
-                    b.HasIndex("FormaPagamentoId");
-
-                    b.ToTable("ContaAReceberParcelas", (string)null);
                 });
 
             modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.Fornecedor", b =>
@@ -1763,25 +1710,6 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     b.Navigation("Cliente");
 
                     b.Navigation("Empresa");
-
-                    b.Navigation("FormaPagamento");
-                });
-
-            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.ContaAReceberParcela", b =>
-                {
-                    b.HasOne("Api_MarketAppFinance.Domain.Entidades.ContaAReceber", "ContaAReceber")
-                        .WithMany()
-                        .HasForeignKey("ContaAReceberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Api_MarketAppFinance.Domain.Entities.FormaPagamento", "FormaPagamento")
-                        .WithMany()
-                        .HasForeignKey("FormaPagamentoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ContaAReceber");
 
                     b.Navigation("FormaPagamento");
                 });

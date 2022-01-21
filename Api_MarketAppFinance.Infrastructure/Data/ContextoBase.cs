@@ -43,6 +43,16 @@ namespace Api_MarketAppFinance.Data
             modelBuilder.ApplyConfiguration(new LogRegistroConfiguracao());
             modelBuilder.ApplyConfiguration(new FornecedorConfiguracao());
             modelBuilder.ApplyConfiguration(new ClienteConfiguracao());
+            modelBuilder.ApplyConfiguration(new CarteiraConfiguracao());
+            modelBuilder.ApplyConfiguration(new FormaPagamentoConfiguracao());
+            modelBuilder.ApplyConfiguration(new VendaConfiguracao());
+            modelBuilder.ApplyConfiguration(new VendaProdutoConfiguracao());
+            modelBuilder.ApplyConfiguration(new VendaFormaPagamentoConfiguracao());
+            modelBuilder.ApplyConfiguration(new VendaParcelaConfiguracao());
+            modelBuilder.ApplyConfiguration(new ContaAPagarConfiguracao());
+            modelBuilder.ApplyConfiguration(new ContaAPagarParcelaConfiguracao());
+            modelBuilder.ApplyConfiguration(new ContaAReceberConfiguracao());
+            modelBuilder.ApplyConfiguration(new ContaAReceberParcelaConfiguracao());
         }
 
         public override int SaveChanges()
@@ -104,5 +114,25 @@ namespace Api_MarketAppFinance.Data
         public DbSet<Fornecedor> Fornecedores { get; set; }
 
         public DbSet<Cliente> Clientes { get; set; }
+        
+        public DbSet<Carteira> Carteiras { get; set; }
+        
+        public DbSet<FormaPagamento> FormasPagamento { get; set; }
+
+        public DbSet<Venda> Vendas { get; set; }
+
+        public DbSet<VendaProduto> VendaProdutos { get; set; }
+
+        public DbSet<VendaFormaPagamento> VendaFormasPagamento { get; set; }
+
+        public DbSet<VendaParcela> VendaParcelas { get; set; }
+
+        public DbSet<ContaAPagar> ContasAPagar { get; set; }
+
+        public DbSet<ContaAPagarParcela> ContaAPagarParcelas { get; set; }
+
+        public DbSet<ContaAReceber> ContasAReceber { get; set; }
+
+        public DbSet<ContaAReceberParcela> ContaAReceberParcelas { get; set; }
     }
 }
