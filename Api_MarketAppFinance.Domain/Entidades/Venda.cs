@@ -15,15 +15,15 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         }
 
-        public Venda(
-            decimal numeroDocumento, 
-            DateTime dataEmissao, 
-            DateTime dataSaida,
+        public Venda(            
             Empresa empresa,
             Cliente cliente,
             Carteira carteira,
             FormaPagamento formaPagamento,
-            string observacao,
+            decimal numeroDocumento,
+            DateTime dataEmissao,            
+            string? observacao = null,
+            DateTime? dataSaida = null,
             decimal? pesoLiquido = null, 
             decimal? pesoBruto = null, 
             decimal? valorFrete = null, 
@@ -64,7 +64,7 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         public DateTime DataEmissao { get; private set; }
 
-        public DateTime DataSaida { get; private set; }
+        public DateTime? DataSaida { get; private set; }
 
         public decimal PesoLiquido { get; private set; }
 
@@ -76,7 +76,7 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         public decimal ValorAcrescimo { get; private set; }
 
-        public string Observacao { get; private set; }
+        public string? Observacao { get; private set; }
 
         public bool Ativo { get; private set; }
 
@@ -93,16 +93,24 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         #region Metodos Privados
         private void Validar()
-        {
-            /*if (string.IsNullOrEmpty(Descricao))
-                throw new Exception("Obrigatório informar a descrição.");
-
-            if (CategoriaId == default)
-                throw new Exception("Obrigatório informar uma categoria válida");
-
+        {            
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida");
-            */
+
+            if (CarteiraId == default)
+                throw new Exception("Obrigatório informar uma carteira válida");
+
+            if (FormaPagamentoId == default)
+                throw new Exception("Obrigatório informar uma forma de pagamento válida");
+
+            if (ClienteId == default)
+                throw new Exception("Obrigatório informar um cliente válido");
+
+            if (NumeroDocumento <= 0)
+                throw new Exception("Obrigatório informar um número de documento válido");
+
+            if (DataEmissao > DateTime.Now)
+                throw new Exception("Data de emissão não pode ser posterior a data atual.");
         }
         #endregion
 

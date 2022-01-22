@@ -93,6 +93,9 @@ namespace Api_MarketAppFinance.Domain.Entities
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida.");
 
+            if (CarteiraId == default)
+                throw new Exception("Obrigatório informar uma carteira válida.");
+
         }
         #endregion
 

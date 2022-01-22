@@ -20,8 +20,10 @@ namespace Api_MarketAppFinance.Domain.Entidades
             decimal valor, 
             Venda venda, 
             Carteira carteira, 
-            FormaPagamento formaPagamento)
+            FormaPagamento formaPagamento,
+            Empresa empresa)
         {
+            EmpresaId = empresa.Id;
             VendaId = venda.Id;
             CarteiraId = carteira.Id;
             FormaPagamentoId = formaPagamento.Id;
@@ -43,6 +45,10 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         public decimal Valor { get; private set; }
 
+        public int EmpresaId { get; private set; }
+
+        public Empresa Empresa { get; private set; }
+
         public Venda Venda { get; private set; }
 
         public Carteira Carteira { get; private set; }
@@ -55,15 +61,20 @@ namespace Api_MarketAppFinance.Domain.Entidades
         #region Metodos Privados
         private void Validar()
         {
-            /*if (string.IsNullOrEmpty(Descricao))
-                throw new Exception("Obrigatório informar a descrição.");
+            if (VendaId == default)
+                throw new Exception("Obrigatório informar uma venda válida");
 
-            if (CategoriaId == default)
-                throw new Exception("Obrigatório informar uma categoria válida");
+            if (CarteiraId == default)
+                throw new Exception("Obrigatório informar uma carteira válida");
+
+            if (FormaPagamentoId == default)
+                throw new Exception("Obrigatório informar uma forma de pagamento válida");
+
+            if (Valor <= 0)
+                throw new Exception("Obrigatório informar um valor válido");
 
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida");
-            */
         }
         #endregion
 

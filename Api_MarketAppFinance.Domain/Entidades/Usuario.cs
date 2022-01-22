@@ -64,22 +64,62 @@
         }
         #endregion
 
-        #region Public Methods
-        
+        #region Metodos Publicos
+        public void Ativar() => Ativo = true;
+
+        public void Inativar() => Ativo = false;
+
         public void GerarDispositivoLicenca(LicencaDispositivo device)
         {
             _dispositivos.Add(device);
         }
-        #endregion
 
-        #region Metodos Publicos
-        public void AlterarNome(string n) => Nome = n;
-        public void AlterarSobreNome(string s) => Sobrenome = s;
-        public void AlterarEmail(string e) => Email = e;
-        public void AlterarDocumento(string d) => NumeroDocumento = d;
-        public void AlterarStatus(bool s) => Ativo = s;
-        public void AlterarTelefone(string t) => Telefone = t;
-        public void AlterarImagem(string i) => Imagem = i;
+        public void AlterarNome(string nome)
+        {
+            if (string.IsNullOrEmpty(nome))
+                throw new Exception("Obrigatório informar o nome do usuário.");
+
+            Nome = nome;
+        }
+
+        public void AlterarSobreNome(string sobrenome)
+        {
+            if (string.IsNullOrEmpty(sobrenome))
+                throw new Exception("Obrigatório informar o sobrenome do usuário.");
+
+            Sobrenome = sobrenome;
+        }
+
+        public void AlterarEmail(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+                throw new Exception("Obrigatório informar um e-mail válido");
+
+            Email = email;
+        }
+        public void AlterarDocumento(string documento)
+        {
+            if (string.IsNullOrEmpty(documento))
+                throw new Exception("Obrigatório informar um documento válido");
+
+            NumeroDocumento = documento;
+        }
+
+        public void AlterarTelefone(string telefone)
+        {
+            if (string.IsNullOrEmpty(telefone))
+                throw new Exception("Obrigatório informar um telefone válido");
+
+            Telefone = telefone;
+        }
+
+        public void AlterarImagem(string imagem)
+        {
+            if (string.IsNullOrEmpty(imagem))
+                throw new Exception("Obrigatório informar uma imagem válida");
+
+            Imagem = imagem;
+        }
         #endregion
 
 

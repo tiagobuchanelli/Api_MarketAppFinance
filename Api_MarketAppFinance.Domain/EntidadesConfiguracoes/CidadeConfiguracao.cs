@@ -30,12 +30,12 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
                .HasColumnType("varchar(10)");
 
             builder
-                .Property(a => a.CdIbge)
+                .Property(a => a.CodigoIbge)
                 .HasColumnType("varchar(50)")
                 .IsRequired();
 
             builder
-                .Property(a => a.CdIbgeEstado)
+                .Property(a => a.CodigoIbgeEstado)
                 .HasColumnType("varchar(50)")
                 .IsRequired();
 

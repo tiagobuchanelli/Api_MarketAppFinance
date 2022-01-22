@@ -7,11 +7,12 @@
         {
         }
 
-        public LicencaAcesso(string description, Licenca license, LicencaDispositivo device)
+        public LicencaAcesso(string descricao, Licenca licenca, LicencaDispositivo dispositivo, Empresa empresa)
         {
-            this.Descricao = description;
-            this.LicencaId = license.Id;
-            this.DispositivoId = device.Id;
+            this.Descricao = descricao;
+            this.LicencaId = licenca.Id;
+            this.DispositivoId = dispositivo.Id;
+            EmpresaId = empresa.Id;
 
             Validar();
         }
@@ -24,6 +25,10 @@
 
         public int DispositivoId { get; private set; }
 
+        public int EmpresaId { get; private set; }
+
+        public Empresa Empresa { get; private set; }
+
         public Licenca Licenca { get; private set; }
 
         public LicencaDispositivo Dispositivo { get; private set; }
@@ -34,6 +39,15 @@
         {
             if (string.IsNullOrEmpty(Descricao))
                 throw new Exception("Obrigatório informar a descrição.");
+
+            if (DispositivoId == default)
+                throw new Exception("Obrigatório informar um dispositivo válido");
+
+            if (LicencaId == default)
+                throw new Exception("Obrigatório informar uma licença válida");
+
+            if (EmpresaId == default)
+                throw new Exception("Obrigatório informar uma empresa válida");
         }
         #endregion
 

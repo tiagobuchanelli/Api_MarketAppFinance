@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
 {
-    public class DispositivoConfiguracao : IEntityTypeConfiguration<LicencaDispositivo>
+    public class LicensaDispositivoConfiguracao : IEntityTypeConfiguration<LicencaDispositivo>
     {
         public void Configure(EntityTypeBuilder<LicencaDispositivo> builder)
         {

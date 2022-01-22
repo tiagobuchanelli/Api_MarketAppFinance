@@ -18,13 +18,13 @@ namespace Api_MarketAppFinance.Domain.Entidades
         public ContaAPagar(
             int codigoLancamentoId, 
             decimal numeroDocumento, 
-            decimal valorTotal, 
-            string observacao, 
+            decimal valorTotal,             
             bool ativo, 
             Empresa empresa, 
             Carteira carteira, 
             FormaPagamento formaPagamento,
-            Fornecedor fornecedor)
+            Fornecedor fornecedor,
+            string? observacao = null )
         {
             EmpresaId = empresa.Id;
             CodigoLancamentoId = codigoLancamentoId;
@@ -58,7 +58,7 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         public decimal ValorTotal { get; private set; }
 
-        public string Observacao { get; private set; }
+        public string? Observacao { get; private set; }
 
         public bool Ativo { get; private set; }
 
@@ -76,15 +76,21 @@ namespace Api_MarketAppFinance.Domain.Entidades
         #region Metodos Privados
         private void Validar()
         {
-            /*if (string.IsNullOrEmpty(Descricao))
-                throw new Exception("Obrigatório informar a descrição.");
-
-            if (CategoriaId == default)
-                throw new Exception("Obrigatório informar uma categoria válida");
-
+            if (CodigoLancamentoId <= 0)
+                throw new Exception("Obrigatório informar um lançamento válido");
+            
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida");
-            */
+
+            if (CarteiraId == default)
+                throw new Exception("Obrigatório informar uma carteira válida");
+
+            if (FormaPagamentoId == default)
+                throw new Exception("Obrigatório informar uma forma de pagamento válida");
+
+            if (FornecedorId == default)
+                throw new Exception("Obrigatório informar um fornecedor válido");
+
         }
         #endregion
 
@@ -92,6 +98,7 @@ namespace Api_MarketAppFinance.Domain.Entidades
         public void Ativar() => Ativo = true;
 
         public void Inativar() => Ativo = false;
+        
         #endregion
     }
 }

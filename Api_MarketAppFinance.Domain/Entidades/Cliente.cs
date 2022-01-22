@@ -14,7 +14,26 @@ namespace Api_MarketAppFinance.Domain.Entidades
         private Cliente()
         { }
 
-        public Cliente(string nomeFantasia, string razaoSocial, Empresa empresa, string? telefone1 = null, string? telefone2 = null, string? imagem = null)
+        public Cliente(
+            string nomeFantasia, 
+            string razaoSocial, 
+            Empresa empresa, 
+            string? telefone1 = null, 
+            string? telefone2 = null, 
+            string? imagem = null,
+            string? rua = null,
+            string? numero = null,
+            string? cep = null,
+            string? letra = null,
+            string? complemento = null,
+            string? bairro = null,
+            string? email = null,
+            string? observacao = null,
+            string? numeroDocumento = null,
+            decimal? valorMinimoVenda = null,
+            decimal? valorLimiteVenda = null,
+            decimal? prDesconto = null
+            )
         {
             Nome = nomeFantasia;
             Sobrenome = razaoSocial;
@@ -23,7 +42,20 @@ namespace Api_MarketAppFinance.Domain.Entidades
             EmpresaId = empresa.Id;
             Ativo = true;
             Imagem = imagem;
-            
+            Rua = rua;
+            Numero = numero;
+            Cep = cep;
+            Letra = letra;
+            Complemento = complemento;
+            Bairro = bairro;
+            Email = email;
+            Observacao = observacao;
+            NumeroDocumento = numeroDocumento;
+            ValorMinimoVenda = valorMinimoVenda ?? 0;
+            ValorLimiteVenda = valorLimiteVenda ?? 0;
+            PrDesconto = prDesconto ?? 0;
+
+
             Validar();
         }
 

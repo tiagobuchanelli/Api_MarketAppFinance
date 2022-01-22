@@ -14,8 +14,7 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
 
             builder
                .Property(a => a.Observacao)
-               .HasColumnType("varchar(2000)")
-               .IsRequired();
+               .HasColumnType("varchar(500)");
 
             builder
                .Property(a => a.DataVencimento)

@@ -53,7 +53,10 @@
             if (string.IsNullOrEmpty(Tabela))
                 throw new Exception("Obrigatório informar a tabela.");
 
-            if(string.IsNullOrEmpty(ValorAnterior))
+            if (ChaveTabela <= 0)
+                throw new Exception("Obrigatório informar uma chave de tabela válida");
+
+            if (string.IsNullOrEmpty(ValorAnterior))
                 throw new Exception("Obrigatório informar o valor anterior.");
 
             if (string.IsNullOrEmpty(ValorAtual))

@@ -14,12 +14,12 @@ namespace Api_MarketAppFinance.Domain.Entidades
         {
         }
 
-        public MovimentacaoProduto(
-            int codigoLancamento, 
-            int codigoItem,
+        public MovimentacaoProduto(            
             Empresa empresa,
             Produto produto,
             OrigemMovimentacaoProduto origemMovimentacaoProduto,
+            int codigoLancamento,
+            int codigoItem,
             decimal quantidadeEntrada,
             decimal quantidadeSaida
             )
@@ -85,6 +85,19 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
             if (OrigemMovimentacaoProdutoId == default)
                 throw new Exception("Obrigatório informar uma origem válida");
+
+            if (CodigoLancamento <= 0)
+                throw new Exception("Codigo Lançamento Invalido");
+
+            if (CodigoItem <= 0)
+                throw new Exception("Codigo de item Invalido");
+
+            if (QuantidadeEntrada <= 0)
+                throw new Exception("Quantidade de Entrada inválida");
+
+            if (QuantidadeSaida <= 0)
+                throw new Exception("Quantidade de Saída inválida");
+
         }
 
         private decimal ObterSaldoAnterior()

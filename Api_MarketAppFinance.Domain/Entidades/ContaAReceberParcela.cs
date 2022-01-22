@@ -17,15 +17,17 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         public ContaAReceberParcela(
             int numeroParcela, 
-            decimal valorParcela, 
-            string observacao, 
+            decimal valorParcela,              
             DateTime dataVencimento, 
             DateTime dataPagamento,
             ContaAReceber contaAReceber,
             FormaPagamento formaPagamento,
+            Empresa empresa,
             decimal valorAcrescimo, 
-            decimal valorDesconto)
+            decimal valorDesconto,
+            string? observacao = null)
         {
+            EmpresaId = empresa.Id;
             NumeroParcela = numeroParcela;
             ValorParcela = valorParcela;
             Observacao = observacao;
@@ -50,15 +52,21 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         public decimal ValorParcela { get; private set; }
 
+        public decimal ValorSaldo { get; private set; }
+
         public decimal ValorAcrescimo { get; private set; }
 
         public decimal ValorDesconto { get; private set; }
 
-        public string Observacao { get; private set; }
+        public string? Observacao { get; private set; }
 
         public DateTime DataVencimento { get; private set; }
 
         public DateTime DataPagamento { get; private set; }
+
+        public int EmpresaId { get; private set; }
+
+        public Empresa Empresa { get; private set; }
 
         public ContaAReceber ContaAReceber { get; private set; }
 
@@ -70,20 +78,34 @@ namespace Api_MarketAppFinance.Domain.Entidades
         #region Metodos Privados
         private void Validar()
         {
-            /*if (string.IsNullOrEmpty(Descricao))
-                throw new Exception("Obrigatório informar a descrição.");
+            if (NumeroParcela <= 0)
+                throw new Exception("Obrigatório informar um número de parcela válido");
 
-            if (CategoriaId == default)
-                throw new Exception("Obrigatório informar uma categoria válida");
+            if (ValorParcela <= 0)
+                throw new Exception("Obrigatório informar um valor de parcela válido");
+
+            if (DataVencimento <= DateTime.Now)
+                throw new Exception("Obrigatório informar uma data de vencimento maior que a data atual.");
+
+            if (ContaAReceberId == default)
+                throw new Exception("Obrigatório informar uma conta a pagar válida.");
+
+            if (FormaPagamentoId == default)
+                throw new Exception("Obrigatório informar uma forma de pagamento válida.");
 
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida");
-            */
         }
         #endregion
 
         #region Metodos Publicos
-        
+        public void AlterarValorSaldo(decimal valor)
+        {
+            if (valor <= 0)
+                throw new Exception("Obrigatório informar um valor válido");
+
+            ValorSaldo = valor;
+        }
         #endregion
     }
 }

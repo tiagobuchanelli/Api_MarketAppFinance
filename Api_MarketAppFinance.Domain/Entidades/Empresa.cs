@@ -66,14 +66,44 @@
         #endregion Private Methods
 
         #region Public Methods
-
-        public void AlterarImagem(string imageCompany) => Imagem = imageCompany;
-
-        public void AlterarTelefone(string phone) => Telefone = phone;
-
         public void Ativar() => Ativo = true;
 
         public void Inativar() => Ativo = false;
+
+        public void AlterarImagem(string imagem)
+        {
+            if (string.IsNullOrEmpty(imagem))
+                throw new Exception("Obrigatório informar uma imagem válida.");
+
+            Imagem = imagem;
+        }
+
+        public void AlterarTelefone(string telefone)
+        {
+            if (string.IsNullOrEmpty(telefone))
+                throw new Exception("Obrigatório informar um telefone válido.");
+
+            Telefone = telefone;
+
+        }
+
+        public void AlterarNomeFantasia(string nomeEmpresa)
+        {
+            if (string.IsNullOrEmpty(nomeEmpresa))
+                throw new Exception("Obrigatório informar um nome válido.");
+
+            NomeFantasia = nomeEmpresa;
+
+        }
+
+        public void AlterarRazãoSocial(string razaoSocial)
+        {
+            if (string.IsNullOrEmpty(razaoSocial))
+                throw new Exception("Obrigatório informar um nome válido válido.");
+
+            RazaoSocial = razaoSocial;
+
+        }        
 
         public void GerarLicenca(Licenca license)
         {            

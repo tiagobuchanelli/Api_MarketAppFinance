@@ -9,11 +9,12 @@ namespace Api_MarketAppFinance.Domain.Entidades
 {
     public class ImagemProduto : Base
     {
-        public ImagemProduto(string url, Produto produto)
+        public ImagemProduto(string url, Produto produto, Empresa empresa)
         {
             Url = url;
             ProdutoId = produto.Id;
             Ativo = true;
+            EmpresaId = empresa.Id;
 
             Validate();
 
@@ -33,6 +34,10 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         public bool Ativo { get; private set; }
 
+        public int EmpresaId { get; private set; }
+
+        public Empresa Empresa { get; private set; }
+
         public Produto Produto { get; set; }
 
         #endregion
@@ -45,6 +50,9 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
             if (ProdutoId == default)
                 throw new Exception("Obrigatório informar um produto válido");
+
+            if (EmpresaId == default)
+                throw new Exception("Obrigatório informar uma empresa válida");
 
         }
         #endregion

@@ -7,15 +7,25 @@
         {
         }
 
-        public Endereco(string rua, int codigoEntidade, Cidade cidade, string? numero = null, string? cep = null, string? bairro = null, string? complemento = null)
+        public Endereco(
+            string rua, int 
+            codigoEntidade, 
+            Cidade cidade,
+            Empresa empresa,
+            string? numero = null, 
+            string? cep = null, 
+            string? bairro = null, 
+            string? complemento = null
+            )
         {
-            this.Rua = rua;
-            this.Numero = numero;   
-            this.Cep = cep;  
-            this.Bairro = bairro;
-            this.Complemento = complemento;
-            this.CodigoEntidade = codigoEntidade;
-            this.CidadeId = cidade.Id;
+            EmpresaId = empresa.Id;
+            Rua = rua;
+            Numero = numero;   
+            Cep = cep;  
+            Bairro = bairro;
+            Complemento = complemento;
+            CodigoEntidade = codigoEntidade;
+            CidadeId = cidade.Id;
 
             Validar();
 
@@ -39,6 +49,10 @@
 
         public string? Complemento { get; private set; }
 
+        public int EmpresaId { get; private set; }
+
+        public Empresa Empresa { get; private set; }
+
         public Usuario Usuario { get; private set; }
 
         public Cidade Cidade { get; private set; }
@@ -57,15 +71,53 @@
             if(CidadeId == default)
                 throw new Exception("Obrigatório informar um usuário válido");
 
+            if (EmpresaId == default)
+                throw new Exception("Obrigatório informar uma empresa válida");
+
         }
         #endregion
 
         #region Public Methods
-        public void AlterarRua(string street) => Rua = street;
-        public void AlterarNumero(string streetNumber) => Numero = streetNumber;
-        public void AlterarCep(string zipCode) => Cep = zipCode;
-        public void AlterarBairro(string district) => Bairro = district;
-        public void AlterarComplemento(string complement) => Complemento = complement;
+        public void AlterarRua(string rua)
+        {
+            if (string.IsNullOrEmpty(rua))
+                throw new Exception("Obrigatório informar a rua.");
+            Rua = rua;
+        }
+
+        public void AlterarNumero(string numero)
+        {
+            if (string.IsNullOrEmpty(numero))
+                throw new Exception("Obrigatório informar um número válido.");
+            
+            Numero = numero;
+
+        }
+
+        public void AlterarCep(string cep)
+        {
+            if (string.IsNullOrEmpty(cep))
+                throw new Exception("Obrigatório informar um cep válido.");
+            
+            Cep = cep;
+        }
+
+        public void AlterarBairro(string bairro)
+        {
+            if (string.IsNullOrEmpty(bairro))
+                throw new Exception("Obrigatório informar um bairro válido.");
+         
+            Bairro = bairro;
+        }
+
+        public void AlterarComplemento(string complemento)
+        {
+            if (string.IsNullOrEmpty(complemento))
+                throw new Exception("Obrigatório informar um complemento válido.");
+
+            Complemento = complemento;
+
+        }
         #endregion
     }
 }

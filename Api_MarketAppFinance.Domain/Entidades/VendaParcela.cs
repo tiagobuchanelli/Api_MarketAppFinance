@@ -19,7 +19,8 @@ namespace Api_MarketAppFinance.Domain.Entidades
             int numeroParcela, 
             DateTime dataVencimento, 
             decimal valorParcela, 
-            Venda venda, 
+            Venda venda,
+             Empresa empresa,
             VendaFormaPagamento vendaFormaPagamento
             )
         {
@@ -28,6 +29,7 @@ namespace Api_MarketAppFinance.Domain.Entidades
             NumeroParcela = numeroParcela;
             DataVencimento = dataVencimento;
             ValorParcela = valorParcela;
+            EmpresaId = empresa.Id;
 
             Validar();
         }
@@ -46,6 +48,10 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         public decimal ValorParcela { get; private set; }
 
+        public int EmpresaId { get; private set; }
+
+        public Empresa Empresa { get; private set; }
+
         public Venda Venda { get; private set; }
 
         public VendaFormaPagamento VendaFormaPagamento { get; private set; }
@@ -56,15 +62,20 @@ namespace Api_MarketAppFinance.Domain.Entidades
         #region Metodos Privados
         private void Validar()
         {
-            /*if (string.IsNullOrEmpty(Descricao))
-                throw new Exception("Obrigatório informar a descrição.");
+            if (VendaId == default)
+                throw new Exception("Obrigatório informar uma venda válida");
 
-            if (CategoriaId == default)
-                throw new Exception("Obrigatório informar uma categoria válida");
+            if (VendaFormaPagamentoId == default)
+                throw new Exception("Obrigatório informar uma forma de pagamento válida");
+
+            if (NumeroParcela <= 0)
+                throw new Exception("Obrigatório informar um número de parcela válido");
+
+            if (ValorParcela <= 0)
+                throw new Exception("Obrigatório informar um valor válido");
 
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida");
-            */
         }
         #endregion
 

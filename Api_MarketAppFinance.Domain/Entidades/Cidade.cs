@@ -7,12 +7,12 @@
         {
         }
 
-        public Cidade(string name, string codeIbge, string stateCodeIbge, string? sigla = null, string? cep = null)
+        public Cidade(string nomeCidade, string codigoIbge, string codigoIbgeEstado, string? sigla = null, string? cep = null)
         {
-            Nome = name;
+            Nome = nomeCidade;
             Cep = cep;
-            CdIbge = codeIbge;
-            CdIbgeEstado = stateCodeIbge;
+            CodigoIbge = codigoIbge;
+            CodigoIbgeEstado = codigoIbgeEstado;
             SiglaEstado = sigla;
             Ativo = true;
 
@@ -28,9 +28,9 @@
 
         public bool Ativo { get; private set; }
 
-        public string CdIbge { get; private set; }
+        public string CodigoIbge { get; private set; }
 
-        public string CdIbgeEstado { get; private set; }
+        public string CodigoIbgeEstado { get; private set; }
 
         public string? SiglaEstado { get; private set; }
         #endregion
@@ -41,19 +41,61 @@
             if (string.IsNullOrEmpty(Nome))
                 throw new Exception("Obrigatório informar o nome.");
 
-            if(string.IsNullOrEmpty(CdIbge))
+            if(string.IsNullOrEmpty(CodigoIbge))
                 throw new Exception("Obrigatório informar o código ibge.");
 
-            if (string.IsNullOrEmpty(CdIbgeEstado))
+            if (string.IsNullOrEmpty(CodigoIbgeEstado))
                 throw new Exception("Obrigatório informar o códigto ibge do estado.");
 
         }
         #endregion
 
         #region Public Methods
-        public void AlterarStatus(bool status) => Ativo = status;
+        public void Ativar() => Ativo = true;
+
+        public void Inativar() => Ativo = false;
+
+        public void AlterarNomeCidade(string nomeCidade)
+        {
+            if (string.IsNullOrEmpty(nomeCidade))
+                throw new Exception("Obrigatório informar um nome válido.");
+
+            Nome = nomeCidade;
+        }
+
+        public void AlterarCodigoIbge(string ibge)
+        {
+            if (string.IsNullOrEmpty(ibge))
+                throw new Exception("Obrigatório informar um codigo válido.");
+
+            CodigoIbge = ibge;
+        }
+
+        public void AlterarCodigoIbgeEstado(string ibgeEstado)
+        {
+            if (string.IsNullOrEmpty(ibgeEstado))
+                throw new Exception("Obrigatório informar um codigo válido.");
+
+            CodigoIbgeEstado = ibgeEstado;
+        }
+
+        public void AlterarSiglaEstado(string siglaEstado)
+        {
+            if (string.IsNullOrEmpty(siglaEstado))
+                throw new Exception("Obrigatório informar um codigo válido.");
+
+            SiglaEstado = siglaEstado;
+        }
+
+        public void AlterarCep(string cep)
+        {
+            if (string.IsNullOrEmpty(cep))
+                throw new Exception("Obrigatório informar um codigo válido.");
+
+            Cep = cep;
+        }
         #endregion
 
-       
+
     }
 }

@@ -14,8 +14,7 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
 
             builder
                .Property(a => a.Observacao)
-               .HasColumnType("varchar(2000)")
-               .IsRequired();
+               .HasColumnType("varchar(2000)");
 
             builder
                .Property(a => a.Ativo)
@@ -29,8 +28,7 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
 
             builder
                .Property(a => a.DataSaida)
-               .HasColumnType("date")
-               .IsRequired();
+               .HasColumnType("date");
 
             builder
               .Property(a => a.DataCriacao)

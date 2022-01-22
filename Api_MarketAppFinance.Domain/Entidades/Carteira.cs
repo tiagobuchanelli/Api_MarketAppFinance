@@ -46,7 +46,9 @@
         #endregion
 
         #region Public Methods
-        public void AlterarStatus(bool status) => Ativo = status;
+        public void Ativar() => Ativo = true;
+
+        public void Inativar() => Ativo = false;
 
         public void AlterarValorMinimoVenda(decimal valorMinimo)
         {

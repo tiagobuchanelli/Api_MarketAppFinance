@@ -27,9 +27,9 @@ namespace Api_MarketAppFinance.Data
             modelBuilder.ApplyConfiguration(new CidadeConfiguracao());
             modelBuilder.ApplyConfiguration(new EnderecoConfiguracao());
             modelBuilder.ApplyConfiguration(new LicencaConfiguracao());
-            modelBuilder.ApplyConfiguration(new LicencaDispositivoConfiguracao());
-            modelBuilder.ApplyConfiguration(new DispositivoConfiguracao());
-            modelBuilder.ApplyConfiguration(new EmpresaConfiguracao());
+            modelBuilder.ApplyConfiguration(new LicencaAcessoConfiguracao());
+            modelBuilder.ApplyConfiguration(new LicensaDispositivoConfiguracao());
+            modelBuilder.ApplyConfiguration(new Domain.EntitiesConfigurators.EmpresaConfiguracao());
             modelBuilder.ApplyConfiguration(new CategoriaConfiguracao());
             modelBuilder.ApplyConfiguration(new SubCategoriaConfiguracao());
             modelBuilder.ApplyConfiguration(new ClassificacaoConfiguracao());
@@ -53,6 +53,9 @@ namespace Api_MarketAppFinance.Data
             modelBuilder.ApplyConfiguration(new ContaAPagarParcelaConfiguracao());
             modelBuilder.ApplyConfiguration(new ContaAReceberConfiguracao());
             modelBuilder.ApplyConfiguration(new ContaAReceberParcelaConfiguracao());
+            modelBuilder.ApplyConfiguration(new ContaAReceberParcelaBaixaConfiguracao());
+            modelBuilder.ApplyConfiguration(new ContaAPagarParcelaBaixaConfiguracao());
+            modelBuilder.ApplyConfiguration(new ConfiguracaoEmpresaConfiguracao());
         }
 
         public override int SaveChanges()
@@ -134,5 +137,11 @@ namespace Api_MarketAppFinance.Data
         public DbSet<ContaAReceber> ContasAReceber { get; set; }
 
         public DbSet<ContaAReceberParcela> ContaAReceberParcelas { get; set; }
+
+        public DbSet<ContaAReceberParcelaBaixa> ContaAReceberParcelaBaixas { get; set; }
+        
+        public DbSet<ContaAPagarParcelaBaixa> ContaAPagarParcelaBaixas { get; set; }
+        
+        public DbSet<Domain.Entidades.EmpresaConfiguracao> ConfiguracoesEmpresa { get; set; }
     }
 }

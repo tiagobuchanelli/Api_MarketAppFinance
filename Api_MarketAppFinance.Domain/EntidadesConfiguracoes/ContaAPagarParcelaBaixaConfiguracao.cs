@@ -5,22 +5,25 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
 {
-    public class ContaAPagarConfiguracao : IEntityTypeConfiguration<ContaAPagar>
+    public class ContaAPagarParcelaBaixaConfiguracao : IEntityTypeConfiguration<ContaAPagarParcelaBaixa>
     {
-        public void Configure(EntityTypeBuilder<ContaAPagar> builder)
+        public void Configure(EntityTypeBuilder<ContaAPagarParcelaBaixa> builder)
         {
             builder
-               .ToTable("ContasAPagar");
+               .ToTable("ContaAPagarParcelaBaixas");
 
             builder
                .Property(a => a.Observacao)
                .HasColumnType("varchar(500)");
 
             builder
-               .Property(a => a.Ativo)
-               .HasDefaultValue(false)
+              .Property(a => a.Observacao)
+              .HasColumnType("varchar(500)");
+
+            builder
+               .Property(a => a.DataPagamento)
+               .HasColumnType("date")
                .IsRequired();
-            
 
             builder
               .Property(a => a.DataCriacao)

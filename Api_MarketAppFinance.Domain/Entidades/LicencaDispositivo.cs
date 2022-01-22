@@ -7,11 +7,12 @@
         {
         }
 
-        public LicencaDispositivo(string name, string key, Usuario user)
+        public LicencaDispositivo(string nome, string chave, Usuario usuario, Empresa empresa)
         {
-            this.Nome = name;
-            this.Chave = key;
-           this.UsuarioId = user.Id;
+            this.Nome = nome;
+            this.Chave = chave;
+           this.UsuarioId = usuario.Id;
+            EmpresaId = empresa.Id;
 
             Validar();
         }
@@ -24,6 +25,10 @@
         public string Chave { get; private set; }
 
         public int UsuarioId { get; private set; }
+
+        public int EmpresaId { get; private set; }
+
+        public Empresa Empresa { get; private set; }
 
         public Usuario Usuario { get; private set; }
         #endregion
@@ -39,6 +44,9 @@
 
             if (UsuarioId == default)
                 throw new Exception("Obrigatório informar um usuário válido.");
+
+            if (EmpresaId == default)
+                throw new Exception("Obrigatório informar uma empresa válida");
         }
         #endregion
 

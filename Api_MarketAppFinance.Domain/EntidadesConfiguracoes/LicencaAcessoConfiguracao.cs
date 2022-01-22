@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
 {
-    public class LicencaDispositivoConfiguracao : IEntityTypeConfiguration<LicencaAcesso>
+    public class LicencaAcessoConfiguracao : IEntityTypeConfiguration<LicencaAcesso>
     {
         public void Configure(EntityTypeBuilder<LicencaAcesso> builder)
         {
             builder
-               .ToTable("LicencaDispositivos");
+               .ToTable("LicencaAcessos");
 
             builder
                 .Property(a => a.Descricao)

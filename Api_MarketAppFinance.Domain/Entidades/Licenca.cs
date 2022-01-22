@@ -7,14 +7,19 @@
         private Licenca()
         { }
 
-        public Licenca(string description, string type, int maxAcess, DateTime dateExpiration, Empresa company)
+        public Licenca(
+            string descricao, 
+            string tipo, 
+            int numeroAcessosPermitido, 
+            DateTime dataValidade, 
+            Empresa empresa)
         {
-           Descricao = description;
-           Tipo = type;
+           Descricao = descricao;
+           Tipo = tipo;
            Chave = Guid.NewGuid().ToString();
-           MaxAcesso = maxAcess;
-           DataExpiracao = dateExpiration; 
-           EmpresaId = company.Id;  
+           NumeroAcessosPermitido = numeroAcessosPermitido;
+           DataExpiracao = dataValidade; 
+           EmpresaId = empresa.Id;  
 
            Validar();
         }        
@@ -29,7 +34,7 @@
 
         public string Chave { get; private set; }
 
-        public int MaxAcesso { get; private set; }
+        public int NumeroAcessosPermitido { get; private set; }
 
         public DateTime DataExpiracao { get; private set; }
 

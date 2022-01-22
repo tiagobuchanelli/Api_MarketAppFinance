@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Api_MarketAppFinance.Infrastructure.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,8 +19,8 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     Nome = table.Column<string>(type: "varchar(300)", nullable: false),
                     Cep = table.Column<string>(type: "varchar(250)", nullable: true),
                     Ativo = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
-                    CdIbge = table.Column<string>(type: "varchar(50)", nullable: false),
-                    CdIbgeEstado = table.Column<string>(type: "varchar(50)", nullable: false),
+                    CodigoIbge = table.Column<string>(type: "varchar(50)", nullable: false),
+                    CodigoIbgeEstado = table.Column<string>(type: "varchar(50)", nullable: false),
                     SiglaEstado = table.Column<string>(type: "varchar(10)", nullable: true),
                     DataAtualizacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()"),
                     DataCriacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()")
@@ -96,8 +96,8 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Nome = table.Column<string>(type: "varchar(500)", nullable: false),
-                    NomeCurto = table.Column<string>(type: "varchar(250)", nullable: false),
+                    NomeFantasia = table.Column<string>(type: "varchar(500)", nullable: false),
+                    RazaoSocial = table.Column<string>(type: "varchar(250)", nullable: false),
                     Ativo = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     Telefone = table.Column<string>(type: "varchar(50)", nullable: true),
                     Imagem = table.Column<string>(type: "text", nullable: true),
@@ -151,6 +151,31 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Carteiras",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Descricao = table.Column<string>(type: "varchar(300)", nullable: false),
+                    Abreviacao = table.Column<string>(type: "varchar(50)", nullable: true),
+                    Ativo = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
+                    EmpresaId = table.Column<int>(type: "integer", nullable: false),
+                    ValorMinimoVenda = table.Column<decimal>(type: "numeric", nullable: false),
+                    DataAtualizacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()"),
+                    DataCriacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Carteiras", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Carteiras_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Categorias",
                 columns: table => new
                 {
@@ -197,6 +222,84 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Clientes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Nome = table.Column<string>(type: "varchar(500)", nullable: false),
+                    Sobrenome = table.Column<string>(type: "varchar(250)", nullable: false),
+                    Ativo = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
+                    Telefone1 = table.Column<string>(type: "varchar(50)", nullable: true),
+                    Telefone2 = table.Column<string>(type: "varchar(50)", nullable: true),
+                    Imagem = table.Column<string>(type: "text", nullable: true),
+                    EmpresaId = table.Column<int>(type: "integer", nullable: false),
+                    Rua = table.Column<string>(type: "varchar(300)", nullable: true),
+                    Numero = table.Column<string>(type: "varchar(10)", nullable: true),
+                    Cep = table.Column<string>(type: "varchar(20)", nullable: true),
+                    Letra = table.Column<string>(type: "varchar(10)", nullable: true),
+                    Complemento = table.Column<string>(type: "varchar(100)", nullable: true),
+                    Bairro = table.Column<string>(type: "varchar(100)", nullable: true),
+                    Email = table.Column<string>(type: "varchar(250)", nullable: true),
+                    Observacao = table.Column<string>(type: "varchar(500)", nullable: true),
+                    NumeroDocumento = table.Column<string>(type: "varchar(100)", nullable: true),
+                    ValorMinimoVenda = table.Column<decimal>(type: "numeric", nullable: false),
+                    ValorLimiteVenda = table.Column<decimal>(type: "numeric", nullable: false),
+                    PrDesconto = table.Column<decimal>(type: "numeric", nullable: false),
+                    DataAtualizacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()"),
+                    DataCriacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Clientes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Clientes_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Fornecedores",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    EmpresaId = table.Column<int>(type: "integer", nullable: false),
+                    NomeFantasia = table.Column<string>(type: "varchar(500)", nullable: false),
+                    RazaoSocial = table.Column<string>(type: "varchar(250)", nullable: false),
+                    Ativo = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
+                    Telefone1 = table.Column<string>(type: "varchar(50)", nullable: true),
+                    Telefone2 = table.Column<string>(type: "varchar(50)", nullable: true),
+                    Imagem = table.Column<string>(type: "text", nullable: true),
+                    Rua = table.Column<string>(type: "varchar(300)", nullable: true),
+                    Numero = table.Column<string>(type: "varchar(10)", nullable: true),
+                    Cep = table.Column<string>(type: "varchar(20)", nullable: true),
+                    Letra = table.Column<string>(type: "varchar(10)", nullable: true),
+                    Complemento = table.Column<string>(type: "varchar(100)", nullable: true),
+                    Bairro = table.Column<string>(type: "varchar(100)", nullable: true),
+                    Email = table.Column<string>(type: "varchar(250)", nullable: true),
+                    Observacao = table.Column<string>(type: "varchar(500)", nullable: true),
+                    NumeroDocumento = table.Column<string>(type: "varchar(100)", nullable: true),
+                    ValorMinimoVenda = table.Column<decimal>(type: "numeric", nullable: false),
+                    ValorLimiteVenda = table.Column<decimal>(type: "numeric", nullable: false),
+                    PrDesconto = table.Column<decimal>(type: "numeric", nullable: false),
+                    DataAtualizacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()"),
+                    DataCriacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Fornecedores", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Fornecedores_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Licencas",
                 columns: table => new
                 {
@@ -205,7 +308,7 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     Descricao = table.Column<string>(type: "varchar(500)", nullable: false),
                     Tipo = table.Column<string>(type: "varchar(100)", nullable: false),
                     Chave = table.Column<string>(type: "varchar(500)", nullable: false),
-                    MaxAcesso = table.Column<int>(type: "integer", nullable: false),
+                    NumeroAcessosPermitido = table.Column<int>(type: "integer", nullable: false),
                     DataExpiracao = table.Column<DateTime>(type: "date", nullable: false),
                     EmpresaId = table.Column<int>(type: "integer", nullable: false),
                     DataAtualizacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()"),
@@ -307,6 +410,47 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FormasPagamento",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Descricao = table.Column<string>(type: "varchar(300)", nullable: false),
+                    Abreviacao = table.Column<string>(type: "varchar(50)", nullable: true),
+                    Ativo = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
+                    EmpresaId = table.Column<int>(type: "integer", nullable: false),
+                    CarteiraId = table.Column<int>(type: "integer", nullable: false),
+                    TipoPagamento = table.Column<int>(type: "integer", nullable: false),
+                    ValorAcrescimo = table.Column<decimal>(type: "numeric", nullable: false),
+                    ValorDesconto = table.Column<decimal>(type: "numeric", nullable: false),
+                    PrDesconto = table.Column<decimal>(type: "numeric", nullable: false),
+                    PrAcrescimo = table.Column<decimal>(type: "numeric", nullable: false),
+                    NrDiasIntervalo = table.Column<decimal>(type: "numeric", nullable: false),
+                    NrDiasLimiteIntervalo = table.Column<decimal>(type: "numeric", nullable: false),
+                    NrIntervalos = table.Column<decimal>(type: "numeric", nullable: false),
+                    DiaPadraoVencimento = table.Column<int>(type: "integer", nullable: false),
+                    GerarFinanceiro = table.Column<bool>(type: "boolean", nullable: false),
+                    DataAtualizacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()"),
+                    DataCriacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FormasPagamento", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FormasPagamento_Carteiras_CarteiraId",
+                        column: x => x.CarteiraId,
+                        principalTable: "Carteiras",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FormasPagamento_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SubCategorias",
                 columns: table => new
                 {
@@ -361,6 +505,152 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                         name: "FK_LicencaDispositivos_Licencas_LicencaId",
                         column: x => x.LicencaId,
                         principalTable: "Licencas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ContasAPagar",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    EmpresaId = table.Column<int>(type: "integer", nullable: false),
+                    CodigoLancamentoId = table.Column<int>(type: "integer", nullable: false),
+                    CarteiraId = table.Column<int>(type: "integer", nullable: false),
+                    FormaPagamentoId = table.Column<int>(type: "integer", nullable: false),
+                    FornecedorId = table.Column<int>(type: "integer", nullable: false),
+                    NumeroDocumento = table.Column<decimal>(type: "numeric", nullable: false),
+                    ValorTotal = table.Column<decimal>(type: "numeric", nullable: false),
+                    Observacao = table.Column<string>(type: "varchar(2000)", nullable: false),
+                    Ativo = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
+                    DataAtualizacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()"),
+                    DataCriacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ContasAPagar", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ContasAPagar_Carteiras_CarteiraId",
+                        column: x => x.CarteiraId,
+                        principalTable: "Carteiras",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ContasAPagar_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ContasAPagar_FormasPagamento_FormaPagamentoId",
+                        column: x => x.FormaPagamentoId,
+                        principalTable: "FormasPagamento",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ContasAPagar_Fornecedores_FornecedorId",
+                        column: x => x.FornecedorId,
+                        principalTable: "Fornecedores",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ContasAReceber",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    EmpresaId = table.Column<int>(type: "integer", nullable: false),
+                    CodigoLancamentoId = table.Column<int>(type: "integer", nullable: false),
+                    CarteiraId = table.Column<int>(type: "integer", nullable: false),
+                    ClienteId = table.Column<int>(type: "integer", nullable: false),
+                    FormaPagamentoId = table.Column<int>(type: "integer", nullable: false),
+                    NumeroDocumento = table.Column<decimal>(type: "numeric", nullable: false),
+                    ValorTotal = table.Column<decimal>(type: "numeric", nullable: false),
+                    Observacao = table.Column<string>(type: "varchar(2000)", nullable: false),
+                    Ativo = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
+                    DataAtualizacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()"),
+                    DataCriacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ContasAReceber", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ContasAReceber_Carteiras_CarteiraId",
+                        column: x => x.CarteiraId,
+                        principalTable: "Carteiras",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ContasAReceber_Clientes_ClienteId",
+                        column: x => x.ClienteId,
+                        principalTable: "Clientes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ContasAReceber_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ContasAReceber_FormasPagamento_FormaPagamentoId",
+                        column: x => x.FormaPagamentoId,
+                        principalTable: "FormasPagamento",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Vendas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    EmpresaId = table.Column<int>(type: "integer", nullable: false),
+                    ClienteId = table.Column<int>(type: "integer", nullable: false),
+                    CarteiraId = table.Column<int>(type: "integer", nullable: false),
+                    FormaPagamentoId = table.Column<int>(type: "integer", nullable: false),
+                    NumeroDocumento = table.Column<decimal>(type: "numeric", nullable: false),
+                    DataEmissao = table.Column<DateTime>(type: "date", nullable: false),
+                    DataSaida = table.Column<DateTime>(type: "date", nullable: false),
+                    PesoLiquido = table.Column<decimal>(type: "numeric", nullable: false),
+                    PesoBruto = table.Column<decimal>(type: "numeric", nullable: false),
+                    ValorFrete = table.Column<decimal>(type: "numeric", nullable: false),
+                    ValorDesconto = table.Column<decimal>(type: "numeric", nullable: false),
+                    ValorAcrescimo = table.Column<decimal>(type: "numeric", nullable: false),
+                    Observacao = table.Column<string>(type: "varchar(2000)", nullable: false),
+                    Ativo = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
+                    DataAtualizacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()"),
+                    DataCriacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Vendas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Vendas_Carteiras_CarteiraId",
+                        column: x => x.CarteiraId,
+                        principalTable: "Carteiras",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Vendas_Clientes_ClienteId",
+                        column: x => x.ClienteId,
+                        principalTable: "Clientes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Vendas_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Vendas_FormasPagamento_FormaPagamentoId",
+                        column: x => x.FormaPagamentoId,
+                        principalTable: "FormasPagamento",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -432,6 +722,114 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                         name: "FK_Produtos_SubCategorias_SubCategoriaId",
                         column: x => x.SubCategoriaId,
                         principalTable: "SubCategorias",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ContaAPagarParcelas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ContaAPagarId = table.Column<int>(type: "integer", nullable: false),
+                    FormaPagamentoId = table.Column<int>(type: "integer", nullable: false),
+                    NumeroParcela = table.Column<int>(type: "integer", nullable: false),
+                    ValorParcela = table.Column<decimal>(type: "numeric", nullable: false),
+                    ValorSaldo = table.Column<decimal>(type: "numeric", nullable: false),
+                    ValorAcrescimo = table.Column<decimal>(type: "numeric", nullable: false),
+                    ValorDesconto = table.Column<decimal>(type: "numeric", nullable: false),
+                    Observacao = table.Column<string>(type: "varchar(2000)", nullable: false),
+                    DataVencimento = table.Column<DateTime>(type: "date", nullable: false),
+                    DataPagamento = table.Column<DateTime>(type: "date", nullable: false),
+                    DataAtualizacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()"),
+                    DataCriacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ContaAPagarParcelas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ContaAPagarParcelas_ContasAPagar_ContaAPagarId",
+                        column: x => x.ContaAPagarId,
+                        principalTable: "ContasAPagar",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ContaAPagarParcelas_FormasPagamento_FormaPagamentoId",
+                        column: x => x.FormaPagamentoId,
+                        principalTable: "FormasPagamento",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ContaAReceberParcelas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ContaAReceberId = table.Column<int>(type: "integer", nullable: false),
+                    FormaPagamentoId = table.Column<int>(type: "integer", nullable: false),
+                    NumeroParcela = table.Column<int>(type: "integer", nullable: false),
+                    ValorParcela = table.Column<decimal>(type: "numeric", nullable: false),
+                    ValorSaldo = table.Column<decimal>(type: "numeric", nullable: false),
+                    ValorAcrescimo = table.Column<decimal>(type: "numeric", nullable: false),
+                    ValorDesconto = table.Column<decimal>(type: "numeric", nullable: false),
+                    Observacao = table.Column<string>(type: "varchar(2000)", nullable: false),
+                    DataVencimento = table.Column<DateTime>(type: "date", nullable: false),
+                    DataPagamento = table.Column<DateTime>(type: "date", nullable: false),
+                    DataAtualizacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()"),
+                    DataCriacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ContaAReceberParcelas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ContaAReceberParcelas_ContasAReceber_ContaAReceberId",
+                        column: x => x.ContaAReceberId,
+                        principalTable: "ContasAReceber",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ContaAReceberParcelas_FormasPagamento_FormaPagamentoId",
+                        column: x => x.FormaPagamentoId,
+                        principalTable: "FormasPagamento",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "VendaFormasPagamento",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    VendaId = table.Column<int>(type: "integer", nullable: false),
+                    CarteiraId = table.Column<int>(type: "integer", nullable: false),
+                    FormaPagamentoId = table.Column<int>(type: "integer", nullable: false),
+                    Valor = table.Column<decimal>(type: "numeric", nullable: false),
+                    DataAtualizacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()"),
+                    DataCriacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VendaFormasPagamento", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_VendaFormasPagamento_Carteiras_CarteiraId",
+                        column: x => x.CarteiraId,
+                        principalTable: "Carteiras",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_VendaFormasPagamento_FormasPagamento_FormaPagamentoId",
+                        column: x => x.FormaPagamentoId,
+                        principalTable: "FormasPagamento",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_VendaFormasPagamento_Vendas_VendaId",
+                        column: x => x.VendaId,
+                        principalTable: "Vendas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -550,6 +948,80 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "VendaProdutos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CodigoItem = table.Column<int>(type: "integer", nullable: false),
+                    VendaId = table.Column<int>(type: "integer", nullable: false),
+                    ProdutoId = table.Column<int>(type: "integer", nullable: false),
+                    Quantidade = table.Column<decimal>(type: "numeric", nullable: false),
+                    ValorUnitario = table.Column<decimal>(type: "numeric", nullable: false),
+                    ValorTotal = table.Column<decimal>(type: "numeric", nullable: false),
+                    ValorDesconto = table.Column<decimal>(type: "numeric", nullable: false),
+                    ValorAscrcescimo = table.Column<decimal>(type: "numeric", nullable: false),
+                    PrDesconto = table.Column<decimal>(type: "numeric", nullable: false),
+                    PesoLiquido = table.Column<decimal>(type: "numeric", nullable: false),
+                    PesoBruto = table.Column<decimal>(type: "numeric", nullable: false),
+                    Observacao = table.Column<string>(type: "varchar(500)", nullable: false),
+                    DataAtualizacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()"),
+                    DataCriacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VendaProdutos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_VendaProdutos_Produtos_ProdutoId",
+                        column: x => x.ProdutoId,
+                        principalTable: "Produtos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_VendaProdutos_Vendas_VendaId",
+                        column: x => x.VendaId,
+                        principalTable: "Vendas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "VendaParcelas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    VendaId = table.Column<int>(type: "integer", nullable: false),
+                    VendaFormaPagamentoId = table.Column<int>(type: "integer", nullable: false),
+                    NumeroParcela = table.Column<int>(type: "integer", nullable: false),
+                    DataVencimento = table.Column<DateTime>(type: "date", nullable: false),
+                    ValorParcela = table.Column<decimal>(type: "numeric", nullable: false),
+                    DataAtualizacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()"),
+                    DataCriacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "now()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VendaParcelas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_VendaParcelas_VendaFormasPagamento_VendaFormaPagamentoId",
+                        column: x => x.VendaFormaPagamentoId,
+                        principalTable: "VendaFormasPagamento",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_VendaParcelas_Vendas_VendaId",
+                        column: x => x.VendaId,
+                        principalTable: "Vendas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Carteiras_EmpresaId",
+                table: "Carteiras",
+                column: "EmpresaId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Categorias_EmpresaId",
                 table: "Categorias",
@@ -559,6 +1031,71 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                 name: "IX_Classificacao_EmpresaId",
                 table: "Classificacao",
                 column: "EmpresaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Clientes_EmpresaId",
+                table: "Clientes",
+                column: "EmpresaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ContaAPagarParcelas_ContaAPagarId",
+                table: "ContaAPagarParcelas",
+                column: "ContaAPagarId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ContaAPagarParcelas_FormaPagamentoId",
+                table: "ContaAPagarParcelas",
+                column: "FormaPagamentoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ContaAReceberParcelas_ContaAReceberId",
+                table: "ContaAReceberParcelas",
+                column: "ContaAReceberId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ContaAReceberParcelas_FormaPagamentoId",
+                table: "ContaAReceberParcelas",
+                column: "FormaPagamentoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ContasAPagar_CarteiraId",
+                table: "ContasAPagar",
+                column: "CarteiraId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ContasAPagar_EmpresaId",
+                table: "ContasAPagar",
+                column: "EmpresaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ContasAPagar_FormaPagamentoId",
+                table: "ContasAPagar",
+                column: "FormaPagamentoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ContasAPagar_FornecedorId",
+                table: "ContasAPagar",
+                column: "FornecedorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ContasAReceber_CarteiraId",
+                table: "ContasAReceber",
+                column: "CarteiraId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ContasAReceber_ClienteId",
+                table: "ContasAReceber",
+                column: "ClienteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ContasAReceber_EmpresaId",
+                table: "ContasAReceber",
+                column: "EmpresaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ContasAReceber_FormaPagamentoId",
+                table: "ContasAReceber",
+                column: "FormaPagamentoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Dispositivos_UsuarioId",
@@ -579,6 +1116,21 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                 name: "IX_Enderecos_UsuarioId",
                 table: "Enderecos",
                 column: "UsuarioId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FormasPagamento_CarteiraId",
+                table: "FormasPagamento",
+                column: "CarteiraId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FormasPagamento_EmpresaId",
+                table: "FormasPagamento",
+                column: "EmpresaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Fornecedores_EmpresaId",
+                table: "Fornecedores",
+                column: "EmpresaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ImagensProduto_ProdutoId",
@@ -689,10 +1241,71 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                 name: "IX_SubCategorias_EmpresaId",
                 table: "SubCategorias",
                 column: "EmpresaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VendaFormasPagamento_CarteiraId",
+                table: "VendaFormasPagamento",
+                column: "CarteiraId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VendaFormasPagamento_FormaPagamentoId",
+                table: "VendaFormasPagamento",
+                column: "FormaPagamentoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VendaFormasPagamento_VendaId",
+                table: "VendaFormasPagamento",
+                column: "VendaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VendaParcelas_VendaFormaPagamentoId",
+                table: "VendaParcelas",
+                column: "VendaFormaPagamentoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VendaParcelas_VendaId",
+                table: "VendaParcelas",
+                column: "VendaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VendaProdutos_ProdutoId",
+                table: "VendaProdutos",
+                column: "ProdutoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VendaProdutos_VendaId",
+                table: "VendaProdutos",
+                column: "VendaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vendas_CarteiraId",
+                table: "Vendas",
+                column: "CarteiraId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vendas_ClienteId",
+                table: "Vendas",
+                column: "ClienteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vendas_EmpresaId",
+                table: "Vendas",
+                column: "EmpresaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vendas_FormaPagamentoId",
+                table: "Vendas",
+                column: "FormaPagamentoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "ContaAPagarParcelas");
+
+            migrationBuilder.DropTable(
+                name: "ContaAReceberParcelas");
+
             migrationBuilder.DropTable(
                 name: "Enderecos");
 
@@ -712,6 +1325,18 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                 name: "MovimentacaoProdutos");
 
             migrationBuilder.DropTable(
+                name: "VendaParcelas");
+
+            migrationBuilder.DropTable(
+                name: "VendaProdutos");
+
+            migrationBuilder.DropTable(
+                name: "ContasAPagar");
+
+            migrationBuilder.DropTable(
+                name: "ContasAReceber");
+
+            migrationBuilder.DropTable(
                 name: "Cidades");
 
             migrationBuilder.DropTable(
@@ -727,7 +1352,16 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                 name: "OrigemMovimentacaoProdutos");
 
             migrationBuilder.DropTable(
+                name: "VendaFormasPagamento");
+
+            migrationBuilder.DropTable(
                 name: "Produtos");
+
+            migrationBuilder.DropTable(
+                name: "Fornecedores");
+
+            migrationBuilder.DropTable(
+                name: "Vendas");
 
             migrationBuilder.DropTable(
                 name: "Classificacao");
@@ -739,7 +1373,16 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                 name: "SubCategorias");
 
             migrationBuilder.DropTable(
+                name: "Clientes");
+
+            migrationBuilder.DropTable(
+                name: "FormasPagamento");
+
+            migrationBuilder.DropTable(
                 name: "Categorias");
+
+            migrationBuilder.DropTable(
+                name: "Carteiras");
 
             migrationBuilder.DropTable(
                 name: "Empresas");

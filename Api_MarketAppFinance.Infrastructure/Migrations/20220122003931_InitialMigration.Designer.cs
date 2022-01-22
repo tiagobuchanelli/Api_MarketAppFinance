@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Api_MarketAppFinance.Infrastructure.Migrations
 {
     [DbContext(typeof(ContextoBase))]
-    [Migration("20220120230750_CriadoTabelaCliente")]
-    partial class CriadoTabelaCliente
+    [Migration("20220122003931_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -182,6 +182,245 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     b.HasIndex("EmpresaId");
 
                     b.ToTable("Clientes", (string)null);
+                });
+
+            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.ContaAPagar", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Ativo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<int>("CarteiraId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CodigoLancamentoId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("DataAtualizacao")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<DateTime>("DataCriacao")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<int>("EmpresaId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("FormaPagamentoId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("FornecedorId")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("NumeroDocumento")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("Observacao")
+                        .IsRequired()
+                        .HasColumnType("varchar(2000)");
+
+                    b.Property<decimal>("ValorTotal")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarteiraId");
+
+                    b.HasIndex("EmpresaId");
+
+                    b.HasIndex("FormaPagamentoId");
+
+                    b.HasIndex("FornecedorId");
+
+                    b.ToTable("ContasAPagar", (string)null);
+                });
+
+            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.ContaAPagarParcela", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ContaAPagarId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("DataAtualizacao")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<DateTime>("DataCriacao")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<DateTime?>("DataPagamento")
+                        .IsRequired()
+                        .HasColumnType("date");
+
+                    b.Property<DateTime>("DataVencimento")
+                        .HasColumnType("date");
+
+                    b.Property<int>("FormaPagamentoId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("NumeroParcela")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Observacao")
+                        .IsRequired()
+                        .HasColumnType("varchar(2000)");
+
+                    b.Property<decimal>("ValorAcrescimo")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("ValorDesconto")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("ValorParcela")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("ValorSaldo")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContaAPagarId");
+
+                    b.HasIndex("FormaPagamentoId");
+
+                    b.ToTable("ContaAPagarParcelas", (string)null);
+                });
+
+            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.ContaAReceber", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Ativo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<int>("CarteiraId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CodigoLancamentoId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("DataAtualizacao")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<DateTime>("DataCriacao")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<int>("EmpresaId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("FormaPagamentoId")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("NumeroDocumento")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("Observacao")
+                        .IsRequired()
+                        .HasColumnType("varchar(2000)");
+
+                    b.Property<decimal>("ValorTotal")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarteiraId");
+
+                    b.HasIndex("ClienteId");
+
+                    b.HasIndex("EmpresaId");
+
+                    b.HasIndex("FormaPagamentoId");
+
+                    b.ToTable("ContasAReceber", (string)null);
+                });
+
+            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.ContaAReceberParcela", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ContaAReceberId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("DataAtualizacao")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<DateTime>("DataCriacao")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<DateTime>("DataPagamento")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime>("DataVencimento")
+                        .HasColumnType("date");
+
+                    b.Property<int>("FormaPagamentoId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("NumeroParcela")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Observacao")
+                        .IsRequired()
+                        .HasColumnType("varchar(2000)");
+
+                    b.Property<decimal>("ValorAcrescimo")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("ValorDesconto")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("ValorParcela")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("ValorSaldo")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContaAReceberId");
+
+                    b.HasIndex("FormaPagamentoId");
+
+                    b.ToTable("ContaAReceberParcelas", (string)null);
                 });
 
             modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.Fornecedor", b =>
@@ -713,6 +952,273 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     b.ToTable("SubCategorias", (string)null);
                 });
 
+            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.Venda", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Ativo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<int>("CarteiraId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("DataAtualizacao")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<DateTime>("DataCriacao")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<DateTime>("DataEmissao")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime?>("DataSaida")
+                        .IsRequired()
+                        .HasColumnType("date");
+
+                    b.Property<int>("EmpresaId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("FormaPagamentoId")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("NumeroDocumento")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("Observacao")
+                        .IsRequired()
+                        .HasColumnType("varchar(2000)");
+
+                    b.Property<decimal>("PesoBruto")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("PesoLiquido")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("ValorAcrescimo")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("ValorDesconto")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("ValorFrete")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarteiraId");
+
+                    b.HasIndex("ClienteId");
+
+                    b.HasIndex("EmpresaId");
+
+                    b.HasIndex("FormaPagamentoId");
+
+                    b.ToTable("Vendas", (string)null);
+                });
+
+            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.VendaFormaPagamento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CarteiraId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("DataAtualizacao")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<DateTime>("DataCriacao")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<int>("FormaPagamentoId")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("VendaId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarteiraId");
+
+                    b.HasIndex("FormaPagamentoId");
+
+                    b.HasIndex("VendaId");
+
+                    b.ToTable("VendaFormasPagamento", (string)null);
+                });
+
+            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.VendaParcela", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DataAtualizacao")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<DateTime>("DataCriacao")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<DateTime>("DataVencimento")
+                        .HasColumnType("date");
+
+                    b.Property<int>("NumeroParcela")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("ValorParcela")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("VendaFormaPagamentoId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("VendaId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VendaFormaPagamentoId");
+
+                    b.HasIndex("VendaId");
+
+                    b.ToTable("VendaParcelas", (string)null);
+                });
+
+            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.VendaProduto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CodigoItem")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("DataAtualizacao")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<DateTime>("DataCriacao")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("Observacao")
+                        .IsRequired()
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<decimal>("PesoBruto")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("PesoLiquido")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("PrDesconto")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("ProdutoId")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("Quantidade")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("ValorAscrcescimo")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("ValorDesconto")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("ValorTotal")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("ValorUnitario")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("VendaId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProdutoId");
+
+                    b.HasIndex("VendaId");
+
+                    b.ToTable("VendaProdutos", (string)null);
+                });
+
+            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entities.Carteira", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Abreviacao")
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<bool>("Ativo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<DateTime>("DataAtualizacao")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<DateTime>("DataCriacao")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("varchar(300)");
+
+                    b.Property<int>("EmpresaId")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("ValorMinimoVenda")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmpresaId");
+
+                    b.ToTable("Carteiras", (string)null);
+                });
+
             modelBuilder.Entity("Api_MarketAppFinance.Domain.Entities.Cidade", b =>
                 {
                     b.Property<int>("Id")
@@ -726,16 +1232,16 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<string>("CdIbge")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("CdIbgeEstado")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
-
                     b.Property<string>("Cep")
                         .HasColumnType("varchar(250)");
+
+                    b.Property<string>("CodigoIbge")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("CodigoIbgeEstado")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
 
                     b.Property<DateTime>("DataAtualizacao")
                         .ValueGeneratedOnAddOrUpdate()
@@ -858,6 +1364,81 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     b.ToTable("Enderecos", (string)null);
                 });
 
+            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entities.FormaPagamento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Abreviacao")
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<bool>("Ativo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<int>("CarteiraId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("DataAtualizacao")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<DateTime>("DataCriacao")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("varchar(300)");
+
+                    b.Property<int>("DiaPadraoVencimento")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("EmpresaId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("GerarFinanceiro")
+                        .HasColumnType("boolean");
+
+                    b.Property<decimal>("NrDiasIntervalo")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("NrDiasLimiteIntervalo")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("NrIntervalos")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("PrAcrescimo")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("PrDesconto")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("TipoPagamento")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("ValorAcrescimo")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("ValorDesconto")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarteiraId");
+
+                    b.HasIndex("EmpresaId");
+
+                    b.ToTable("FormasPagamento", (string)null);
+                });
+
             modelBuilder.Entity("Api_MarketAppFinance.Domain.Entities.Licenca", b =>
                 {
                     b.Property<int>("Id")
@@ -890,10 +1471,7 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     b.Property<int>("EmpresaId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("FornecedorId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("MaxAcesso")
+                    b.Property<int>("NumeroAcessosPermitido")
                         .HasColumnType("integer");
 
                     b.Property<string>("Tipo")
@@ -903,8 +1481,6 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("EmpresaId");
-
-                    b.HasIndex("FornecedorId");
 
                     b.ToTable("Licencas", (string)null);
                 });
@@ -1112,6 +1688,114 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     b.Navigation("Empresa");
                 });
 
+            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.ContaAPagar", b =>
+                {
+                    b.HasOne("Api_MarketAppFinance.Domain.Entities.Carteira", "Carteira")
+                        .WithMany()
+                        .HasForeignKey("CarteiraId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Api_MarketAppFinance.Domain.Entities.Empresa", "Empresa")
+                        .WithMany()
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Api_MarketAppFinance.Domain.Entities.FormaPagamento", "FormaPagamento")
+                        .WithMany()
+                        .HasForeignKey("FormaPagamentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Api_MarketAppFinance.Domain.Entidades.Fornecedor", "Fornecedor")
+                        .WithMany()
+                        .HasForeignKey("FornecedorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Carteira");
+
+                    b.Navigation("Empresa");
+
+                    b.Navigation("FormaPagamento");
+
+                    b.Navigation("Fornecedor");
+                });
+
+            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.ContaAPagarParcela", b =>
+                {
+                    b.HasOne("Api_MarketAppFinance.Domain.Entidades.ContaAPagar", "ContaAPagar")
+                        .WithMany()
+                        .HasForeignKey("ContaAPagarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Api_MarketAppFinance.Domain.Entities.FormaPagamento", "FormaPagamento")
+                        .WithMany()
+                        .HasForeignKey("FormaPagamentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ContaAPagar");
+
+                    b.Navigation("FormaPagamento");
+                });
+
+            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.ContaAReceber", b =>
+                {
+                    b.HasOne("Api_MarketAppFinance.Domain.Entities.Carteira", "Carteira")
+                        .WithMany()
+                        .HasForeignKey("CarteiraId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Api_MarketAppFinance.Domain.Entidades.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Api_MarketAppFinance.Domain.Entities.Empresa", "Empresa")
+                        .WithMany()
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Api_MarketAppFinance.Domain.Entities.FormaPagamento", "FormaPagamento")
+                        .WithMany()
+                        .HasForeignKey("FormaPagamentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Carteira");
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("Empresa");
+
+                    b.Navigation("FormaPagamento");
+                });
+
+            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.ContaAReceberParcela", b =>
+                {
+                    b.HasOne("Api_MarketAppFinance.Domain.Entidades.ContaAReceber", "ContaAReceber")
+                        .WithMany()
+                        .HasForeignKey("ContaAReceberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Api_MarketAppFinance.Domain.Entities.FormaPagamento", "FormaPagamento")
+                        .WithMany()
+                        .HasForeignKey("FormaPagamentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ContaAReceber");
+
+                    b.Navigation("FormaPagamento");
+                });
+
             modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.Fornecedor", b =>
                 {
                     b.HasOne("Api_MarketAppFinance.Domain.Entities.Empresa", "Empresa")
@@ -1280,6 +1964,117 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     b.Navigation("Empresa");
                 });
 
+            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.Venda", b =>
+                {
+                    b.HasOne("Api_MarketAppFinance.Domain.Entities.Carteira", "Carteira")
+                        .WithMany()
+                        .HasForeignKey("CarteiraId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Api_MarketAppFinance.Domain.Entidades.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Api_MarketAppFinance.Domain.Entities.Empresa", "Empresa")
+                        .WithMany()
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Api_MarketAppFinance.Domain.Entities.FormaPagamento", "FormaPagamento")
+                        .WithMany()
+                        .HasForeignKey("FormaPagamentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Carteira");
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("Empresa");
+
+                    b.Navigation("FormaPagamento");
+                });
+
+            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.VendaFormaPagamento", b =>
+                {
+                    b.HasOne("Api_MarketAppFinance.Domain.Entities.Carteira", "Carteira")
+                        .WithMany()
+                        .HasForeignKey("CarteiraId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Api_MarketAppFinance.Domain.Entities.FormaPagamento", "FormaPagamento")
+                        .WithMany()
+                        .HasForeignKey("FormaPagamentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Api_MarketAppFinance.Domain.Entidades.Venda", "Venda")
+                        .WithMany()
+                        .HasForeignKey("VendaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Carteira");
+
+                    b.Navigation("FormaPagamento");
+
+                    b.Navigation("Venda");
+                });
+
+            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.VendaParcela", b =>
+                {
+                    b.HasOne("Api_MarketAppFinance.Domain.Entidades.VendaFormaPagamento", "VendaFormaPagamento")
+                        .WithMany()
+                        .HasForeignKey("VendaFormaPagamentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Api_MarketAppFinance.Domain.Entidades.Venda", "Venda")
+                        .WithMany()
+                        .HasForeignKey("VendaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Venda");
+
+                    b.Navigation("VendaFormaPagamento");
+                });
+
+            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.VendaProduto", b =>
+                {
+                    b.HasOne("Api_MarketAppFinance.Domain.Entidades.Produto", "Produto")
+                        .WithMany()
+                        .HasForeignKey("ProdutoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Api_MarketAppFinance.Domain.Entidades.Venda", "Venda")
+                        .WithMany()
+                        .HasForeignKey("VendaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Produto");
+
+                    b.Navigation("Venda");
+                });
+
+            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entities.Carteira", b =>
+                {
+                    b.HasOne("Api_MarketAppFinance.Domain.Entities.Empresa", "Empresa")
+                        .WithMany()
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Empresa");
+                });
+
             modelBuilder.Entity("Api_MarketAppFinance.Domain.Entities.Empresa", b =>
                 {
                     b.HasOne("Api_MarketAppFinance.Domain.Entities.Usuario", "Usuario")
@@ -1310,6 +2105,25 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                     b.Navigation("Usuario");
                 });
 
+            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entities.FormaPagamento", b =>
+                {
+                    b.HasOne("Api_MarketAppFinance.Domain.Entities.Carteira", "Carteira")
+                        .WithMany()
+                        .HasForeignKey("CarteiraId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Api_MarketAppFinance.Domain.Entities.Empresa", "Empresa")
+                        .WithMany()
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Carteira");
+
+                    b.Navigation("Empresa");
+                });
+
             modelBuilder.Entity("Api_MarketAppFinance.Domain.Entities.Licenca", b =>
                 {
                     b.HasOne("Api_MarketAppFinance.Domain.Entities.Empresa", "Empresa")
@@ -1317,10 +2131,6 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
                         .HasForeignKey("EmpresaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Api_MarketAppFinance.Domain.Entidades.Fornecedor", null)
-                        .WithMany("Licenses")
-                        .HasForeignKey("FornecedorId");
 
                     b.Navigation("Empresa");
                 });
@@ -1377,11 +2187,6 @@ namespace Api_MarketAppFinance.Infrastructure.Migrations
             modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.Categoria", b =>
                 {
                     b.Navigation("SubCategorias");
-                });
-
-            modelBuilder.Entity("Api_MarketAppFinance.Domain.Entidades.Fornecedor", b =>
-                {
-                    b.Navigation("Licenses");
                 });
 
             modelBuilder.Entity("Api_MarketAppFinance.Domain.Entities.Empresa", b =>

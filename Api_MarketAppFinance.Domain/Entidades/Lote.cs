@@ -14,12 +14,21 @@ namespace Api_MarketAppFinance.Domain.Entidades
         {
         }
 
-        public Lote(string descricao, Empresa empresa, decimal peso, DateTime? dataFabricacao = null, DateTime? dataVcto = null, string? observacao = null, string? numeroLote = null, string? numeroEmbalagem = null)
+        public Lote(
+            string descricao, 
+            Empresa empresa,            
+            DateTime? dataFabricacao = null, 
+            DateTime? dataVcto = null, 
+            string? observacao = null, 
+            string? numeroLote = null, 
+            string? numeroEmbalagem = null,
+            decimal? peso = null
+            )
         {
             Descricao = descricao;
             EmpresaId = empresa.Id;
             Ativo = true;
-            Peso = peso;
+            Peso = peso ?? 0;
             DataFabricacao = dataFabricacao;
             DataVencimento = dataVcto;  
             Observacao = observacao;
