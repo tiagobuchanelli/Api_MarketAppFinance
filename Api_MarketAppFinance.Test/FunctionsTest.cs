@@ -15,25 +15,25 @@ namespace Api_MarketAppFinance.Test
         private LicensaDispositivoRepositorio _repoAccessControll = new LicensaDispositivoRepositorio(new ContextoBase());
 
         public IEnumerable<Usuario> GetUsuarios()
-        => _repoUser.GetAll();
+        => _repoUser.BuscarTodos();
 
         public IEnumerable<Cidade> GetCidades()
-        => _repoCity.GetAll();
+        => _repoCity.BuscarTodos();
 
         public IEnumerable<Endereco> GetEnderecos()
-        => _repoAddress.GetAll();
+        => _repoAddress.BuscarTodos();
 
         public IEnumerable<LicencaDispositivo> GetDevices()
-        => _repoDevice.GetAll();
+        => _repoDevice.BuscarTodos();
 
         public IEnumerable<Licenca> GetLicenses()
-        => _repoLicense.GetAll();
+        => _repoLicense.BuscarTodos();
 
         public IEnumerable<LicencaAcesso> GetLicensesAcessControll()
-        => _repoAccessControll.GetAll();
+        => _repoAccessControll.BuscarTodos();
 
         public IEnumerable<Empresa> GetEmpresas()
-       => _repoCompany.GetAll();
+       => _repoCompany.BuscarTodos();
 
         /*
         public void teste() {

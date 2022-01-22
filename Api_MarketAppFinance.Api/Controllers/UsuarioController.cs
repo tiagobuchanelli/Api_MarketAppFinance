@@ -6,36 +6,36 @@ namespace Api_MarketAppFinance.Api.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class CityController : Controller
+    public class UsuarioController : Controller
     {
-        private readonly ICidadeAplicacaoServico _applicationServiceCity;
+        private readonly IUsuarioAplicacaoServico _applicacaoServico;
 
-        public CityController(ICidadeAplicacaoServico applicationService)
+        public UsuarioController(IUsuarioAplicacaoServico aplicacaoServico)
         {
-            _applicationServiceCity = applicationService;
+            _applicacaoServico = aplicacaoServico;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<string>> BuscarTodos()
         {
-            return Ok(_applicationServiceCity.GetAll());
+            return Ok(_applicacaoServico.BuscarTodos());
         }
 
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<string> BuscarPorCodigo(int id)
         {
-            return Ok(_applicationServiceCity.GetById(id));
+            return Ok(_applicacaoServico.BuscarPorCodigo(id));
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] CidadeDto cityDto)
+        public ActionResult Adicionar([FromBody] UsuarioDto usuarioDto)
         {
             try
             {
-                if (cityDto is null)
+                if (usuarioDto is null)
                     return NotFound();
 
-                _applicationServiceCity.Add(cityDto);
+                _applicacaoServico.Adicionar(usuarioDto);
                 return Ok("Usuário Cadastrado com sucesso!");
             }
             catch (Exception e)
@@ -45,14 +45,14 @@ namespace Api_MarketAppFinance.Api.Controllers
         }
 
         [HttpPut]
-        public ActionResult Put([FromBody] CidadeDto cityDto)
+        public ActionResult Atualizar([FromBody] UsuarioDto usuarioDto)
         {
             try
             {
-                if (cityDto is null)
+                if (usuarioDto is null)
                     return NotFound();
 
-                _applicationServiceCity.Update(cityDto);
+                _applicacaoServico.Atualizar(usuarioDto);
                 return Ok("Usuário Atualizado com sucesso!");
             }
             catch (Exception e)
@@ -62,14 +62,14 @@ namespace Api_MarketAppFinance.Api.Controllers
         }
 
         [HttpDelete]
-        public ActionResult Delete([FromBody] CidadeDto cityDto)
+        public ActionResult Excluir([FromBody] UsuarioDto usuarioDto)
         {
             try
             {
-                if (cityDto is null)
+                if (usuarioDto is null)
                     return NotFound();
 
-                _applicationServiceCity.Remove(cityDto);
+                _applicacaoServico.Excluir(usuarioDto);
                 return Ok("Usuário Removido com sucesso!");
             }
             catch (Exception e)

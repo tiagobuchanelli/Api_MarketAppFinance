@@ -4,14 +4,14 @@ namespace Api_MarketAppFinance.Application.Interfaces
 {
     public interface IUsuarioAplicacaoServico
     {
-        void Add(UsuarioDto userDto);
+        void Adicionar(UsuarioDto userDto);
 
-        void Update(UsuarioDto userDto);
+        void Atualizar(UsuarioDto userDto);
 
-        void Remove(UsuarioDto userDto);
+        void Excluir(UsuarioDto userDto);
 
-        IEnumerable<UsuarioDto> GetAll();
+        IEnumerable<UsuarioDto> BuscarTodos();
 
-        UsuarioDto GetById(int id);
+        UsuarioDto BuscarPorCodigo(int id);
     }
 }

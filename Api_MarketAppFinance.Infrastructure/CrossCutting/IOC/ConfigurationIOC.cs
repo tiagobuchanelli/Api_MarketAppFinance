@@ -17,15 +17,19 @@ namespace Api_MarketAppFinance.Infrastructure.CrossCutting.IOC
         {
             #region IOC
 
+            //mapeamento ApplicationService
             builder.RegisterType<UsuarioAplicacaoServico>().As<IUsuarioAplicacaoServico>();
             builder.RegisterType<CidadeAplicacaoServico>().As<ICidadeAplicacaoServico>();
 
+
+            //mapeamento Service
             builder.RegisterType<UsuarioServico>().As<IUsuarioServico>();
             builder.RegisterType<CidadeSErvico>().As<ICidadeSErvico>();
 
             builder.RegisterType<UsuarioRepositorio>().As<IUsuarioRepositorio>();
             builder.RegisterType<CidadeRepositorio>().As<ICidadeRepositorio>();
 
+            //mapeamento DTOs
             builder.Register(ctx => new MapperConfiguration(cfg =>
            {
                cfg.AddProfile(new DtoParaEntidadeUsuario());
@@ -34,6 +38,7 @@ namespace Api_MarketAppFinance.Infrastructure.CrossCutting.IOC
                cfg.AddProfile(new DtoParaEntidadeCidade());
            }));
 
+            //registro de estado Mapper
             builder.Register(ctx => ctx.Resolve<MapperConfiguration>().CreateMapper()).As<IMapper>().InstancePerLifetimeScope();
 
             #endregion IOC

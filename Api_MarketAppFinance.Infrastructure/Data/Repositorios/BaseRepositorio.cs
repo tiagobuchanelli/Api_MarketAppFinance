@@ -5,16 +5,16 @@ namespace Api_MarketAppFinance.Infrastructure.Repositories
 {
     public class BaseRepositorio<TEntity> : IBaseRepositorio<TEntity> where TEntity : class
     {
-        public readonly ContextoBase _context;
+        public readonly ContextoBase _contexto;
 
-        public BaseRepositorio(ContextoBase sqlContext) => this._context = sqlContext;
+        public BaseRepositorio(ContextoBase sqlContexto) => this._contexto = sqlContexto;
 
-        public void Add(TEntity entidade)
+        public void Adicionar(TEntity entidade)
         {
             try
             {
-                _context.Add(entidade);
-                _context.SaveChanges();
+                _contexto.Add(entidade);
+                _contexto.SaveChanges();
             }
             catch (Exception e)
             {
@@ -22,12 +22,12 @@ namespace Api_MarketAppFinance.Infrastructure.Repositories
             }
         }
 
-        public void Update(TEntity entidade)
+        public void Atualizar(TEntity entidade)
         {
             try
             {
-                _context.Update(entidade);
-                _context.SaveChanges();
+                _contexto.Update(entidade);
+                _contexto.SaveChanges();
             }
             catch (Exception e)
             {
@@ -35,12 +35,12 @@ namespace Api_MarketAppFinance.Infrastructure.Repositories
             }
         }
 
-        public void Remove(TEntity entidade)
+        public void Excluir(TEntity entidade)
         {
             try
             {
-                _context.Remove(entidade);
-                _context.SaveChanges();
+                _contexto.Remove(entidade);
+                _contexto.SaveChanges();
             }
             catch (Exception e)
             {
@@ -48,11 +48,11 @@ namespace Api_MarketAppFinance.Infrastructure.Repositories
             }
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public IEnumerable<TEntity> BuscarTodos()
         {
             try
             {
-                return _context.Set<TEntity>().ToList();
+                return _contexto.Set<TEntity>().ToList();
             }
             catch (Exception e)
             {
@@ -60,11 +60,11 @@ namespace Api_MarketAppFinance.Infrastructure.Repositories
             }
         }
 
-        public TEntity GetById(int id)
+        public TEntity BuscarPorCodigo(int id)
         {
             try
             {
-                return _context.Set<TEntity>().Find(id);
+                return _contexto.Set<TEntity>().Find(id);
             }
             catch (Exception e)
             {

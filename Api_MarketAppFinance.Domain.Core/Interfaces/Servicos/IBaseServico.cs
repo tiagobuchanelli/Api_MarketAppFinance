@@ -2,14 +2,14 @@
 {
     public interface IBaseServico<TEntity> where TEntity : class
     {
-        void Add(TEntity obj);
+        void Adicionar(TEntity obj);
 
-        void Update(TEntity obj);
+        void Atualizar(TEntity obj);
 
-        void Remove(TEntity obj);
+        void Excluir(TEntity obj);
 
-        IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntity> BuscarTodos();
 
-        TEntity GetById(int id);
+        TEntity BuscarPorCodigo(int id);
     }
 }

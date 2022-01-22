@@ -17,34 +17,34 @@ namespace Api_MarketAppFinance.Application
             _mapper = mapper;
         }
 
-        public void Add(CidadeDto cityDto)
+        public void Adicionar(CidadeDto cityDto)
         {
             var city = _mapper.Map<Cidade>(cityDto);
-            _serviceCity.Add(city);
+            _serviceCity.Adicionar(city);
         }
 
-        public IEnumerable<CidadeDto> GetAll()
+        public IEnumerable<CidadeDto> BuscarTodos()
         {
-            var cities = _serviceCity.GetAll();
+            var cities = _serviceCity.BuscarTodos();
             return _mapper.Map<IEnumerable<CidadeDto>>(cities);
         }
 
-        public CidadeDto GetById(int id)
+        public CidadeDto BuscarPorCodigo(int id)
         {
-            var city = _serviceCity.GetById(id);
+            var city = _serviceCity.BuscarPorCodigo(id);
             return _mapper.Map<CidadeDto>(city);
         }
 
-        public void Remove(CidadeDto cityDto)
+        public void Excluir(CidadeDto cityDto)
         {
             var city = _mapper.Map<Cidade>(cityDto);
-            _serviceCity.Remove(city);
+            _serviceCity.Excluir(city);
         }
 
-        public void Update(CidadeDto cityDto)
+        public void Atualizar(CidadeDto cityDto)
         {
             var city = _mapper.Map<Cidade>(cityDto);
-            _serviceCity.Update(city);
+            _serviceCity.Atualizar(city);
         }
     }
 }

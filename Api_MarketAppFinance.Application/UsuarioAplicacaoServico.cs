@@ -17,34 +17,34 @@ namespace MarketAppFinanceSApi_MarketAppFinanceervice.Application
             _mapper = mapper;
         }
 
-        public void Add(UsuarioDto userDto)
+        public void Adicionar(UsuarioDto userDto)
         {
             var user = _mapper.Map<Usuario>(userDto);
-            _serviceUser.Add(user);
+            _serviceUser.Adicionar(user);
         }
 
-        public IEnumerable<UsuarioDto> GetAll()
+        public IEnumerable<UsuarioDto> BuscarTodos()
         {
-            var users = _serviceUser.GetAll();
+            var users = _serviceUser.BuscarTodos();
             return _mapper.Map<IEnumerable<UsuarioDto>>(users);
         }
 
-        public UsuarioDto GetById(int id)
+        public UsuarioDto BuscarPorCodigo(int id)
         {
-            var user = _serviceUser.GetById(id);
+            var user = _serviceUser.BuscarPorCodigo(id);
             return _mapper.Map<UsuarioDto>(user);
         }
 
-        public void Remove(UsuarioDto userDto)
+        public void Excluir(UsuarioDto userDto)
         {
             var user = _mapper.Map<Usuario>(userDto);
-            _serviceUser.Remove(user);
+            _serviceUser.Excluir(user);
         }
 
-        public void Update(UsuarioDto userDto)
+        public void Atualizar(UsuarioDto userDto)
         {
             var user = _mapper.Map<Usuario>(userDto);
-            _serviceUser.Update(user);
+            _serviceUser.Atualizar(user);
         }
     }
 }

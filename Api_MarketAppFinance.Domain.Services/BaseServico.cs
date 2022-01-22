@@ -12,29 +12,29 @@ namespace Api_MarketAppFinance.Domain.Services
             _repository = repository;
         }
 
-        public void Add(TEntity obj)
+        public void Adicionar(TEntity obj)
         {
-            _repository.Add(obj);
+            _repository.Adicionar(obj);
         }
 
-        public void Update(TEntity obj)
+        public void Atualizar(TEntity obj)
         {
-            _repository.Update(obj);
+            _repository.Atualizar(obj);
         }
 
-        public void Remove(TEntity obj)
+        public void Excluir(TEntity obj)
         {
-            _repository.Remove(obj);
+            _repository.Excluir(obj);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public IEnumerable<TEntity> BuscarTodos()
         {
-            return _repository.GetAll();
+            return _repository.BuscarTodos();
         }
 
-        public TEntity GetById(int id)
+        public TEntity BuscarPorCodigo(int id)
         {
-            return _repository.GetById(id);
+            return _repository.BuscarPorCodigo(id);
         }
     }
 }

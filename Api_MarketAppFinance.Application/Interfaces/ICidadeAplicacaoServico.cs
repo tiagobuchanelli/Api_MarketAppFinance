@@ -4,14 +4,14 @@ namespace Api_MarketAppFinance.Application.Interfaces
 {
     public interface ICidadeAplicacaoServico
     {
-        void Add(CidadeDto cityDto);
+        void Adicionar(CidadeDto cityDto);
 
-        void Update(CidadeDto cityDto);
+        void Atualizar(CidadeDto cityDto);
 
-        void Remove(CidadeDto cityDto);
+        void Excluir(CidadeDto cityDto);
 
-        IEnumerable<CidadeDto> GetAll();
+        IEnumerable<CidadeDto> BuscarTodos();
 
-        CidadeDto GetById(int id);
+        CidadeDto BuscarPorCodigo(int id);
     }
 }
