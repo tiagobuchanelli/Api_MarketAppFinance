@@ -11,7 +11,7 @@ namespace Api_MarketAppFinance.Infrastructure.Data.Repositories
 
         public UsuarioRepositorio(ContextoBase sqlContext) : base(sqlContext)
         {
-            _sqlContext = sqlContext;            
+            _sqlContext = sqlContext;
         }
     }
 }

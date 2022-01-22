@@ -1,9 +1,4 @@
 ﻿using Api_MarketAppFinance.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api_MarketAppFinance.Domain.Entidades
 {
@@ -15,11 +10,11 @@ namespace Api_MarketAppFinance.Domain.Entidades
         { }
 
         public Cliente(
-            string nomeFantasia, 
-            string razaoSocial, 
-            Empresa empresa, 
-            string? telefone1 = null, 
-            string? telefone2 = null, 
+            string nomeFantasia,
+            string razaoSocial,
+            Empresa empresa,
+            string? telefone1 = null,
+            string? telefone2 = null,
             string? imagem = null,
             string? rua = null,
             string? numero = null,
@@ -55,15 +50,12 @@ namespace Api_MarketAppFinance.Domain.Entidades
             ValorLimiteVenda = valorLimiteVenda ?? 0;
             PrDesconto = prDesconto ?? 0;
 
-
             Validar();
         }
 
         #endregion Constructos
 
-        #region Actributes Private
 
-        #endregion
 
         #region Actributes Public
 
@@ -82,13 +74,13 @@ namespace Api_MarketAppFinance.Domain.Entidades
         public int EmpresaId { get; private set; }
 
         public string? Rua { get; private set; }
-        
+
         public string? Numero { get; private set; }
-        
+
         public string? Cep { get; private set; }
-        
+
         public string? Letra { get; private set; }
-        
+
         public string? Complemento { get; private set; }
 
         public string? Bairro { get; private set; }
@@ -105,9 +97,9 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         public decimal PrDesconto { get; private set; }
 
-        public Empresa Empresa { get; private set; }       
+        public Empresa Empresa { get; private set; }
 
-        #endregion Actributes
+        #endregion Actributes Public
 
         #region Private Methods
 

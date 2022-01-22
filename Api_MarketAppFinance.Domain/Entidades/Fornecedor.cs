@@ -1,9 +1,4 @@
 ﻿using Api_MarketAppFinance.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api_MarketAppFinance.Domain.Entidades
 {
@@ -15,11 +10,11 @@ namespace Api_MarketAppFinance.Domain.Entidades
         { }
 
         public Fornecedor(
-            string nomeFantasia, 
-            string razaoSocial, 
-            Empresa empresa, 
-            string? telefone1 = null, 
-            string? telefone2 = null, 
+            string nomeFantasia,
+            string razaoSocial,
+            Empresa empresa,
+            string? telefone1 = null,
+            string? telefone2 = null,
             string? imagem = null,
             string? rua = null,
             string? numero = null,
@@ -60,9 +55,7 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         #endregion Constructos
 
-        #region Actributes Private
 
-        #endregion
 
         #region Actributes Public
 
@@ -81,13 +74,13 @@ namespace Api_MarketAppFinance.Domain.Entidades
         public string? Imagem { get; private set; }
 
         public string? Rua { get; private set; }
-        
+
         public string? Numero { get; private set; }
-        
+
         public string? Cep { get; private set; }
-        
+
         public string? Letra { get; private set; }
-        
+
         public string? Complemento { get; private set; }
 
         public string? Bairro { get; private set; }
@@ -106,7 +99,7 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         public Empresa Empresa { get; private set; }
 
-        #endregion Actributes
+        #endregion Actributes Public
 
         #region Private Methods
 
@@ -125,6 +118,7 @@ namespace Api_MarketAppFinance.Domain.Entidades
         #endregion Private Methods
 
         #region Public Methods
+
         public void Ativar() => Ativo = true;
 
         public void Inativar() => Ativo = false;
@@ -234,8 +228,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
                 throw new Exception("Informe um valor válido.");
             PrDesconto = valor;
         }
-
-
 
         #endregion Public Methods
     }

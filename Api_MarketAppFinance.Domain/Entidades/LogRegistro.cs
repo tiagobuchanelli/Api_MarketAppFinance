@@ -3,14 +3,15 @@
     public class LogRegistro : Base
     {
         #region Constructos
+
         private LogRegistro()
         {
         }
 
         public LogRegistro(
-            Empresa empresa, 
-            string tabela, 
-            int chaveTabela, 
+            Empresa empresa,
+            string tabela,
+            int chaveTabela,
             Usuario usuario,
             string valorAnterior,
             string valorAtual)
@@ -22,11 +23,10 @@
             ValorAnterior = valorAnterior;
             ValorAtual = valorAtual;
 
-
             Validar();
-        }        
+        }
 
-        #endregion
+        #endregion Constructos
 
         #region Actributes Public
 
@@ -40,14 +40,16 @@
 
         public string ValorAnterior { get; private set; }
 
-        public string ValorAtual { get; private set; }        
+        public string ValorAtual { get; private set; }
 
         public Empresa Empresa { get; private set; }
 
         public Usuario Usuario { get; private set; }
-        #endregion
+
+        #endregion Actributes Public
 
         #region Private Methods
+
         private void Validar()
         {
             if (string.IsNullOrEmpty(Tabela))
@@ -62,19 +64,13 @@
             if (string.IsNullOrEmpty(ValorAtual))
                 throw new Exception("Obrigatório informar o valor atual.");
 
-            if(EmpresaId == default)
+            if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida");
 
             if (UsuarioId == default)
                 throw new Exception("Obrigatório informar um usuário válido");
-
         }
-        #endregion
 
-        #region Public Methods
-        
-        #endregion
-
-       
+        #endregion Private Methods
     }
 }

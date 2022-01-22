@@ -1,11 +1,6 @@
 ﻿using Api_MarketAppFinance.Application.Dtos;
 using Api_MarketAppFinance.Domain.Entities;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api_MarketAppFinance.Application.Mappers
 {
@@ -14,7 +9,6 @@ namespace Api_MarketAppFinance.Application.Mappers
         public DtoParaEntidadeCidade()
         {
             DtoParaCidade();
-                
         }
 
         private void DtoParaCidade()
@@ -26,8 +20,6 @@ namespace Api_MarketAppFinance.Application.Mappers
                 .ForMember(dest => dest.CodigoIbge, opt => opt.MapFrom(x => x.CodeIgbe))
                 .ForMember(dest => dest.CodigoIbgeEstado, opt => opt.MapFrom(x => x.StateCodeIgbe))
                 .ForMember(dest => dest.SiglaEstado, opt => opt.MapFrom(x => x.StateSymbol));
-                
-
         }
     }
 }

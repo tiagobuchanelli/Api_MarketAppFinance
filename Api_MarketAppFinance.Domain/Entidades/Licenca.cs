@@ -8,21 +8,21 @@
         { }
 
         public Licenca(
-            string descricao, 
-            string tipo, 
-            int numeroAcessosPermitido, 
-            DateTime dataValidade, 
+            string descricao,
+            string tipo,
+            int numeroAcessosPermitido,
+            DateTime dataValidade,
             Empresa empresa)
         {
-           Descricao = descricao;
-           Tipo = tipo;
-           Chave = Guid.NewGuid().ToString();
-           NumeroAcessosPermitido = numeroAcessosPermitido;
-           DataExpiracao = dataValidade; 
-           EmpresaId = empresa.Id;  
+            Descricao = descricao;
+            Tipo = tipo;
+            Chave = Guid.NewGuid().ToString();
+            NumeroAcessosPermitido = numeroAcessosPermitido;
+            DataExpiracao = dataValidade;
+            EmpresaId = empresa.Id;
 
-           Validar();
-        }        
+            Validar();
+        }
 
         #endregion Constructos
 
@@ -42,24 +42,26 @@
 
         public Empresa Empresa { get; private set; }
 
-        #endregion
+        #endregion Actributes
 
         #region Private Methods
+
         private void Validar()
         {
             if (string.IsNullOrEmpty(Descricao))
                 throw new Exception("Obrigatório informar a descrição.");
 
-            if(string.IsNullOrEmpty(Tipo))
+            if (string.IsNullOrEmpty(Tipo))
                 throw new Exception("Obrigatório informar o tipo.");
 
             if (DataExpiracao < DateTime.Now.Date)
-                throw new Exception("Não é possível inserir data de validade menor que a data atual");                        
+                throw new Exception("Não é possível inserir data de validade menor que a data atual");
         }
 
-        #endregion
+        #endregion Private Methods
 
         #region Public Methods
+
         public void GerarChaveLicenca()
         {
             if (string.IsNullOrEmpty(Chave))
@@ -67,7 +69,7 @@
 
             Chave = Guid.NewGuid().ToString();
         }
-        #endregion
 
+        #endregion Public Methods
     }
 }

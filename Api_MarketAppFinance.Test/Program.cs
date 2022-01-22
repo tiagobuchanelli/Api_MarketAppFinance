@@ -1,19 +1,13 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using Api_MarketAppFinance.Data;
 using Api_MarketAppFinance.Domain.Entidades;
 using Api_MarketAppFinance.Domain.Entities;
-using Api_MarketAppFinance.Infrastructure.Data.Repositories;
-using Api_MarketAppFinance.Test;
-using Microsoft.EntityFrameworkCore;
-
 
 Console.WriteLine("Hello, World!");
 
-/*pesquisas 
+/*pesquisas
 RepositoryLicense _repoLicense = new RepositoryLicense(new SqlContext());
 RepositoryUser _repoUser = new RepositoryUser(new SqlContext());
 RepositoryCompany _repoCompany = new RepositoryCompany(new SqlContext());
-
 
 var repoTeste = new FunctionsTest();
 var usuarios = repoTeste.GetUsuarios();
@@ -31,12 +25,10 @@ var empresa = repoTeste.GetEmpresas().Where(x => x.Id == 4).First();
 
 var empresasComDetalhesLicencas = _repoCompany._context.Companies.Include(x => x.Licenses).ToList();
 
-
 var usuario = usuarios.Where(x => x.Id == 2).First();
 */
 
 var teste = "";
-
 
 /*adicionar empresa manualmente
  var empresaStart = new Company("Star Link2", "Star Link Software2", "4454545", usuario);
@@ -67,9 +59,3 @@ var empresaTeste = new Empresa("nome", "nome curto", new Usuario("nome", "sobren
 var categoriaTeste = new Categoria("Categoria 1", empresaTeste);
 
 var produto = new Produto(descricao: "Produto 1", categoria: categoriaTeste, empresa: empresaTeste, valorVenda: 10);
-
-
-
-
-
-

@@ -1,20 +1,16 @@
 ﻿using Api_MarketAppFinance.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api_MarketAppFinance.Domain.Entidades
 {
     public class MovimentacaoProduto : Base
     {
         #region Construtores
+
         private MovimentacaoProduto()
         {
         }
 
-        public MovimentacaoProduto(            
+        public MovimentacaoProduto(
             Empresa empresa,
             Produto produto,
             OrigemMovimentacaoProduto origemMovimentacaoProduto,
@@ -25,7 +21,7 @@ namespace Api_MarketAppFinance.Domain.Entidades
             )
         {
             CodigoLancamento = codigoLancamento;
-            CodigoItem = codigoItem;                
+            CodigoItem = codigoItem;
             EmpresaId = empresa.Id;
             ProdutoId = produto.Id;
             OrigemMovimentacaoProdutoId = origemMovimentacaoProduto.Id;
@@ -35,14 +31,10 @@ namespace Api_MarketAppFinance.Domain.Entidades
             SaldoAnterior = ObterSaldoAnterior();
             Saldo = CalcularSaldoAtual();
 
-
-
             Validar();
         }
-       
 
-
-        #endregion
+        #endregion Construtores
 
         #region Atributos Públicos
 
@@ -72,9 +64,10 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         public OrigemMovimentacaoProduto OrigemMovimentacaoProduto { get; private set; }
 
-        #endregion
+        #endregion Atributos Públicos
 
         #region Metodos Privados
+
         private void Validar()
         {
             if (EmpresaId == default)
@@ -97,7 +90,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
             if (QuantidadeSaida <= 0)
                 throw new Exception("Quantidade de Saída inválida");
-
         }
 
         private decimal ObterSaldoAnterior()
@@ -109,11 +101,7 @@ namespace Api_MarketAppFinance.Domain.Entidades
         {
             return 0;
         }
-        #endregion
 
-        #region Metodos Publicos
-
-        #endregion
-
+        #endregion Metodos Privados
     }
 }

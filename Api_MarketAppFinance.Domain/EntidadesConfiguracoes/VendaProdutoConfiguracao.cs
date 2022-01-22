@@ -1,5 +1,4 @@
 ﻿using Api_MarketAppFinance.Domain.Entidades;
-using Api_MarketAppFinance.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -16,7 +15,6 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
                .Property(a => a.Observacao)
                .HasColumnType("varchar(500)");
 
-           
             builder
               .Property(a => a.DataCriacao)
               .ValueGeneratedOnAdd()

@@ -1,26 +1,22 @@
 ﻿using Api_MarketAppFinance.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api_MarketAppFinance.Domain.Entidades
 {
     public class Lote : Base
     {
         #region Construtores
+
         private Lote()
         {
         }
 
         public Lote(
-            string descricao, 
-            Empresa empresa,            
-            DateTime? dataFabricacao = null, 
-            DateTime? dataVcto = null, 
-            string? observacao = null, 
-            string? numeroLote = null, 
+            string descricao,
+            Empresa empresa,
+            DateTime? dataFabricacao = null,
+            DateTime? dataVcto = null,
+            string? observacao = null,
+            string? numeroLote = null,
             string? numeroEmbalagem = null,
             decimal? peso = null
             )
@@ -30,7 +26,7 @@ namespace Api_MarketAppFinance.Domain.Entidades
             Ativo = true;
             Peso = peso ?? 0;
             DataFabricacao = dataFabricacao;
-            DataVencimento = dataVcto;  
+            DataVencimento = dataVcto;
             Observacao = observacao;
             NumeroLote = numeroLote;
             NumeroEmbalagem = numeroEmbalagem;
@@ -38,10 +34,10 @@ namespace Api_MarketAppFinance.Domain.Entidades
             Validar();
         }
 
-
-        #endregion
+        #endregion Construtores
 
         #region Atributos Públicos
+
         public string Descricao { get; private set; }
 
         public int EmpresaId { get; private set; }
@@ -62,9 +58,10 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         public Empresa Empresa { get; private set; }
 
-        #endregion
+        #endregion Atributos Públicos
 
         #region Metodos Privados
+
         private void Validar()
         {
             if (string.IsNullOrEmpty(Descricao))
@@ -73,7 +70,8 @@ namespace Api_MarketAppFinance.Domain.Entidades
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida");
         }
-        #endregion
+
+        #endregion Metodos Privados
 
         #region Metodos Publicos
 
@@ -81,7 +79,7 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         public void Inativar() => Ativo = false;
 
-        public void AlterarDescricao(string descricao) 
+        public void AlterarDescricao(string descricao)
         {
             if (string.IsNullOrEmpty(descricao))
                 throw new Exception("Obrigatório informar a descrição.");
@@ -113,7 +111,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
             Observacao = observacao;
         }
 
-
         public void AlterarNumeroLote(string numero)
         {
             if (string.IsNullOrEmpty(numero))
@@ -121,7 +118,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
             NumeroLote = numero;
         }
-
 
         public void AlterarNumeroEmbalagem(string numero)
         {
@@ -139,8 +135,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
             Peso = peso;
         }
 
-
-        #endregion
-
+        #endregion Metodos Publicos
     }
 }

@@ -3,6 +3,7 @@
     public class Cidade : Base
     {
         #region Constructos
+
         private Cidade()
         {
         }
@@ -17,11 +18,12 @@
             Ativo = true;
 
             Validar();
-        }        
+        }
 
-        #endregion
+        #endregion Constructos
 
         #region Actributes Public
+
         public string Nome { get; private set; }
 
         public string? Cep { get; private set; }
@@ -33,24 +35,27 @@
         public string CodigoIbgeEstado { get; private set; }
 
         public string? SiglaEstado { get; private set; }
-        #endregion
+
+        #endregion Actributes Public
 
         #region Private Methods
+
         private void Validar()
         {
             if (string.IsNullOrEmpty(Nome))
                 throw new Exception("Obrigatório informar o nome.");
 
-            if(string.IsNullOrEmpty(CodigoIbge))
+            if (string.IsNullOrEmpty(CodigoIbge))
                 throw new Exception("Obrigatório informar o código ibge.");
 
             if (string.IsNullOrEmpty(CodigoIbgeEstado))
                 throw new Exception("Obrigatório informar o códigto ibge do estado.");
-
         }
-        #endregion
+
+        #endregion Private Methods
 
         #region Public Methods
+
         public void Ativar() => Ativo = true;
 
         public void Inativar() => Ativo = false;
@@ -94,8 +99,7 @@
 
             Cep = cep;
         }
-        #endregion
 
-
+        #endregion Public Methods
     }
 }

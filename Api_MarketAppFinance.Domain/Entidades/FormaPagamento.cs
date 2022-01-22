@@ -5,15 +5,16 @@ namespace Api_MarketAppFinance.Domain.Entities
     public class FormaPagamento : Base
     {
         #region Constructos
+
         private FormaPagamento()
         {
         }
 
         public FormaPagamento(
-            string desc, 
-            Empresa empresa, 
+            string desc,
+            Empresa empresa,
             TipoPagamento tipoPagamento,
-            Carteira carteira,            
+            Carteira carteira,
             string? abreviacao = null,
             decimal? valorAcrescimo = null,
             decimal? valorDesconto = null,
@@ -27,7 +28,7 @@ namespace Api_MarketAppFinance.Domain.Entities
             )
         {
             Descricao = desc;
-            Abreviacao = abreviacao;            
+            Abreviacao = abreviacao;
             Ativo = true;
             EmpresaId = empresa.Id;
             TipoPagamento = tipoPagamento;
@@ -42,13 +43,13 @@ namespace Api_MarketAppFinance.Domain.Entities
             DiaPadraoVencimento = diaPadraoVencimento ?? 0;
             GerarFinanceiro = gerarFinanceiro ?? false;
 
-
             Validar();
-        }        
+        }
 
-        #endregion
+        #endregion Constructos
 
         #region Actributes Public
+
         public string Descricao { get; private set; }
 
         public string? Abreviacao { get; private set; }
@@ -58,9 +59,9 @@ namespace Api_MarketAppFinance.Domain.Entities
         public int EmpresaId { get; private set; }
 
         public int CarteiraId { get; private set; }
-        
+
         public TipoPagamento TipoPagamento { get; private set; }
-        
+
         public decimal ValorAcrescimo { get; private set; }
 
         public decimal ValorDesconto { get; private set; }
@@ -82,24 +83,27 @@ namespace Api_MarketAppFinance.Domain.Entities
         public Carteira Carteira { get; private set; }
 
         public Empresa Empresa { get; private set; }
-        #endregion
+
+        #endregion Actributes Public
 
         #region Private Methods
+
         private void Validar()
         {
             if (string.IsNullOrEmpty(Descricao))
-                throw new Exception("Obrigatório informar o nome.");            
+                throw new Exception("Obrigatório informar o nome.");
 
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida.");
 
             if (CarteiraId == default)
                 throw new Exception("Obrigatório informar uma carteira válida.");
-
         }
-        #endregion
+
+        #endregion Private Methods
 
         #region Public Methods
+
         public void AlterarStatus(bool status) => Ativo = status;
 
         public void AlterarGerarFinanceiro(bool status) => GerarFinanceiro = status;
@@ -136,7 +140,6 @@ namespace Api_MarketAppFinance.Domain.Entities
             PrAcrescimo = percentual;
         }
 
-
         public void AlterarNrDiasIntervalo(decimal dias)
         {
             if (NrDiasIntervalo <= 0)
@@ -144,7 +147,6 @@ namespace Api_MarketAppFinance.Domain.Entities
 
             NrDiasIntervalo = dias;
         }
-
 
         public void AlterarNrDiasLimiteIntervalo(decimal diasLimiteIntervalo)
         {
@@ -201,8 +203,7 @@ namespace Api_MarketAppFinance.Domain.Entities
 
             DiaPadraoVencimento = diaPadrao;
         }
-        #endregion
 
-
+        #endregion Public Methods
     }
 }

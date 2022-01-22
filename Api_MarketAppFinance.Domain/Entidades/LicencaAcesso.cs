@@ -3,6 +3,7 @@
     public class LicencaAcesso : Base
     {
         #region Constructos
+
         private LicencaAcesso()
         {
         }
@@ -16,9 +17,11 @@
 
             Validar();
         }
-        #endregion
+
+        #endregion Constructos
 
         #region Actributes Public
+
         public string Descricao { get; private set; }
 
         public int LicencaId { get; private set; }
@@ -32,9 +35,11 @@
         public Licenca Licenca { get; private set; }
 
         public LicencaDispositivo Dispositivo { get; private set; }
-        #endregion
+
+        #endregion Actributes Public
 
         #region Private Methos
+
         private void Validar()
         {
             if (string.IsNullOrEmpty(Descricao))
@@ -49,7 +54,7 @@
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida");
         }
-        #endregion
 
+        #endregion Private Methos
     }
 }

@@ -1,5 +1,4 @@
-﻿using Api_MarketAppFinance.Domain.Entidades;
-using Api_MarketAppFinance.Domain.Entities;
+﻿using Api_MarketAppFinance.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -24,7 +23,7 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
             builder
                .Property(a => a.Ativo)
                .HasDefaultValue(false)
-               .IsRequired();                       
+               .IsRequired();
 
             builder
               .Property(a => a.DataCriacao)

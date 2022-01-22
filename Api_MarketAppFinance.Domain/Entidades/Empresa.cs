@@ -27,7 +27,7 @@
 
         private IList<Licenca> _licenses;
 
-        #endregion
+        #endregion Actributes Private
 
         #region Actributes Public
 
@@ -45,9 +45,10 @@
 
         public Usuario Usuario { get; private set; }
 
-        public IReadOnlyCollection<Licenca> Licenses { get { return _licenses.ToList(); } }
+        public IReadOnlyCollection<Licenca> Licenses
+        { get { return _licenses.ToList(); } }
 
-        #endregion Actributes
+        #endregion Actributes Public
 
         #region Private Methods
 
@@ -56,7 +57,7 @@
             if (string.IsNullOrEmpty(NomeFantasia))
                 throw new Exception("Obrigatório informar o nome da empresa.");
 
-            if(string.IsNullOrEmpty(RazaoSocial))
+            if (string.IsNullOrEmpty(RazaoSocial))
                 throw new Exception("Obrigatório informar o nome curto da empresa.");
 
             if (UsuarioId == default)
@@ -66,6 +67,7 @@
         #endregion Private Methods
 
         #region Public Methods
+
         public void Ativar() => Ativo = true;
 
         public void Inativar() => Ativo = false;
@@ -84,7 +86,6 @@
                 throw new Exception("Obrigatório informar um telefone válido.");
 
             Telefone = telefone;
-
         }
 
         public void AlterarNomeFantasia(string nomeEmpresa)
@@ -93,7 +94,6 @@
                 throw new Exception("Obrigatório informar um nome válido.");
 
             NomeFantasia = nomeEmpresa;
-
         }
 
         public void AlterarRazãoSocial(string razaoSocial)
@@ -102,12 +102,11 @@
                 throw new Exception("Obrigatório informar um nome válido válido.");
 
             RazaoSocial = razaoSocial;
-
-        }        
+        }
 
         public void GerarLicenca(Licenca license)
-        {            
-            if(license is null)
+        {
+            if (license is null)
                 throw new Exception("Obrigatório informar uma licença válida.");
 
             _licenses.Add(license);

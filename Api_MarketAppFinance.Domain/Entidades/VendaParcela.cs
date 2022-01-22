@@ -1,24 +1,19 @@
 ﻿using Api_MarketAppFinance.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api_MarketAppFinance.Domain.Entidades
 {
     public class VendaParcela : Base
     {
         #region Construtores
+
         private VendaParcela()
         {
-
         }
 
         public VendaParcela(
-            int numeroParcela, 
-            DateTime dataVencimento, 
-            decimal valorParcela, 
+            int numeroParcela,
+            DateTime dataVencimento,
+            decimal valorParcela,
             Venda venda,
              Empresa empresa,
             VendaFormaPagamento vendaFormaPagamento
@@ -34,10 +29,10 @@ namespace Api_MarketAppFinance.Domain.Entidades
             Validar();
         }
 
-
-        #endregion
+        #endregion Construtores
 
         #region Atributos Publicos
+
         public int VendaId { get; private set; }
 
         public int VendaFormaPagamentoId { get; private set; }
@@ -56,10 +51,10 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         public VendaFormaPagamento VendaFormaPagamento { get; private set; }
 
-
-        #endregion
+        #endregion Atributos Publicos
 
         #region Metodos Privados
+
         private void Validar()
         {
             if (VendaId == default)
@@ -77,10 +72,7 @@ namespace Api_MarketAppFinance.Domain.Entidades
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida");
         }
-        #endregion
 
-        #region Metodos Publicos
-        
-        #endregion
+        #endregion Metodos Privados
     }
 }

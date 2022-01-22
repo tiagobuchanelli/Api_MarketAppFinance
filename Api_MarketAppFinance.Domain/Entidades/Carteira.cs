@@ -3,23 +3,25 @@
     public class Carteira : Base
     {
         #region Constructos
+
         private Carteira()
         {
         }
 
-        public Carteira(string desc, Empresa empresa,string? abreviacao = null)
+        public Carteira(string desc, Empresa empresa, string? abreviacao = null)
         {
             Descricao = desc;
-            Abreviacao = abreviacao;            
+            Abreviacao = abreviacao;
             Ativo = true;
             EmpresaId = empresa.Id;
 
             Validar();
-        }        
+        }
 
-        #endregion
+        #endregion Constructos
 
         #region Actributes Public
+
         public string Descricao { get; private set; }
 
         public string? Abreviacao { get; private set; }
@@ -31,21 +33,24 @@
         public decimal ValorMinimoVenda { get; private set; }
 
         public Empresa Empresa { get; private set; }
-        #endregion
+
+        #endregion Actributes Public
 
         #region Private Methods
+
         private void Validar()
         {
             if (string.IsNullOrEmpty(Descricao))
-                throw new Exception("Obrigatório informar o nome.");            
+                throw new Exception("Obrigatório informar o nome.");
 
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida.");
-
         }
-        #endregion
+
+        #endregion Private Methods
 
         #region Public Methods
+
         public void Ativar() => Ativo = true;
 
         public void Inativar() => Ativo = false;
@@ -57,8 +62,7 @@
 
             ValorMinimoVenda = valorMinimo;
         }
-        #endregion
 
-       
+        #endregion Public Methods
     }
 }

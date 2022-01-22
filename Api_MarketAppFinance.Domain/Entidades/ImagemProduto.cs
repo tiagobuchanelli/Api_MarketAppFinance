@@ -1,9 +1,4 @@
 ﻿using Api_MarketAppFinance.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api_MarketAppFinance.Domain.Entidades
 {
@@ -17,17 +12,18 @@ namespace Api_MarketAppFinance.Domain.Entidades
             EmpresaId = empresa.Id;
 
             Validate();
-
         }
-       
+
         #region Construtores
+
         private ImagemProduto()
         {
         }
 
-        #endregion
+        #endregion Construtores
 
         #region Atributos Publicos
+
         public string Url { get; private set; }
 
         public int ProdutoId { get; set; }
@@ -40,9 +36,10 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         public Produto Produto { get; set; }
 
-        #endregion
+        #endregion Atributos Publicos
 
         #region Metodos Privados
+
         private void Validate()
         {
             if (string.IsNullOrEmpty(Url))
@@ -53,22 +50,24 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida");
-
         }
-        #endregion
+
+        #endregion Metodos Privados
 
         #region Petodos Publicos
+
         public void Ativar() => Ativo = true;
 
         public void Inativar() => Ativo = false;
 
-        public void AlterarUrl(string url) 
-        { 
-            if(string.IsNullOrEmpty(url))
+        public void AlterarUrl(string url)
+        {
+            if (string.IsNullOrEmpty(url))
                 throw new Exception("Obrigatório informar a url.");
 
             Url = url;
         }
-        #endregion
+
+        #endregion Petodos Publicos
     }
 }

@@ -1,33 +1,28 @@
 ﻿using Api_MarketAppFinance.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api_MarketAppFinance.Domain.Entidades
 {
     public class VendaProduto : Base
     {
         #region Construtores
+
         private VendaProduto()
         {
-
         }
 
         public VendaProduto(
-            int codigoItem, 
-            decimal quantidade, 
-            decimal valorUnitario, 
-            decimal valorTotal,            
+            int codigoItem,
+            decimal quantidade,
+            decimal valorUnitario,
+            decimal valorTotal,
             Venda venda,
             Produto produto,
             Empresa empresa,
             decimal? valorDesconto = null,
             decimal? valorAscrcescimo = null,
-            decimal? pesoLiquido = null, 
-            decimal? pesoBruto = null, 
-            string? observacao = null,             
+            decimal? pesoLiquido = null,
+            decimal? pesoBruto = null,
+            string? observacao = null,
             decimal? prDesconto = null
             )
         {
@@ -47,16 +42,16 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
             Validar();
         }
-        
-        #endregion
+
+        #endregion Construtores
 
         #region Atributos Publicos
 
-        public int CodigoItem { get; private set; }     
+        public int CodigoItem { get; private set; }
 
-        public int VendaId { get; private set; }     
-        
-        public int ProdutoId { get; private set; }        
+        public int VendaId { get; private set; }
+
+        public int ProdutoId { get; private set; }
 
         public decimal Quantidade { get; private set; }
 
@@ -84,10 +79,10 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         public Produto Produto { get; private set; }
 
-
-        #endregion
+        #endregion Atributos Publicos
 
         #region Metodos Privados
+
         private void Validar()
         {
             if (VendaId == default)
@@ -110,8 +105,8 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida");
-
         }
-        #endregion
+
+        #endregion Metodos Privados
     }
 }

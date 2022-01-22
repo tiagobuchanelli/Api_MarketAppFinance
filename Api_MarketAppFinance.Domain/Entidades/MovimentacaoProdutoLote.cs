@@ -1,15 +1,11 @@
 ﻿using Api_MarketAppFinance.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api_MarketAppFinance.Domain.Entidades
 {
     public class MovimentacaoProdutoLote : Base
     {
         #region Construtores
+
         private MovimentacaoProdutoLote()
         {
         }
@@ -40,10 +36,9 @@ namespace Api_MarketAppFinance.Domain.Entidades
             Validar();
         }
 
+        #endregion Construtores
 
-        #endregion
-
-        #region Atributos Públicos        
+        #region Atributos Públicos
 
         public int CodigoLancamento { get; private set; }
 
@@ -74,9 +69,11 @@ namespace Api_MarketAppFinance.Domain.Entidades
         public Produto Produto { get; private set; }
 
         public OrigemMovimentacaoProduto OrigemMovimentacaoProduto { get; private set; }
-        #endregion
+
+        #endregion Atributos Públicos
 
         #region Metodos Privados
+
         private void Validar()
         {
             if (LoteId == default)
@@ -102,7 +99,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
             if (QuantidadeSaida <= 0)
                 throw new Exception("Quantidade de Saída inválida");
-
         }
 
         private decimal ObterSaldoAnterior()
@@ -114,11 +110,7 @@ namespace Api_MarketAppFinance.Domain.Entidades
         {
             return 0;
         }
-        #endregion
 
-        #region Metodos Publicos
-
-        #endregion
-
+        #endregion Metodos Privados
     }
 }

@@ -1,6 +1,4 @@
-﻿using Api_MarketAppFinance.Domain.Entidades;
-using Api_MarketAppFinance.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
@@ -10,7 +8,7 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
         public void Configure(EntityTypeBuilder<Entidades.EmpresaConfiguracao> builder)
         {
             builder
-               .ToTable("EmpresaConfiguracoes");                      
+               .ToTable("EmpresaConfiguracoes");
 
             builder
                .Property(a => a.UsaControleLotes)

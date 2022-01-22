@@ -1,27 +1,22 @@
 ﻿using Api_MarketAppFinance.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api_MarketAppFinance.Domain.Entidades
 {
     public class ContaAReceber : Base
     {
         #region Construtores
+
         private ContaAReceber()
         {
-
         }
 
         public ContaAReceber(
-            int codigoLancamentoId, 
-            decimal numeroDocumento, 
-            decimal valorTotal,  
-            bool ativo, 
-            Empresa empresa, 
-            Carteira carteira, 
+            int codigoLancamentoId,
+            decimal numeroDocumento,
+            decimal valorTotal,
+            bool ativo,
+            Empresa empresa,
+            Carteira carteira,
             FormaPagamento formaPagamento,
             Cliente cliente,
             string? observacao = null)
@@ -39,13 +34,12 @@ namespace Api_MarketAppFinance.Domain.Entidades
             Validar();
         }
 
-
-
-        #endregion
+        #endregion Construtores
 
         #region Atributos Publicos
+
         public int EmpresaId { get; private set; }
-        
+
         public int CodigoLancamentoId { get; private set; }
 
         public int CarteiraId { get; private set; }
@@ -70,10 +64,10 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         public FormaPagamento FormaPagamento { get; private set; }
 
-
-        #endregion
+        #endregion Atributos Publicos
 
         #region Metodos Privados
+
         private void Validar()
         {
             /*if (string.IsNullOrEmpty(Descricao))
@@ -86,12 +80,15 @@ namespace Api_MarketAppFinance.Domain.Entidades
                 throw new Exception("Obrigatório informar uma empresa válida");
             */
         }
-        #endregion
+
+        #endregion Metodos Privados
 
         #region Metodos Publicos
+
         public void Ativar() => Ativo = true;
 
         public void Inativar() => Ativo = false;
-        #endregion
+
+        #endregion Metodos Publicos
     }
 }

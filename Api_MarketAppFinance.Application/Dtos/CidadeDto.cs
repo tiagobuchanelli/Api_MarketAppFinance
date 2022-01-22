@@ -13,6 +13,5 @@
         public string StateCodeIgbe { get; set; }
 
         public string? StateSymbol { get; set; }
-
     }
 }

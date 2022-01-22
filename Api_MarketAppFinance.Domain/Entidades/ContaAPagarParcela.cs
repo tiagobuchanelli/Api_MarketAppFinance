@@ -1,28 +1,23 @@
 ﻿using Api_MarketAppFinance.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api_MarketAppFinance.Domain.Entidades
 {
     public class ContaAPagarParcela : Base
     {
         #region Construtores
+
         private ContaAPagarParcela()
         {
-
         }
 
         public ContaAPagarParcela(
-            int numeroParcela, 
-            decimal valorParcela,             
-            DateTime dataVencimento,             
+            int numeroParcela,
+            decimal valorParcela,
+            DateTime dataVencimento,
             ContaAPagar contaAPagar,
             Empresa empresa,
             FormaPagamento formaPagamento,
-            decimal? valorAcrescimo = null, 
+            decimal? valorAcrescimo = null,
             decimal? valorDesconto = null,
             string? observacao = null,
             DateTime? dataPagamento = null)
@@ -36,12 +31,10 @@ namespace Api_MarketAppFinance.Domain.Entidades
             DataVencimento = dataVencimento;
             DataPagamento = dataPagamento;
             ContaAPagarId = contaAPagar.Id;
-            FormaPagamentoId = formaPagamento.Id;            
-            
+            FormaPagamentoId = formaPagamento.Id;
         }
 
-       
-        #endregion
+        #endregion Construtores
 
         #region Atributos Publicos
 
@@ -73,20 +66,19 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         public FormaPagamento FormaPagamento { get; private set; }
 
-
-        #endregion
+        #endregion Atributos Publicos
 
         #region Metodos Privados
+
         private void Validar()
         {
-            
             if (NumeroParcela <= 0)
                 throw new Exception("Obrigatório informar um número de parcela válido");
 
             if (ValorParcela <= 0)
                 throw new Exception("Obrigatório informar um valor de parcela válido");
 
-            if (DataVencimento <= DateTime.Now )
+            if (DataVencimento <= DateTime.Now)
                 throw new Exception("Obrigatório informar uma data de vencimento maior que a data atual.");
 
             if (ContaAPagarId == default)
@@ -98,16 +90,19 @@ namespace Api_MarketAppFinance.Domain.Entidades
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida");
         }
-        #endregion
+
+        #endregion Metodos Privados
 
         #region Metodos Publicos
+
         public void AlterarValorSaldo(decimal valor)
         {
-            if(valor <= 0)
+            if (valor <= 0)
                 throw new Exception("Obrigatório informar um valor válido");
 
             ValorSaldo = valor;
         }
-        #endregion
+
+        #endregion Metodos Publicos
     }
 }

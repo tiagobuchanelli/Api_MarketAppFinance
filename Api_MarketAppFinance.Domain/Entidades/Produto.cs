@@ -11,7 +11,7 @@ namespace Api_MarketAppFinance.Domain.Entidades
         }
 
         public Produto(
-            string descricao,            
+            string descricao,
             Categoria categoria,
             Empresa empresa,
             decimal valorVenda,
@@ -46,7 +46,7 @@ namespace Api_MarketAppFinance.Domain.Entidades
             ValorVenda = valorVenda;
             DescricaoVenda = descricaoVenda;
             SubCategoriaId = subCategoria is null ? 0 : subCategoria.Id;
-            ClassificacaoId = classificacao is null ? 0 : classificacao.Id;    
+            ClassificacaoId = classificacao is null ? 0 : classificacao.Id;
             MarcaId = marca is null ? 0 : marca.Id;
             CodigoBarras = codBarras;
             CodigoIdentificacao = codigoIdentificacao;
@@ -65,8 +65,7 @@ namespace Api_MarketAppFinance.Domain.Entidades
             PesoBruto = pesoBruto ?? 0;
             Espessura = espessura ?? 0;
             EstoqueMinimo = estoqueMinimo ?? 0;
-            ControlaEstoqueLote = controlaEstoqueLote ?? false; 
-
+            ControlaEstoqueLote = controlaEstoqueLote ?? false;
 
             Validar();
         }
@@ -118,11 +117,11 @@ namespace Api_MarketAppFinance.Domain.Entidades
         public decimal Altura { get; private set; }
 
         public decimal Largura { get; private set; }
-        
+
         public decimal PesoLiquido { get; private set; }
-        
+
         public decimal PesoBruto { get; private set; }
-        
+
         public decimal Espessura { get; private set; }
 
         public decimal EstoqueMinimo { get; private set; }
@@ -142,6 +141,7 @@ namespace Api_MarketAppFinance.Domain.Entidades
         #endregion Atributos Publicos
 
         #region Metodos Privados
+
         private void Validar()
         {
             if (string.IsNullOrEmpty(Descricao))
@@ -149,14 +149,15 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida");
-            
+
             if (CategoriaId == default)
                 throw new Exception("Obrigatório informar uma categoria válida");
-            
         }
-        #endregion
+
+        #endregion Metodos Privados
 
         #region Metodos Publicos
+
         public void AlterarDescricao(string descricao)
         {
             if (string.IsNullOrEmpty(descricao))
@@ -355,6 +356,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         public void AlterarControlaEstoqueLote(bool controleEstoque) => ControlaEstoqueLote = controleEstoque;
 
-        #endregion
+        #endregion Metodos Publicos
     }
 }

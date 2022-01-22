@@ -25,7 +25,6 @@ namespace Api_MarketAppFinance.Infrastructure.CrossCutting.IOC
 
             builder.RegisterType<UsuarioRepositorio>().As<IUsuarioRepositorio>();
             builder.RegisterType<CidadeRepositorio>().As<ICidadeRepositorio>();
-            
 
             builder.Register(ctx => new MapperConfiguration(cfg =>
            {

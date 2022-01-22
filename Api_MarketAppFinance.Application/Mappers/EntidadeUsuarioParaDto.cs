@@ -1,11 +1,6 @@
 ﻿using Api_MarketAppFinance.Application.Dtos;
 using Api_MarketAppFinance.Domain.Entities;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api_MarketAppFinance.Application.Mappers
 {

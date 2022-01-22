@@ -1,33 +1,28 @@
 ﻿using Api_MarketAppFinance.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api_MarketAppFinance.Domain.Entidades
 {
     public class Venda : Base
     {
         #region Construtores
+
         private Venda()
         {
-
         }
 
-        public Venda(            
+        public Venda(
             Empresa empresa,
             Cliente cliente,
             Carteira carteira,
             FormaPagamento formaPagamento,
             decimal numeroDocumento,
-            DateTime dataEmissao,            
+            DateTime dataEmissao,
             string? observacao = null,
             DateTime? dataSaida = null,
-            decimal? pesoLiquido = null, 
-            decimal? pesoBruto = null, 
-            decimal? valorFrete = null, 
-            decimal? valorDesconto = null, 
+            decimal? pesoLiquido = null,
+            decimal? pesoBruto = null,
+            decimal? valorFrete = null,
+            decimal? valorDesconto = null,
             decimal? valorAcrescimo = null
             )
         {
@@ -48,12 +43,13 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
             Validar();
         }
-        
-        #endregion
+
+        #endregion Construtores
 
         #region Atributos Publicos
+
         public int EmpresaId { get; private set; }
-        
+
         public int ClienteId { get; private set; }
 
         public int CarteiraId { get; private set; }
@@ -81,19 +77,19 @@ namespace Api_MarketAppFinance.Domain.Entidades
         public bool Ativo { get; private set; }
 
         public Empresa Empresa { get; private set; }
-        
+
         public Cliente Cliente { get; private set; }
 
         public Carteira Carteira { get; private set; }
 
         public FormaPagamento FormaPagamento { get; private set; }
 
-
-        #endregion
+        #endregion Atributos Publicos
 
         #region Metodos Privados
+
         private void Validar()
-        {            
+        {
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida");
 
@@ -112,12 +108,15 @@ namespace Api_MarketAppFinance.Domain.Entidades
             if (DataEmissao > DateTime.Now)
                 throw new Exception("Data de emissão não pode ser posterior a data atual.");
         }
-        #endregion
+
+        #endregion Metodos Privados
 
         #region Metodos Publicos
+
         public void Ativar() => Ativo = true;
 
         public void Inativar() => Ativo = false;
-        #endregion
+
+        #endregion Metodos Publicos
     }
 }

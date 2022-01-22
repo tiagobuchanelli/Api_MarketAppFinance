@@ -3,6 +3,7 @@
     public class LicencaDispositivo : Base
     {
         #region Constructos
+
         private LicencaDispositivo()
         {
         }
@@ -11,15 +12,16 @@
         {
             this.Nome = nome;
             this.Chave = chave;
-           this.UsuarioId = usuario.Id;
+            this.UsuarioId = usuario.Id;
             EmpresaId = empresa.Id;
 
             Validar();
         }
 
-        #endregion
+        #endregion Constructos
 
         #region Actributes Public
+
         public string Nome { get; private set; }
 
         public string Chave { get; private set; }
@@ -31,9 +33,11 @@
         public Empresa Empresa { get; private set; }
 
         public Usuario Usuario { get; private set; }
-        #endregion
+
+        #endregion Actributes Public
 
         #region Private Methods
+
         private void Validar()
         {
             if (string.IsNullOrEmpty(Nome))
@@ -48,15 +52,18 @@
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida");
         }
-        #endregion
+
+        #endregion Private Methods
 
         #region Public Methods
-        public void AlterarNome(string nameDevice) 
+
+        public void AlterarNome(string nameDevice)
         {
             if (string.IsNullOrEmpty(nameDevice))
                 throw new Exception("Obrigatório informar um nome de dispositivo.");
-            Nome = nameDevice; 
+            Nome = nameDevice;
         }
-        #endregion
+
+        #endregion Public Methods
     }
 }

@@ -3,35 +3,35 @@
     public class Endereco : Base
     {
         #region Constructos
+
         private Endereco()
         {
         }
 
         public Endereco(
-            string rua, int 
-            codigoEntidade, 
+            string rua, int
+            codigoEntidade,
             Cidade cidade,
             Empresa empresa,
-            string? numero = null, 
-            string? cep = null, 
-            string? bairro = null, 
+            string? numero = null,
+            string? cep = null,
+            string? bairro = null,
             string? complemento = null
             )
         {
             EmpresaId = empresa.Id;
             Rua = rua;
-            Numero = numero;   
-            Cep = cep;  
+            Numero = numero;
+            Cep = cep;
             Bairro = bairro;
             Complemento = complemento;
             CodigoEntidade = codigoEntidade;
             CidadeId = cidade.Id;
 
             Validar();
-
         }
 
-        #endregion
+        #endregion Constructos
 
         #region Actributes Public
 
@@ -57,27 +57,29 @@
 
         public Cidade Cidade { get; private set; }
 
-        #endregion
+        #endregion Actributes Public
 
         #region Private Methods
+
         private void Validar()
         {
-            if(string.IsNullOrEmpty(Rua))
+            if (string.IsNullOrEmpty(Rua))
                 throw new Exception("Obrigatório informar a rua.");
 
             if (CodigoEntidade == default)
                 throw new Exception("Obrigatório informar um usuário válido");
 
-            if(CidadeId == default)
+            if (CidadeId == default)
                 throw new Exception("Obrigatório informar um usuário válido");
 
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida");
-
         }
-        #endregion
+
+        #endregion Private Methods
 
         #region Public Methods
+
         public void AlterarRua(string rua)
         {
             if (string.IsNullOrEmpty(rua))
@@ -89,16 +91,15 @@
         {
             if (string.IsNullOrEmpty(numero))
                 throw new Exception("Obrigatório informar um número válido.");
-            
-            Numero = numero;
 
+            Numero = numero;
         }
 
         public void AlterarCep(string cep)
         {
             if (string.IsNullOrEmpty(cep))
                 throw new Exception("Obrigatório informar um cep válido.");
-            
+
             Cep = cep;
         }
 
@@ -106,7 +107,7 @@
         {
             if (string.IsNullOrEmpty(bairro))
                 throw new Exception("Obrigatório informar um bairro válido.");
-         
+
             Bairro = bairro;
         }
 
@@ -116,8 +117,8 @@
                 throw new Exception("Obrigatório informar um complemento válido.");
 
             Complemento = complemento;
-
         }
-        #endregion
+
+        #endregion Public Methods
     }
 }

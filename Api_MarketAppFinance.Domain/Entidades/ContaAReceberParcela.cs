@@ -1,29 +1,24 @@
 ﻿using Api_MarketAppFinance.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api_MarketAppFinance.Domain.Entidades
 {
     public class ContaAReceberParcela : Base
     {
         #region Construtores
+
         private ContaAReceberParcela()
         {
-
         }
 
         public ContaAReceberParcela(
-            int numeroParcela, 
-            decimal valorParcela,              
-            DateTime dataVencimento, 
+            int numeroParcela,
+            decimal valorParcela,
+            DateTime dataVencimento,
             DateTime dataPagamento,
             ContaAReceber contaAReceber,
             FormaPagamento formaPagamento,
             Empresa empresa,
-            decimal valorAcrescimo, 
+            decimal valorAcrescimo,
             decimal valorDesconto,
             string? observacao = null)
         {
@@ -39,8 +34,7 @@ namespace Api_MarketAppFinance.Domain.Entidades
             ValorDesconto = valorDesconto;
         }
 
-       
-        #endregion
+        #endregion Construtores
 
         #region Atributos Publicos
 
@@ -72,10 +66,10 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         public FormaPagamento FormaPagamento { get; private set; }
 
-
-        #endregion
+        #endregion Atributos Publicos
 
         #region Metodos Privados
+
         private void Validar()
         {
             if (NumeroParcela <= 0)
@@ -96,9 +90,11 @@ namespace Api_MarketAppFinance.Domain.Entidades
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida");
         }
-        #endregion
+
+        #endregion Metodos Privados
 
         #region Metodos Publicos
+
         public void AlterarValorSaldo(decimal valor)
         {
             if (valor <= 0)
@@ -106,6 +102,7 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
             ValorSaldo = valor;
         }
-        #endregion
+
+        #endregion Metodos Publicos
     }
 }

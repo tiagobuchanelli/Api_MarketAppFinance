@@ -3,6 +3,7 @@
     public class Usuario : Base
     {
         #region Constructos
+
         private Usuario()
         {
         }
@@ -21,17 +22,16 @@
             Validate();
         }
 
-        
-
-        #endregion
+        #endregion Constructos
 
         #region Actributes Private
 
         private IList<LicencaDispositivo> _dispositivos;
 
-        #endregion
+        #endregion Actributes Private
 
         #region Actributes Public
+
         public string Nome { get; private set; }
 
         public string Sobrenome { get; private set; }
@@ -44,12 +44,15 @@
 
         public string? Telefone { get; private set; }
 
-        public string? Imagem { get; private set; }        
+        public string? Imagem { get; private set; }
 
-        public IEnumerable<LicencaDispositivo> Devices { get { return _dispositivos.ToList(); } }
-        #endregion
+        public IEnumerable<LicencaDispositivo> Devices
+        { get { return _dispositivos.ToList(); } }
+
+        #endregion Actributes Public
 
         #region Private Method
+
         private void Validate()
         {
             if (string.IsNullOrEmpty(Nome))
@@ -60,11 +63,12 @@
 
             if (string.IsNullOrEmpty(Email))
                 throw new Exception("Obrigatório informar o e-mail.");
-
         }
-        #endregion
+
+        #endregion Private Method
 
         #region Metodos Publicos
+
         public void Ativar() => Ativo = true;
 
         public void Inativar() => Ativo = false;
@@ -97,6 +101,7 @@
 
             Email = email;
         }
+
         public void AlterarDocumento(string documento)
         {
             if (string.IsNullOrEmpty(documento))
@@ -120,9 +125,7 @@
 
             Imagem = imagem;
         }
-        #endregion
 
-
-
+        #endregion Metodos Publicos
     }
 }

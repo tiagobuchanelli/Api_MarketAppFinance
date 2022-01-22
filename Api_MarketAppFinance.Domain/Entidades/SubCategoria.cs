@@ -1,15 +1,11 @@
 ﻿using Api_MarketAppFinance.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api_MarketAppFinance.Domain.Entidades
 {
     public class SubCategoria : Base
     {
         #region Construtores
+
         private SubCategoria()
         {
         }
@@ -24,10 +20,10 @@ namespace Api_MarketAppFinance.Domain.Entidades
             Validar();
         }
 
-        
-        #endregion
+        #endregion Construtores
 
         #region Atributos Públicos
+
         public string Descricao { get; private set; }
 
         public bool Ativo { get; private set; }
@@ -39,9 +35,11 @@ namespace Api_MarketAppFinance.Domain.Entidades
         public Empresa Empresa { get; private set; }
 
         public Categoria Categoria { get; private set; }
-        #endregion
+
+        #endregion Atributos Públicos
 
         #region Metodos Privados
+
         private void Validar()
         {
             if (string.IsNullOrEmpty(Descricao))
@@ -53,14 +51,16 @@ namespace Api_MarketAppFinance.Domain.Entidades
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida");
         }
-        #endregion
+
+        #endregion Metodos Privados
 
         #region Metodos Publicos
+
         public void Ativar() => Ativo = true;
 
         public void Inativar() => Ativo = false;
 
-        public void AlterarDescricao(string descricao) 
+        public void AlterarDescricao(string descricao)
         {
             if (string.IsNullOrEmpty(descricao))
                 throw new Exception("Obrigatório informar a descrição.");
@@ -75,7 +75,7 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
             CategoriaId = categoria.Id;
         }
-        #endregion
 
+        #endregion Metodos Publicos
     }
 }

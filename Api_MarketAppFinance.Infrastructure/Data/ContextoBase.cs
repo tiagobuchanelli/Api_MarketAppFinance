@@ -9,8 +9,8 @@ namespace Api_MarketAppFinance.Data
     {
         public ContextoBase()
         {
-
         }
+
         public ContextoBase(DbContextOptions<ContextoBase> options) : base(options)
         {
         }
@@ -19,7 +19,6 @@ namespace Api_MarketAppFinance.Data
         {
             optionsBuilder.UseNpgsql("Server=127.0.0.1;Port=15432;Database=MarketApp;User Id=postgres;Password=joomla11080;");
         }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -83,15 +82,15 @@ namespace Api_MarketAppFinance.Data
         public DbSet<Usuario> Users { get; set; }
 
         public DbSet<Cidade> Cities { get; set; }
-        
+
         public DbSet<Endereco> Adresses { get; set; }
-        
+
         public DbSet<Licenca> Licenses { get; set; }
-        
+
         public DbSet<LicencaDispositivo> Devices { get; set; }
-        
+
         public DbSet<Empresa> Companies { get; set; }
-        
+
         public DbSet<Categoria> Categorias { get; set; }
 
         public DbSet<SubCategoria> SubCategorias { get; set; }
@@ -117,9 +116,9 @@ namespace Api_MarketAppFinance.Data
         public DbSet<Fornecedor> Fornecedores { get; set; }
 
         public DbSet<Cliente> Clientes { get; set; }
-        
+
         public DbSet<Carteira> Carteiras { get; set; }
-        
+
         public DbSet<FormaPagamento> FormasPagamento { get; set; }
 
         public DbSet<Venda> Vendas { get; set; }
@@ -139,9 +138,9 @@ namespace Api_MarketAppFinance.Data
         public DbSet<ContaAReceberParcela> ContaAReceberParcelas { get; set; }
 
         public DbSet<ContaAReceberParcelaBaixa> ContaAReceberParcelaBaixas { get; set; }
-        
+
         public DbSet<ContaAPagarParcelaBaixa> ContaAPagarParcelaBaixas { get; set; }
-        
+
         public DbSet<Domain.Entidades.EmpresaConfiguracao> ConfiguracoesEmpresa { get; set; }
     }
 }
