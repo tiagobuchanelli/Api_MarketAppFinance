@@ -8,7 +8,13 @@
         {
         }
 
-        public Usuario(string nome, string sobrenome, string email, string? documento = null, string? telefone = null, string? imagem = null)
+        public Usuario(
+            string nome, 
+            string sobrenome, 
+            string email, 
+            string documento, 
+            string? telefone = null, 
+            string? imagem = null)
         {
             Nome = nome;
             Sobrenome = sobrenome;
@@ -16,6 +22,7 @@
             Telefone = telefone;
             NumeroDocumento = documento;
             Imagem = imagem;
+            Ativo = true;
 
             _dispositivos = new List<LicencaDispositivo>();
 
@@ -38,7 +45,7 @@
 
         public string Email { get; private set; }
 
-        public string? NumeroDocumento { get; private set; }
+        public string NumeroDocumento { get; private set; }
 
         public bool Ativo { get; private set; }
 

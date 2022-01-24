@@ -53,9 +53,10 @@ var licencaEmpresaTeste = new License("Licença de Software", "PREMIUM", 9, Date
 empresas4.GenerateLicense(licencaEmpresaTeste);
 _repoCompany.Update(empresas4);
 */
-
+/*
 var teste23 = "";
 var empresaTeste = new Empresa("nome", "nome curto", new Usuario("nome", "sobrenome", "teste@gmail.com"));
 var categoriaTeste = new Categoria("Categoria 1", empresaTeste);
 
 var produto = new Produto(descricao: "Produto 1", categoria: categoriaTeste, empresa: empresaTeste, valorVenda: 10);
+*/

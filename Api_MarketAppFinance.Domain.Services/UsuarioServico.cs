@@ -4,13 +4,42 @@ using Api_MarketAppFinance.Domain.Interrfaces.Repositories;
 
 namespace Api_MarketAppFinance.Domain.Services
 {
-    public class UsuarioServico : BaseServico<Usuario>, IUsuarioServico
+    public class UsuarioServico : ServicoBase<Usuario>, IUsuarioServico<Usuario>
     {
-        private readonly IUsuarioRepositorio _userRepository;
+        #region Atributos
+        private readonly IUsuarioRepositorio<Usuario> _repositorioUsuario;
+        #endregion
 
-        public UsuarioServico(IUsuarioRepositorio userRepository) : base(userRepository)
+        #region Construtores
+        public UsuarioServico(IUsuarioRepositorio<Usuario> userRepository) : base(userRepository)
         {
-            this._userRepository = userRepository;
+            _repositorioUsuario = userRepository;
         }
+        #endregion
+
+        #region Metodos Privados
+
+        #endregion
+
+        #region Metodos Publicos
+        public Usuario AdicionarUsuario(Usuario usuario)
+        {
+            var dadosUsuario = new Usuario(
+                nome: usuario.Nome,
+                sobrenome: usuario.Sobrenome,
+                email: usuario.Email,
+                documento: usuario.NumeroDocumento,
+                telefone: usuario.Telefone,
+                imagem: usuario.Imagem
+                );
+            
+            Adicionar(dadosUsuario);
+            return BuscarUsuarioPorDocumento(dadosUsuario.NumeroDocumento);
+        }
+
+        public Usuario BuscarUsuarioPorDocumento(string documento)
+            => _repositorioUsuario.BuscarUsuarioPorDocumento(documento);
+        #endregion
+
     }
 }

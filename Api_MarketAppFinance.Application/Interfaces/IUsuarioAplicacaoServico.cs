@@ -4,9 +4,9 @@ namespace Api_MarketAppFinance.Application.Interfaces
 {
     public interface IUsuarioAplicacaoServico
     {
-        void Adicionar(UsuarioDto userDto);
+        UsuarioDto Adicionar(UsuarioDto userDto);
 
-        void Atualizar(UsuarioDto userDto);
+        UsuarioDto Atualizar(UsuarioDto userDto);
 
         void Excluir(UsuarioDto userDto);
 

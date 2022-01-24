@@ -4,7 +4,7 @@ using Api_MarketAppFinance.Domain.Interrfaces.Repositories;
 
 namespace Api_MarketAppFinance.Domain.Services
 {
-    public class CidadeSErvico : BaseServico<Cidade>, ICidadeSErvico
+    public class CidadeSErvico : ServicoBase<Cidade>, ICidadeSErvico
     {
         private readonly ICidadeRepositorio _cityRepository;
 

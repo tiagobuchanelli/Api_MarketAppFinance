@@ -8,43 +8,50 @@ namespace MarketAppFinanceSApi_MarketAppFinanceervice.Application
 {
     public class UsuarioAplicacaoServico : IUsuarioAplicacaoServico
     {
-        private readonly IUsuarioServico _serviceUser;
+        private readonly IUsuarioServico<Usuario> _servicoUsuario;
         private readonly IMapper _mapper;
 
-        public UsuarioAplicacaoServico(IUsuarioServico serviceUser, IMapper mapper)
+        public UsuarioAplicacaoServico(IUsuarioServico<Usuario> serviceUser, IMapper mapper)
         {
-            _serviceUser = serviceUser;
+            _servicoUsuario = serviceUser;
             _mapper = mapper;
         }
 
-        public void Adicionar(UsuarioDto userDto)
+        public UsuarioDto Adicionar(UsuarioDto userDto)
         {
             var user = _mapper.Map<Usuario>(userDto);
-            _serviceUser.Adicionar(user);
+            var dadosUsuario = _servicoUsuario.AdicionarUsuario(user);
+            
+            return _mapper.Map<UsuarioDto>(dadosUsuario);
+
         }
 
         public IEnumerable<UsuarioDto> BuscarTodos()
         {
-            var users = _serviceUser.BuscarTodos();
+            var users = _servicoUsuario.BuscarTodos();
             return _mapper.Map<IEnumerable<UsuarioDto>>(users);
         }
 
         public UsuarioDto BuscarPorCodigo(int id)
         {
-            var user = _serviceUser.BuscarPorCodigo(id);
+            var user = _servicoUsuario.BuscarPorCodigo(id);
             return _mapper.Map<UsuarioDto>(user);
         }
 
         public void Excluir(UsuarioDto userDto)
         {
             var user = _mapper.Map<Usuario>(userDto);
-            _serviceUser.Excluir(user);
+            _servicoUsuario.Excluir(user);
         }
 
-        public void Atualizar(UsuarioDto userDto)
+        public UsuarioDto Atualizar(UsuarioDto userDto)
         {
             var user = _mapper.Map<Usuario>(userDto);
-            _serviceUser.Atualizar(user);
+            _servicoUsuario.Atualizar(user);
+            var dadosUsuario = _servicoUsuario.BuscarUsuarioPorDocumento(user.NumeroDocumento);
+            
+            return _mapper.Map<UsuarioDto>(dadosUsuario);
+
         }
     }
 }

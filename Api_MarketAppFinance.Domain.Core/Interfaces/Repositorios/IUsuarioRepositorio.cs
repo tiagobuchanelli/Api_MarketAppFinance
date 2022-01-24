@@ -3,7 +3,8 @@ using Api_MarketAppFinance.Domain.Entities;
 
 namespace Api_MarketAppFinance.Domain.Interrfaces.Repositories
 {
-    public interface IUsuarioRepositorio : IBaseRepositorio<Usuario>
+    public interface IUsuarioRepositorio<TEntity> : IBaseRepositorio<Usuario>
     {
+        TEntity BuscarUsuarioPorDocumento(string documento);
     }
 }

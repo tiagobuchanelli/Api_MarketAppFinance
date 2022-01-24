@@ -5,7 +5,7 @@ using Api_MarketAppFinance.Infrastructure.Repositories;
 
 namespace Api_MarketAppFinance.Infrastructure.Data.Repositories
 {
-    public class UsuarioRepositorio : BaseRepositorio<Usuario>, IUsuarioRepositorio
+    public class UsuarioRepositorio : BaseRepositorio<Usuario>, IUsuarioRepositorio<Usuario>
     {
         private readonly ContextoBase _sqlContext;
 
@@ -13,5 +13,12 @@ namespace Api_MarketAppFinance.Infrastructure.Data.Repositories
         {
             _sqlContext = sqlContext;
         }
+
+        public Usuario BuscarUsuarioPorDocumento(string numeroDoc)
+        {
+            return _contexto.Set<Usuario>().FirstOrDefault(x => x.NumeroDocumento == numeroDoc);
+        }
+
+       
     }
 }

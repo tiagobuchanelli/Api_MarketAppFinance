@@ -2,6 +2,7 @@
 using Api_MarketAppFinance.Application.Interfaces;
 using Api_MarketAppFinance.Application.Mappers;
 using Api_MarketAppFinance.Domain.Core.Interfaces.Services;
+using Api_MarketAppFinance.Domain.Entities;
 using Api_MarketAppFinance.Domain.Interrfaces.Repositories;
 using Api_MarketAppFinance.Domain.Services;
 using Api_MarketAppFinance.Infrastructure.Data.Repositories;
@@ -23,10 +24,10 @@ namespace Api_MarketAppFinance.Infrastructure.CrossCutting.IOC
 
 
             //mapeamento Service
-            builder.RegisterType<UsuarioServico>().As<IUsuarioServico>();
+            builder.RegisterType<UsuarioServico>().As<IUsuarioServico<Usuario>>();
             builder.RegisterType<CidadeSErvico>().As<ICidadeSErvico>();
 
-            builder.RegisterType<UsuarioRepositorio>().As<IUsuarioRepositorio>();
+            builder.RegisterType<UsuarioRepositorio>().As<IUsuarioRepositorio<Usuario>>();
             builder.RegisterType<CidadeRepositorio>().As<ICidadeRepositorio>();
 
             //mapeamento DTOs

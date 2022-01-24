@@ -28,7 +28,8 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
 
             builder
                 .Property(a => a.NumeroDocumento)
-                .HasColumnType("varchar(50)");
+                .HasColumnType("varchar(50)")
+                .IsRequired();
 
             builder
                 .Property(a => a.Telefone)

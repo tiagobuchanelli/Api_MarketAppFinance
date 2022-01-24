@@ -3,11 +3,11 @@ using Api_MarketAppFinance.Domain.Core.Interfaces.Services;
 
 namespace Api_MarketAppFinance.Domain.Services
 {
-    public class BaseServico<TEntity> : IBaseServico<TEntity> where TEntity : class
+    public class ServicoBase<TEntity> : IBaseServico<TEntity> where TEntity : class
     {
         private readonly IBaseRepositorio<TEntity> _repository;
 
-        public BaseServico(IBaseRepositorio<TEntity> repository)
+        public ServicoBase(IBaseRepositorio<TEntity> repository)
         {
             _repository = repository;
         }
