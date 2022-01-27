@@ -18,7 +18,8 @@ namespace Api_MarketAppFinance.Domain.Services
         #endregion
 
         #region Metodos Privados
-
+        private Usuario BuscarUsuarioPorDocumento(string documento)
+            => _repositorioUsuario.BuscarUsuarioPorDocumento(documento);
         #endregion
 
         #region Metodos Publicos
@@ -37,8 +38,33 @@ namespace Api_MarketAppFinance.Domain.Services
             return BuscarUsuarioPorDocumento(dadosUsuario.NumeroDocumento);
         }
 
-        public Usuario BuscarUsuarioPorDocumento(string documento)
-            => _repositorioUsuario.BuscarUsuarioPorDocumento(documento);
+        public Usuario AtualizarUsuario(Usuario usuario)
+        {
+            var dadosUsuario = BuscarPorCodigo(usuario.Id);
+
+            if (dadosUsuario.NumeroDocumento != usuario.NumeroDocumento)
+                dadosUsuario.AlterarDocumento(usuario.NumeroDocumento);
+
+            if(dadosUsuario.Nome != usuario.Nome)
+                dadosUsuario.AlterarNome(usuario.Nome);
+            
+            if(dadosUsuario.Sobrenome != usuario.Sobrenome)
+                dadosUsuario.AlterarSobreNome(usuario.Sobrenome);
+            
+            if(dadosUsuario.Email != usuario.Email)
+                dadosUsuario.AlterarEmail(usuario.Email);
+            
+            if(dadosUsuario.Imagem != usuario.Imagem)
+                dadosUsuario.AlterarImagem(usuario.Imagem);
+
+            if(dadosUsuario.Telefone != usuario.Telefone)
+                dadosUsuario.AlterarTelefone(usuario.Telefone);            
+
+            Atualizar(dadosUsuario);
+
+            return dadosUsuario;
+        }        
+
         #endregion
 
     }

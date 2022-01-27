@@ -1,6 +1,5 @@
 ﻿using Api_MarketAppFinance.Application.Dtos;
 using Api_MarketAppFinance.Application.Interfaces;
-using Api_MarketAppFinance.Domain.Core.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text.Json;
@@ -20,14 +19,37 @@ namespace Api_MarketAppFinance.Api.Controllers
 
         [HttpGet]
         public ActionResult<IEnumerable<string>> BuscarTodos()
-        {
-            return Ok(_applicacaoServico.BuscarTodos());
+        {           
+            try
+            {
+                var usuarios = _applicacaoServico.BuscarTodos();
+
+                if (usuarios is null) return Ok("Nenhum usuário encontrado!");
+
+                return Ok(usuarios);                
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Erro ao buscar usuários: " + "\n" + e.Message);
+            }
+
         }
 
         [HttpGet("{id}")]
         public ActionResult<string> BuscarPorCodigo(int id)
         {
-            return Ok(_applicacaoServico.BuscarPorCodigo(id));
+            try
+            {
+                var usuario = _applicacaoServico.BuscarPorCodigo(id);
+
+                if (usuario is null) return Ok("Nenhum usuário encontrado!");
+
+                return Ok(usuario);
+            }
+           catch (Exception e)
+            {
+                return BadRequest("Erro ao buscar usuário: " + "\n" + e.Message);
+            }
         }
 
         [HttpPost]
@@ -35,18 +57,13 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (usuarioDto is null)
-                    return NotFound();
+                if (usuarioDto is null) return NotFound("Erro ao cadastrar usuário!");
                 
-                var dadosUsuario = _applicacaoServico.Adicionar(usuarioDto);
-
-                var dadosSerializados = new ConverterObjetoJson(dadosUsuario).Converter();
-                                
-                return Ok("Usuário Cadastrado com sucesso! \n" + dadosSerializados);
+                return Ok(_applicacaoServico.Adicionar(usuarioDto));
             }
             catch (Exception e)
             {
-                return BadRequest(e.Message);
+                return BadRequest("Erro ao cadastrar Usuário: " + "\n" + e.Message);
             }
         }
 
@@ -55,15 +72,13 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (usuarioDto is null)
-                    return NotFound();
+                if (usuarioDto is null || usuarioDto.Id <= 0) return NotFound("Erro ao atualizar usuário!");
 
-                var dadosUsuario = _applicacaoServico.Atualizar(usuarioDto);
-                return Ok("Usuário Atualizado com sucesso! \n" + dadosUsuario);
+                return Ok(_applicacaoServico.Atualizar(usuarioDto));
             }
             catch (Exception e)
             {
-                return BadRequest(e.Message);
+                return BadRequest("Erro ao atualizar Usuário: " + "\n" + e.Message);
             }
         }
 
@@ -72,18 +87,14 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (usuarioDto is null)
-                    return NotFound();
-
-                if (!ModelState.IsValid)
-                    return BadRequest(ModelState);
+                if (usuarioDto is null || usuarioDto.Id <= 0) return NotFound("Erro ao excluir usuário!");
 
                 _applicacaoServico.Excluir(usuarioDto);
                 return Ok("Usuário Removido com sucesso!");
             }
             catch (Exception e)
             {
-                return BadRequest(e.Message);
+                return BadRequest("Erro ao excluir Usuário: " + "\n" + e.Message);
             }
         }
     }

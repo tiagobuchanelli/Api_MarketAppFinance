@@ -6,6 +6,6 @@ namespace Api_MarketAppFinance.Domain.Core.Interfaces.Services
     {
         TEntity AdicionarUsuario(TEntity dados);
 
-        TEntity BuscarUsuarioPorDocumento(string dados);
+        TEntity AtualizarUsuario(TEntity dados);
     }
 }

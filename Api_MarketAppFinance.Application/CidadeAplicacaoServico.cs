@@ -8,43 +8,38 @@ namespace Api_MarketAppFinance.Application
 {
     public class CidadeAplicacaoServico : ICidadeAplicacaoServico
     {
-        private readonly ICidadeSErvico _serviceCity;
+        private readonly ICidadeSErvico<Cidade> _servicoCidade;
         private readonly IMapper _mapper;
 
-        public CidadeAplicacaoServico(ICidadeSErvico serviceCity, IMapper mapper)
+        public CidadeAplicacaoServico(ICidadeSErvico<Cidade> servicoCidade, IMapper mapper)
         {
-            _serviceCity = serviceCity;
+            _servicoCidade = servicoCidade;
             _mapper = mapper;
         }
 
-        public void Adicionar(CidadeDto cityDto)
-        {
-            var city = _mapper.Map<Cidade>(cityDto);
-            _serviceCity.Adicionar(city);
-        }
+        
 
         public IEnumerable<CidadeDto> BuscarTodos()
-        {
-            var cities = _serviceCity.BuscarTodos();
-            return _mapper.Map<IEnumerable<CidadeDto>>(cities);
-        }
+        => _mapper.Map<IEnumerable<CidadeDto>>(_servicoCidade.BuscarTodos());
 
         public CidadeDto BuscarPorCodigo(int id)
+        => _mapper.Map<CidadeDto>(_servicoCidade.BuscarPorCodigo(id));
+
+        public CidadeDto Adicionar(CidadeDto cidadeDto)
         {
-            var city = _serviceCity.BuscarPorCodigo(id);
-            return _mapper.Map<CidadeDto>(city);
+            var cidade = _servicoCidade.AdicionarCidade(_mapper.Map<Cidade>(cidadeDto));
+            return _mapper.Map<CidadeDto>(cidade);
         }
 
-        public void Excluir(CidadeDto cityDto)
+        public CidadeDto Atualizar(CidadeDto cidadeDto)
         {
-            var city = _mapper.Map<Cidade>(cityDto);
-            _serviceCity.Excluir(city);
+            var cidade = _servicoCidade.AtualizarCidade(_mapper.Map<Cidade>(cidadeDto));
+            return _mapper.Map<CidadeDto>(cidade);
         }
 
-        public void Atualizar(CidadeDto cityDto)
-        {
-            var city = _mapper.Map<Cidade>(cityDto);
-            _serviceCity.Atualizar(city);
-        }
+        public void Excluir(CidadeDto cidadeDto)
+        => _servicoCidade.Excluir(_mapper.Map<Cidade>(cidadeDto));
+
+
     }
 }

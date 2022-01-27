@@ -85,18 +85,12 @@
         }
 
         public void AlterarSiglaEstado(string siglaEstado)
-        {
-            if (string.IsNullOrEmpty(siglaEstado))
-                throw new Exception("Obrigatório informar um codigo válido.");
-
+        {            
             SiglaEstado = siglaEstado;
         }
 
         public void AlterarCep(string cep)
         {
-            if (string.IsNullOrEmpty(cep))
-                throw new Exception("Obrigatório informar um codigo válido.");
-
             Cep = cep;
         }
 

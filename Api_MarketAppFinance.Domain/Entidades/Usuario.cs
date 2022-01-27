@@ -24,7 +24,7 @@
             Imagem = imagem;
             Ativo = true;
 
-            _dispositivos = new List<LicencaDispositivo>();
+            //_dispositivos = new List<LicencaDispositivo>();
 
             Validate();
         }
@@ -33,7 +33,7 @@
 
         #region Actributes Private
 
-        private IList<LicencaDispositivo> _dispositivos;
+        //private IList<LicencaDispositivo> _dispositivos;
 
         #endregion Actributes Private
 
@@ -53,8 +53,8 @@
 
         public string? Imagem { get; private set; }
 
-        public IEnumerable<LicencaDispositivo> Devices
-        { get { return _dispositivos.ToList(); } }
+        //public IEnumerable<LicencaDispositivo> Devices
+        //{ get { return _dispositivos.ToList(); } }
 
         #endregion Actributes Public
 
@@ -70,6 +70,10 @@
 
             if (string.IsNullOrEmpty(Email))
                 throw new Exception("Obrigatório informar o e-mail.");
+            
+            if (string.IsNullOrEmpty(NumeroDocumento))
+                throw new Exception("Obrigatório informar o documento.");
+
         }
 
         #endregion Private Method
@@ -82,7 +86,7 @@
 
         public void GerarDispositivoLicenca(LicencaDispositivo device)
         {
-            _dispositivos.Add(device);
+            //_dispositivos.Add(device);
         }
 
         public void AlterarNome(string nome)
@@ -119,17 +123,11 @@
 
         public void AlterarTelefone(string telefone)
         {
-            if (string.IsNullOrEmpty(telefone))
-                throw new Exception("Obrigatório informar um telefone válido");
-
             Telefone = telefone;
         }
 
         public void AlterarImagem(string imagem)
         {
-            if (string.IsNullOrEmpty(imagem))
-                throw new Exception("Obrigatório informar uma imagem válida");
-
             Imagem = imagem;
         }
 

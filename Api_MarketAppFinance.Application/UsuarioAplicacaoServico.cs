@@ -17,41 +17,29 @@ namespace MarketAppFinanceSApi_MarketAppFinanceervice.Application
             _mapper = mapper;
         }
 
-        public UsuarioDto Adicionar(UsuarioDto userDto)
-        {
-            var user = _mapper.Map<Usuario>(userDto);
-            var dadosUsuario = _servicoUsuario.AdicionarUsuario(user);
-            
-            return _mapper.Map<UsuarioDto>(dadosUsuario);
-
-        }
-
         public IEnumerable<UsuarioDto> BuscarTodos()
-        {
-            var users = _servicoUsuario.BuscarTodos();
-            return _mapper.Map<IEnumerable<UsuarioDto>>(users);
-        }
+        => _mapper.Map<IEnumerable<UsuarioDto>>(_servicoUsuario.BuscarTodos());
 
         public UsuarioDto BuscarPorCodigo(int id)
-        {
-            var user = _servicoUsuario.BuscarPorCodigo(id);
-            return _mapper.Map<UsuarioDto>(user);
-        }
+        => _mapper.Map<UsuarioDto>(_servicoUsuario.BuscarPorCodigo(id));
 
-        public void Excluir(UsuarioDto userDto)
+        public UsuarioDto Adicionar(UsuarioDto userDto)
         {
-            var user = _mapper.Map<Usuario>(userDto);
-            _servicoUsuario.Excluir(user);
+            var dadosUsuario = _servicoUsuario.AdicionarUsuario(_mapper.Map<Usuario>(userDto));            
+            return _mapper.Map<UsuarioDto>(dadosUsuario);
+
         }
 
         public UsuarioDto Atualizar(UsuarioDto userDto)
         {
-            var user = _mapper.Map<Usuario>(userDto);
-            _servicoUsuario.Atualizar(user);
-            var dadosUsuario = _servicoUsuario.BuscarUsuarioPorDocumento(user.NumeroDocumento);
-            
+            var dadosUsuario = _servicoUsuario.AtualizarUsuario(_mapper.Map<Usuario>(userDto));
             return _mapper.Map<UsuarioDto>(dadosUsuario);
-
         }
+
+        public void Excluir(UsuarioDto userDto)
+        => _servicoUsuario.Excluir(_mapper.Map<Usuario>(userDto));
+
+        
+       
     }
 }

@@ -4,9 +4,9 @@ namespace Api_MarketAppFinance.Application.Interfaces
 {
     public interface ICidadeAplicacaoServico
     {
-        void Adicionar(CidadeDto cityDto);
+        CidadeDto Adicionar(CidadeDto cityDto);
 
-        void Atualizar(CidadeDto cityDto);
+        CidadeDto Atualizar(CidadeDto cityDto);
 
         void Excluir(CidadeDto cityDto);
 

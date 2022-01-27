@@ -18,13 +18,35 @@ namespace Api_MarketAppFinance.Api.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> BuscarTodos()
         {
-            return Ok(_aplicacaoServico.BuscarTodos());
+            try
+            {
+                IEnumerable<CidadeDto> cidades = _aplicacaoServico.BuscarTodos();
+
+                if (!cidades.Any()) return Ok("Nenhuma cidade encontrada!");
+
+                return Ok(cidades);
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Erro ao buscar cidades: " + "\n" + e.Message);
+            }
         }
 
         [HttpGet("{id}")]
         public ActionResult<string> BuscarPorCodigo(int id)
         {
-            return Ok(_aplicacaoServico.BuscarPorCodigo(id));
+            try
+            {
+                var cidade = _aplicacaoServico.BuscarPorCodigo(id);
+
+                if (cidade is null) return Ok("Nenhuma cidade encontrada!");
+
+                return Ok(cidade);
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Erro ao buscar cidade: " + "\n" + e.Message);
+            }
         }
 
         [HttpPost]
@@ -32,15 +54,13 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (cidadeDto is null)
-                    return NotFound();
+                if (cidadeDto is null) return NotFound("Erro ao cadastrar cidade!");
 
-                _aplicacaoServico.Adicionar(cidadeDto);
-                return Ok("Usuário Cadastrado com sucesso!");
+                return Ok(_aplicacaoServico.Adicionar(cidadeDto));
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                return BadRequest("Erro ao cadastrar cidade: " + "\n" + e.Message);
             }
         }
 
@@ -49,15 +69,13 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (cidadeDto is null)
-                    return NotFound();
+                if (cidadeDto is null) return NotFound("Erro ao atualizar cidade!");
 
-                _aplicacaoServico.Atualizar(cidadeDto);
-                return Ok("Usuário Atualizado com sucesso!");
+                return Ok(_aplicacaoServico.Atualizar(cidadeDto));
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                return BadRequest("Erro ao atualizar cidade: " + "\n" + e.Message);
             }
         }
 
@@ -66,15 +84,14 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (cidadeDto is null)
-                    return NotFound();
-
+                if (cidadeDto is null || cidadeDto.Id <= 0) return NotFound("Erro ao excluir cidade!");
+                 
                 _aplicacaoServico.Excluir(cidadeDto);
-                return Ok("Usuário Removido com sucesso!");
+                return Ok("Cidade Removida com sucesso!");
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                return BadRequest("Erro ao excluir cidade: " + "\n" + e.Message);
             }
         }
     }

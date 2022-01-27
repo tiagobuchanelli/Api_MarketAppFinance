@@ -15,11 +15,11 @@ namespace Api_MarketAppFinance.Application.Mappers
         {
             CreateMap<Cidade, CidadeDto>()
                .ForMember(dest => dest.Id, opt => opt.MapFrom(x => x.Id))
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(x => x.Nome))
-                .ForMember(dest => dest.ZipCode, opt => opt.MapFrom(x => x.Cep))
-                .ForMember(dest => dest.CodeIgbe, opt => opt.MapFrom(x => x.CodigoIbge))
-                .ForMember(dest => dest.StateCodeIgbe, opt => opt.MapFrom(x => x.CodigoIbgeEstado))
-                .ForMember(dest => dest.StateSymbol, opt => opt.MapFrom(x => x.SiglaEstado));
+                .ForMember(dest => dest.Nome, opt => opt.MapFrom(x => x.Nome))
+                .ForMember(dest => dest.Cep, opt => opt.MapFrom(x => x.Cep))
+                .ForMember(dest => dest.CodigoIbge, opt => opt.MapFrom(x => x.CodigoIbge))
+                .ForMember(dest => dest.CodigoIbgeEstado, opt => opt.MapFrom(x => x.CodigoIbgeEstado))
+                .ForMember(dest => dest.SiglaEstado, opt => opt.MapFrom(x => x.SiglaEstado));
         }
     }
 }

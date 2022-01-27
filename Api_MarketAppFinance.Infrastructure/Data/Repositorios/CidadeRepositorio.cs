@@ -5,13 +5,18 @@ using Api_MarketAppFinance.Infrastructure.Repositories;
 
 namespace Api_MarketAppFinance.Infrastructure.Data.Repositories
 {
-    public class CidadeRepositorio : BaseRepositorio<Cidade>, ICidadeRepositorio
+    public class CidadeRepositorio : BaseRepositorio<Cidade>, ICidadeRepositorio<Cidade>
     {
-        private readonly ContextoBase _sqlContext;
+        private readonly ContextoBase _contexto;
 
         public CidadeRepositorio(ContextoBase sqlContext) : base(sqlContext)
         {
-            _sqlContext = sqlContext;
+            _contexto = sqlContext;
+        }
+
+        public Cidade BuscarCidadePorCodigoIbge(string codigoIbge)
+        {
+            return _contexto.Set<Cidade>().FirstOrDefault(x => x.CodigoIbge == codigoIbge);
         }
     }
 }

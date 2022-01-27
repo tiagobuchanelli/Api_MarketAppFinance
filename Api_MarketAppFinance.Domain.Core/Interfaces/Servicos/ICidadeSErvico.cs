@@ -2,7 +2,10 @@
 
 namespace Api_MarketAppFinance.Domain.Core.Interfaces.Services
 {
-    public interface ICidadeSErvico : IBaseServico<Cidade>
+    public interface ICidadeSErvico<TEntity> : IBaseServico<Cidade>
     {
+        TEntity AdicionarCidade(TEntity dados);
+
+        TEntity AtualizarCidade(TEntity dados);
     }
 }

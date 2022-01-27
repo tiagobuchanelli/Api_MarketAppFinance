@@ -3,7 +3,8 @@ using Api_MarketAppFinance.Domain.Entities;
 
 namespace Api_MarketAppFinance.Domain.Interrfaces.Repositories
 {
-    public interface ICidadeRepositorio : IBaseRepositorio<Cidade>
+    public interface ICidadeRepositorio<TEntity> : IBaseRepositorio<Cidade>
     {
+        TEntity BuscarCidadePorCodigoIbge(string codigoIbge);
     }
 }
