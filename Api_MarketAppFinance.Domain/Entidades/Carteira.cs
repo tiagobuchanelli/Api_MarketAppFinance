@@ -8,12 +8,13 @@
         {
         }
 
-        public Carteira(string desc, Empresa empresa, string? abreviacao = null)
+        public Carteira(string desc, Empresa empresa, string? abreviacao = null, decimal? valorMinimoVenda = null)
         {
             Descricao = desc;
             Abreviacao = abreviacao;
             Ativo = true;
             EmpresaId = empresa.Id;
+            ValorMinimoVenda = valorMinimoVenda ?? 0;
 
             Validar();
         }
@@ -57,7 +58,7 @@
 
         public void AlterarValorMinimoVenda(decimal valorMinimo)
         {
-            if (ValorMinimoVenda <= 0)
+            if (ValorMinimoVenda < 0)
                 throw new Exception("Obrigatório informar o valor minimo venda válido.");
 
             ValorMinimoVenda = valorMinimo;

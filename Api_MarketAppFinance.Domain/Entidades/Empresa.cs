@@ -7,16 +7,16 @@
         private Empresa()
         { }
 
-        public Empresa(string nomeFantasia, string razaoSocial, Usuario usuario, string? telefone = null, string? imagem = null)
+        public Empresa(string nomeFantasia, string razaoSocial, string numeroDocumento, int usuarioId, string? telefone = null, string? imagem = null)
         {
             NomeFantasia = nomeFantasia;
             RazaoSocial = razaoSocial;
+            NumeroDocumento = numeroDocumento;
             Telefone = telefone;
-            UsuarioId = usuario.Id;
+            UsuarioId = usuarioId;
             Ativo = true;
             Imagem = imagem;
-
-            _licenses = new List<Licenca>();
+            
 
             Validar();
         }
@@ -25,8 +25,6 @@
 
         #region Actributes Private
 
-        private IList<Licenca> _licenses;
-
         #endregion Actributes Private
 
         #region Actributes Public
@@ -34,6 +32,8 @@
         public string NomeFantasia { get; private set; }
 
         public string RazaoSocial { get; private set; }
+
+        public string NumeroDocumento { get; private set; }
 
         public bool Ativo { get; private set; }
 
@@ -45,8 +45,7 @@
 
         public Usuario Usuario { get; private set; }
 
-        public IReadOnlyCollection<Licenca> Licenses
-        { get { return _licenses.ToList(); } }
+        public IReadOnlyCollection<Licenca> Licencas { get; private set; } 
 
         #endregion Actributes Public
 
@@ -60,6 +59,9 @@
             if (string.IsNullOrEmpty(RazaoSocial))
                 throw new Exception("Obrigatório informar o nome curto da empresa.");
 
+            if (string.IsNullOrEmpty(NumeroDocumento))
+                throw new Exception("Obrigatório informar o documento da empresa.");
+
             if (UsuarioId == default)
                 throw new Exception("Obrigatório informar um usuário valido");
         }
@@ -72,21 +74,9 @@
 
         public void Inativar() => Ativo = false;
 
-        public void AlterarImagem(string imagem)
-        {
-            if (string.IsNullOrEmpty(imagem))
-                throw new Exception("Obrigatório informar uma imagem válida.");
+        public void AlterarImagem(string imagem) => Imagem = imagem;
 
-            Imagem = imagem;
-        }
-
-        public void AlterarTelefone(string telefone)
-        {
-            if (string.IsNullOrEmpty(telefone))
-                throw new Exception("Obrigatório informar um telefone válido.");
-
-            Telefone = telefone;
-        }
+        public void AlterarTelefone(string telefone) => Telefone = telefone;
 
         public void AlterarNomeFantasia(string nomeEmpresa)
         {
@@ -94,6 +84,7 @@
                 throw new Exception("Obrigatório informar um nome válido.");
 
             NomeFantasia = nomeEmpresa;
+            
         }
 
         public void AlterarRazãoSocial(string razaoSocial)
@@ -104,12 +95,12 @@
             RazaoSocial = razaoSocial;
         }
 
-        public void GerarLicenca(Licenca license)
+        public void AlterarNumeroDocumento(string numeroDocumento)
         {
-            if (license is null)
-                throw new Exception("Obrigatório informar uma licença válida.");
+            if (string.IsNullOrEmpty(numeroDocumento))
+                throw new Exception("Obrigatório informar um documento válido válido.");
 
-            _licenses.Add(license);
+            NumeroDocumento = numeroDocumento;
         }
 
         #endregion Public Methods

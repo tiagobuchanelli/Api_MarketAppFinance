@@ -2,16 +2,26 @@
 using Api_MarketAppFinance.Domain.Entities;
 using Api_MarketAppFinance.Domain.Interrfaces.Repositories;
 using Api_MarketAppFinance.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Api_MarketAppFinance.Infrastructure.Data.Repositories
 {
-    public class EmpresaRepositorio : BaseRepositorio<Empresa>, IEmpresaRepositorio
+    public class EmpresaRepositorio : BaseRepositorio<Empresa>, IEmpresaRepositorio<Empresa>
     {
         private readonly ContextoBase _sqlContext;
 
         public EmpresaRepositorio(ContextoBase sqlContext) : base(sqlContext)
         {
-            _sqlContext = sqlContext;
+            _sqlContext = sqlContext;            
         }
+
+        public Empresa BuscarEmpresaPorDocumento(string documento)
+        => _sqlContext.Empresas.FirstOrDefault(x => x.NumeroDocumento == documento);
+
+        public Empresa BuscarDadosCompletoEmpresa(string documento)
+       => _sqlContext.Empresas.Include(x => x.Usuario).Include(x => x.Licencas).FirstOrDefault(x => x.NumeroDocumento == documento);
+
+        
+
     }
 }

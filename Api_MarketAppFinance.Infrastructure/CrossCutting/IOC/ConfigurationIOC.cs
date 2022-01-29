@@ -21,22 +21,33 @@ namespace Api_MarketAppFinance.Infrastructure.CrossCutting.IOC
             //mapeamento ApplicationService
             builder.RegisterType<UsuarioAplicacaoServico>().As<IUsuarioAplicacaoServico>();
             builder.RegisterType<CidadeAplicacaoServico>().As<ICidadeAplicacaoServico>();
+            builder.RegisterType<EmpresaAplicacaoServico>().As<IEmpresaAplicacaoServico>();
 
 
             //mapeamento Service
             builder.RegisterType<UsuarioServico>().As<IUsuarioServico<Usuario>>();
-            builder.RegisterType<CidadeSErvico>().As<ICidadeSErvico<Cidade>>();
+            builder.RegisterType<CidadeServico>().As<ICidadeSErvico<Cidade>>();
+            builder.RegisterType<EmpresaServico>().As<IEmpresaServico<Empresa>>();
 
             builder.RegisterType<UsuarioRepositorio>().As<IUsuarioRepositorio<Usuario>>();
             builder.RegisterType<CidadeRepositorio>().As<ICidadeRepositorio<Cidade>>();
+            builder.RegisterType<EmpresaRepositorio>().As<IEmpresaRepositorio<Empresa>>();
 
             //mapeamento DTOs
             builder.Register(ctx => new MapperConfiguration(cfg =>
            {
                cfg.AddProfile(new DtoParaEntidadeUsuario());
                cfg.AddProfile(new EntidadeUsuarioParaDto());
+
                cfg.AddProfile(new EntidadeCidadeParaDto());
                cfg.AddProfile(new DtoParaEntidadeCidade());
+
+               cfg.AddProfile(new EntidadeEmpresaParaDto());
+               cfg.AddProfile(new DtoParaEntidadeEmpresa());
+
+               cfg.AddProfile(new EntidadeLicencaParaDto());
+               cfg.AddProfile(new DtoParaEntidadeLicenca());
+
            }));
 
             //registro de estado Mapper

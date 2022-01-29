@@ -4,11 +4,11 @@ using Api_MarketAppFinance.Domain.Interrfaces.Repositories;
 
 namespace Api_MarketAppFinance.Domain.Services
 {
-    public class CidadeSErvico : ServicoBase<Cidade>, ICidadeSErvico<Cidade>
+    public class CidadeServico : ServicoBase<Cidade>, ICidadeSErvico<Cidade>
     {
         private readonly ICidadeRepositorio<Cidade> _cidadeRepositorio;
 
-        public CidadeSErvico(ICidadeRepositorio<Cidade> userRepository) : base(userRepository)
+        public CidadeServico(ICidadeRepositorio<Cidade> userRepository) : base(userRepository)
         {
             this._cidadeRepositorio = userRepository;
         }
@@ -35,21 +35,11 @@ namespace Api_MarketAppFinance.Domain.Services
         public Cidade AtualizarCidade(Cidade dadosCidade)
         {
             var cidade = BuscarPorCodigo(dadosCidade.Id);
-
-            if (cidade.Nome != dadosCidade.Nome)
-                cidade.AlterarNomeCidade(dadosCidade.Nome);
-
-            if (cidade.Cep != dadosCidade.Cep)
-                cidade.AlterarCep(dadosCidade.Cep);
-
-            if (cidade.CodigoIbge != dadosCidade.CodigoIbge)
-                cidade.AlterarCodigoIbge(dadosCidade.CodigoIbge);
-
-            if (cidade.CodigoIbgeEstado != dadosCidade.CodigoIbgeEstado)
-                cidade.AlterarCodigoIbgeEstado(dadosCidade.CodigoIbgeEstado);
-
-            if (cidade.SiglaEstado != dadosCidade.SiglaEstado)
-                cidade.AlterarSiglaEstado(dadosCidade.SiglaEstado);
+            cidade.AlterarNomeCidade(dadosCidade.Nome);            
+            cidade.AlterarCodigoIbge(dadosCidade.CodigoIbge);
+            cidade.AlterarCodigoIbgeEstado(dadosCidade.CodigoIbgeEstado);
+            cidade.AlterarCep(dadosCidade.Cep);
+            cidade.AlterarSiglaEstado(dadosCidade.SiglaEstado);
 
             Atualizar(cidade);
 

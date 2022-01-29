@@ -123,108 +123,63 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         public void Inativar() => Ativo = false;
 
-        public void AlterarImagem(string imageCompany)
-        {
-            if (string.IsNullOrEmpty(imageCompany))
-                throw new Exception("Informe um valor válido.");
+        public void AlterarImagem(string imageCompany) => Imagem = imageCompany;
 
-            Imagem = imageCompany;
+        public void AlterarTelefone1(string phone) => Telefone1 = phone;
+
+        public void AlterarTelefone2(string phone) => Telefone2 = phone;
+
+        public void AlterarRua(string rua) => Rua = rua;
+
+        public void AlteraNumero(string numero) => Numero = numero;
+
+        public void AlteraCep(string cep) => Cep = cep;
+
+        public void AlteraLetra(string letra) => Letra = letra;
+        
+        public void AlteraComplemento(string complemento) => Complemento = complemento;
+
+        public void AlteraBairro(string bairro) => Bairro = bairro;
+
+        public void AlteraEmail(string email) => Email = email;
+
+        public void AlteraObservacao(string obs) => Observacao = obs;
+
+        public void AlteraNumeroDocumento(string doc) => NumeroDocumento = doc;
+
+        public void AlterarNome(string nome)
+        {
+            if (string.IsNullOrEmpty(nome))
+                throw new Exception("Obrigatório informar o nome.");
+
+            Nome = nome;
         }
 
-        public void AlterarTelefone1(string phone)
+        public void AlterarSobreNome(string sobreNome)
         {
-            if (string.IsNullOrEmpty(phone))
-                throw new Exception("Informe um valor válido.");
-            Telefone1 = phone;
-        }
+            if (string.IsNullOrEmpty(sobreNome))
+                throw new Exception("Obrigatório informar o sobrenome.");
 
-        public void AlterarTelefone2(string phone)
-        {
-            if (string.IsNullOrEmpty(phone))
-                throw new Exception("Informe um valor válido.");
-            Telefone2 = phone;
-        }
-
-        public void AlterarRua(string rua)
-        {
-            if (string.IsNullOrEmpty(rua))
-                throw new Exception("Informe um valor válido.");
-            Rua = rua;
-        }
-
-        public void AlteraNumero(string numero)
-        {
-            if (string.IsNullOrEmpty(numero))
-                throw new Exception("Informe um valor válido.");
-            Numero = numero;
-        }
-
-        public void AlteraCep(string cep)
-        {
-            if (string.IsNullOrEmpty(cep))
-                throw new Exception("Informe um valor válido.");
-            Cep = cep;
-        }
-
-        public void AlteraLetra(string letra)
-        {
-            if (string.IsNullOrEmpty(letra))
-                throw new Exception("Informe um valor válido.");
-            Letra = letra;
-        }
-
-        public void AlteraComplemento(string complemento)
-        {
-            if (string.IsNullOrEmpty(complemento))
-                throw new Exception("Informe um valor válido.");
-            Complemento = complemento;
-        }
-
-        public void AlteraBairro(string bairro)
-        {
-            if (string.IsNullOrEmpty(bairro))
-                throw new Exception("Informe um valor válido.");
-            Bairro = bairro;
-        }
-
-        public void AlteraEmail(string email)
-        {
-            if (string.IsNullOrEmpty(email))
-                throw new Exception("Informe um valor válido.");
-            Email = email;
-        }
-
-        public void AlteraObservacao(string obs)
-        {
-            if (string.IsNullOrEmpty(obs))
-                throw new Exception("Informe um valor válido.");
-            Observacao = obs;
-        }
-
-        public void AlteraNumeroDocumento(string doc)
-        {
-            if (string.IsNullOrEmpty(doc))
-                throw new Exception("Informe um valor válido.");
-            NumeroDocumento = doc;
+            Sobrenome = sobreNome;
         }
 
         public void AlteraValorMinimoVenda(decimal valor)
         {
-            if (valor <= 0)
+            if (valor < 0)
                 throw new Exception("Informe um valor válido.");
             ValorMinimoVenda = valor;
         }
 
         public void AlteraLimiteVenda(decimal valor)
         {
-            if (valor <= 0)
+            if (valor < 0)
                 throw new Exception("Informe um valor válido.");
             ValorLimiteVenda = valor;
         }
 
         public void AlteraDesconto(decimal valor)
         {
-            if (valor <= 0)
+            if (valor < 0)
                 throw new Exception("Informe um valor válido.");
             PrDesconto = valor;
         }

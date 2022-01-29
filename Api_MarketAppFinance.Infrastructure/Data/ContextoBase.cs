@@ -79,17 +79,17 @@ namespace Api_MarketAppFinance.Data
             return base.SaveChanges();
         }
 
-        public DbSet<Usuario> Users { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
 
-        public DbSet<Cidade> Cities { get; set; }
+        public DbSet<Cidade> Cidades { get; set; }
 
-        public DbSet<Endereco> Adresses { get; set; }
+        public DbSet<Endereco> Enderecos { get; set; }
 
-        public DbSet<Licenca> Licenses { get; set; }
+        public DbSet<Licenca> Licensas { get; set; }
 
-        public DbSet<LicencaDispositivo> Devices { get; set; }
+        public DbSet<LicencaDispositivo> Dispositivos { get; set; }
 
-        public DbSet<Empresa> Companies { get; set; }
+        public DbSet<Empresa> Empresas { get; set; }
 
         public DbSet<Categoria> Categorias { get; set; }
 

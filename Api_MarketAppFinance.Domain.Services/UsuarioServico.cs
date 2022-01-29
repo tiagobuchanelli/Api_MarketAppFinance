@@ -42,23 +42,12 @@ namespace Api_MarketAppFinance.Domain.Services
         {
             var dadosUsuario = BuscarPorCodigo(usuario.Id);
 
-            if (dadosUsuario.NumeroDocumento != usuario.NumeroDocumento)
-                dadosUsuario.AlterarDocumento(usuario.NumeroDocumento);
-
-            if(dadosUsuario.Nome != usuario.Nome)
-                dadosUsuario.AlterarNome(usuario.Nome);
-            
-            if(dadosUsuario.Sobrenome != usuario.Sobrenome)
-                dadosUsuario.AlterarSobreNome(usuario.Sobrenome);
-            
-            if(dadosUsuario.Email != usuario.Email)
-                dadosUsuario.AlterarEmail(usuario.Email);
-            
-            if(dadosUsuario.Imagem != usuario.Imagem)
-                dadosUsuario.AlterarImagem(usuario.Imagem);
-
-            if(dadosUsuario.Telefone != usuario.Telefone)
-                dadosUsuario.AlterarTelefone(usuario.Telefone);            
+            dadosUsuario.AlterarDocumento(usuario.NumeroDocumento);                        
+            dadosUsuario.AlterarNome(usuario.Nome);
+            dadosUsuario.AlterarSobreNome(usuario.Sobrenome);
+            dadosUsuario.AlterarEmail(usuario.Email);
+            dadosUsuario.AlterarImagem(usuario.Imagem);
+            dadosUsuario.AlterarTelefone(usuario.Telefone);            
 
             Atualizar(dadosUsuario);
 
