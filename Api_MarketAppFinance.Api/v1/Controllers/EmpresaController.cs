@@ -50,37 +50,17 @@ namespace Api_MarketAppFinance.Api.Controllers
             {
                 return BadRequest("Erro ao buscar empresa: " + "\n" + e.Message);
             }
-        }
-
-        [Route("buscarPorDocumento")]
-        [HttpGet]
-        public ActionResult<string> BuscarPorDocumento([FromBody] EmpresaDto empresaDto)
-        {
-            try
-            {
-                if (empresaDto is null || string.IsNullOrEmpty(empresaDto.NumeroDocumento)) return NotFound("Erro ao buscar empresa!");
-
-                var empresa = _applicacaoServico.BuscarEmpresaPorDocumento(empresaDto.NumeroDocumento);
-
-                if (empresa is null) return Ok("Nenhuma empresa encontrada!");
-
-                return Ok(empresa);
-            }
-            catch (Exception e)
-            {
-                return BadRequest("Erro ao buscar empresa: " + "\n" + e.Message);
-            }
-        }
+        }        
         
-        [Route("buscarDadosCompletoEmpresa")]
+        [Route("informacoes-empresa")]
         [HttpGet]
-        public ActionResult<string> BuscarDadosCompletoEmpresa([FromBody] EmpresaDto empresaDto)
+        public ActionResult<string> BuscarInformacoesEmpresa([FromBody] EmpresaDto empresaDto)
         {
             try
             {
-                if (empresaDto is null || string.IsNullOrEmpty(empresaDto.NumeroDocumento)) return NotFound("Erro ao buscar empresa!");
+                if (empresaDto is null || string.IsNullOrEmpty(empresaDto.Documento)) return NotFound("Erro ao buscar empresa!");
 
-                var empresa = _applicacaoServico.BuscarDadosCompletoEmpresa(empresaDto.NumeroDocumento);
+                var empresa = _applicacaoServico.BuscarInformacoesEmpresa(empresaDto.Documento);
 
                 if (empresa is null) return Ok("Nenhuma empresa encontrada!");
 

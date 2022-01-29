@@ -14,7 +14,7 @@ namespace Api_MarketAppFinance.Application.Dtos
 
         public string? RazaoSocial { get; set; }
 
-        public string? NumeroDocumento { get; set; }
+        public string? Documento { get; set; }
 
         public string? Telefone { get; set; }
 
@@ -24,6 +24,6 @@ namespace Api_MarketAppFinance.Application.Dtos
 
         public UsuarioDto? Usuario { get; set; }
 
-        public LicencaDto? Licencas { get; set; }
+        public List<LicencaDto>? Licencas { get; set; }
     }
 }

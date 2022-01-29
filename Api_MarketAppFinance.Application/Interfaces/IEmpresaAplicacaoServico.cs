@@ -14,8 +14,6 @@ namespace Api_MarketAppFinance.Application.Interfaces
 
         EmpresaDto BuscarPorCodigo(int id);
 
-        EmpresaDto BuscarEmpresaPorDocumento(string documento);
-
-        EmpresaDto BuscarDadosCompletoEmpresa(string documento);
+        EmpresaDto BuscarInformacoesEmpresa(string documento);
     }
 }

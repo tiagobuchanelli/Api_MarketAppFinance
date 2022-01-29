@@ -16,9 +16,9 @@ namespace Api_MarketAppFinance.Application.Dtos
 
         public int? NumeroAcecsso { get; set; }
 
-        public DateTime? DataValidade { get; set; }
+        public string? Chave { get; set; }
 
-        public EmpresaDto? Empresa { get; set; }
+        public DateTime? DataValidade { get; set; }
 
     }
 }

@@ -8,8 +8,6 @@ namespace Api_MarketAppFinance.Domain.Core.Interfaces.Services
 
         TEntity AtualizarEmpresa(TEntity dados);
 
-        TEntity BuscarEmpresaPorDocumento(string documento);
-
-        TEntity BuscarDadosCompletoEmpresa(string documento);
+        TEntity BuscarInformacoesEmpresa(string documento);
     }
 }

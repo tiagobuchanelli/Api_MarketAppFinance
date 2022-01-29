@@ -40,8 +40,6 @@
 
         public int EmpresaId { get; private set; }
 
-        public Empresa Empresa { get; private set; }
-
         #endregion Actributes
 
         #region Private Methods

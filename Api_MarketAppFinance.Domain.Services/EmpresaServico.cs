@@ -34,7 +34,7 @@ namespace Api_MarketAppFinance.Domain.Services
                 );
             
             Adicionar(dadosEmpresa);
-            return BuscarEmpresaPorDocumento(dadosEmpresa.RazaoSocial);
+            return BuscarInformacoesEmpresa(dadosEmpresa.NumeroDocumento);
         }
 
         public Empresa AtualizarEmpresa(Empresa empresa)
@@ -48,15 +48,12 @@ namespace Api_MarketAppFinance.Domain.Services
             dadosEmpresa.AlterarImagem(empresa.Imagem);                       
 
             Atualizar(dadosEmpresa);
-                        
-            return dadosEmpresa;
-        }        
 
-        public Empresa BuscarEmpresaPorDocumento(string documento)
-            => _repositorioEmpresa.BuscarEmpresaPorDocumento(documento);
+            return  BuscarInformacoesEmpresa(dadosEmpresa.NumeroDocumento);
+        }        
         
-        public Empresa BuscarDadosCompletoEmpresa(string documento)
-            => _repositorioEmpresa.BuscarDadosCompletoEmpresa(documento);
+        public Empresa BuscarInformacoesEmpresa(string documento)
+            => _repositorioEmpresa.BuscarInformacoesEmpresa(documento);
 
 
 

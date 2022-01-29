@@ -15,10 +15,7 @@ namespace Api_MarketAppFinance.Infrastructure.Data.Repositories
             _sqlContext = sqlContext;            
         }
 
-        public Empresa BuscarEmpresaPorDocumento(string documento)
-        => _sqlContext.Empresas.FirstOrDefault(x => x.NumeroDocumento == documento);
-
-        public Empresa BuscarDadosCompletoEmpresa(string documento)
+        public Empresa BuscarInformacoesEmpresa(string documento)
        => _sqlContext.Empresas.Include(x => x.Usuario).Include(x => x.Licencas).FirstOrDefault(x => x.NumeroDocumento == documento);
 
         

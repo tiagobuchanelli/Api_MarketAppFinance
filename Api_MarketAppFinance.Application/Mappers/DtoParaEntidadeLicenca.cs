@@ -18,8 +18,8 @@ namespace Api_MarketAppFinance.Application.Mappers
                 .ForMember(dest => dest.Descricao, opt => opt.MapFrom(x => x.Descricao))
                 .ForMember(dest => dest.Tipo, opt => opt.MapFrom(x => x.Tipo))
                 .ForMember(dest => dest.NumeroAcessosPermitido, opt => opt.MapFrom(x => x.NumeroAcecsso))
-                .ForMember(dest => dest.DataExpiracao, opt => opt.MapFrom(x => x.DataValidade))
-                .ForMember(dest => dest.Empresa, opt => opt.MapFrom(x => x.Empresa));
+                .ForMember(dest => dest.Chave, opt => opt.MapFrom(x => x.Chave))
+                .ForMember(dest => dest.DataExpiracao, opt => opt.MapFrom(x => x.DataValidade));
         }
     }
 }

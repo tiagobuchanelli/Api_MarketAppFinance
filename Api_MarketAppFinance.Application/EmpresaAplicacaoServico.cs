@@ -18,57 +18,22 @@ namespace MarketAppFinanceSApi_MarketAppFinanceervice.Application
         }
 
         public IEnumerable<EmpresaDto> BuscarTodos()
-        {
-            var empresas = _mapper.Map<IEnumerable<EmpresaDto>>(_servicoEmpresa.BuscarTodos());
-            empresas.ToList().ForEach(x => x.UsuarioId = null);
-
-            return empresas;
-        }
+        => _mapper.Map<IEnumerable<EmpresaDto>>(_servicoEmpresa.BuscarTodos());
 
         public EmpresaDto BuscarPorCodigo(int id)
-        {
-            var empresa = _mapper.Map<EmpresaDto>(_servicoEmpresa.BuscarPorCodigo(id));
-            empresa.UsuarioId = null;
+        => _mapper.Map<EmpresaDto>(_servicoEmpresa.BuscarPorCodigo(id));
 
-            return empresa;
-        }
-
-        public EmpresaDto BuscarEmpresaPorDocumento(string documento)
-        {
-            var empresa = _mapper.Map<EmpresaDto>(_servicoEmpresa.BuscarEmpresaPorDocumento(documento));
-            empresa.UsuarioId = null;
-
-            return empresa;
-
-        }public EmpresaDto BuscarDadosCompletoEmpresa(string documento)
-        {
-            var empresa = _mapper.Map<EmpresaDto>(_servicoEmpresa.BuscarDadosCompletoEmpresa(documento));
-            empresa.UsuarioId = null;
-            if (empresa.Licencas is not null) empresa.Licencas.Empresa = null;
-
-            return empresa;
-        }
+        public EmpresaDto BuscarInformacoesEmpresa(string documento)
+        => _mapper.Map<EmpresaDto>(_servicoEmpresa.BuscarInformacoesEmpresa(documento));
 
         public EmpresaDto Adicionar(EmpresaDto userDto)
-        {
-            var dadosEmpresa = _mapper.Map<EmpresaDto>(_servicoEmpresa.AdicionarEmpresa(_mapper.Map<Empresa>(userDto)));
-            dadosEmpresa.UsuarioId = null;
-
-            return dadosEmpresa;
-
-        }
+        => _mapper.Map<EmpresaDto>(_servicoEmpresa.AdicionarEmpresa(_mapper.Map<Empresa>(userDto)));
 
         public EmpresaDto Atualizar(EmpresaDto userDto)
-        {
-            var dadosEmpresa = _mapper.Map<EmpresaDto>(_servicoEmpresa.AtualizarEmpresa(_mapper.Map<Empresa>(userDto)));
-            dadosEmpresa.UsuarioId = null;
-
-            return dadosEmpresa;
-        }
+        => _mapper.Map<EmpresaDto>(_servicoEmpresa.AtualizarEmpresa(_mapper.Map<Empresa>(userDto)));
 
         public void Excluir(EmpresaDto userDto)
         => _servicoEmpresa.Excluir(_mapper.Map<Empresa>(userDto));
-
-       
+               
     }
 }
