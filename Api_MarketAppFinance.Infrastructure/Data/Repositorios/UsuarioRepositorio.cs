@@ -19,6 +19,9 @@ namespace Api_MarketAppFinance.Infrastructure.Data.Repositories
             return _contexto.Set<Usuario>().FirstOrDefault(x => x.NumeroDocumento == numeroDoc);
         }
 
-       
+        public Usuario BuscarUsuarioPorEmail(string email)
+        {
+            return _sqlContext.Set<Usuario>().FirstOrDefault(x => x.Email == email);
+        }
     }
 }

@@ -7,5 +7,10 @@ namespace Api_MarketAppFinance.Domain.Core.Interfaces.Services
         TEntity AdicionarUsuario(TEntity dados);
 
         TEntity AtualizarUsuario(TEntity dados);
+
+        TEntity BuscarUsuarioPorEmail(string email);
+
+        string GerarToken(string dados);
+
     }
 }

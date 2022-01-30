@@ -27,6 +27,11 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
                 .IsRequired();
 
             builder
+                .Property(a => a.Senha)
+                .HasColumnType("varchar(100)")
+                .IsRequired();
+
+            builder
                 .Property(a => a.NumeroDocumento)
                 .HasColumnType("varchar(50)")
                 .IsRequired();

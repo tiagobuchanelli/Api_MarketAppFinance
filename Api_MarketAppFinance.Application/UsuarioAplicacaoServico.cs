@@ -15,7 +15,22 @@ namespace MarketAppFinanceSApi_MarketAppFinanceervice.Application
         {
             _servicoUsuario = serviceUser;
             _mapper = mapper;
-        }
+        }        
+
+        public UsuarioDto? Autenticar(UsuarioDto userDto)
+        {
+            var dados = _mapper.Map<UsuarioDto>(_servicoUsuario.BuscarUsuarioPorEmail(userDto.Email));
+
+            if (dados is null)
+                return null;
+           
+
+            dados.Token = _servicoUsuario.GerarToken(userDto.Email);
+            dados.Senha = null;
+
+            return dados;
+
+        }        
 
         public IEnumerable<UsuarioDto> BuscarTodos()
         => _mapper.Map<IEnumerable<UsuarioDto>>(_servicoUsuario.BuscarTodos());
@@ -40,6 +55,5 @@ namespace MarketAppFinanceSApi_MarketAppFinanceervice.Application
         => _servicoUsuario.Excluir(_mapper.Map<Usuario>(userDto));
 
         
-       
     }
 }

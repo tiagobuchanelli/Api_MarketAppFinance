@@ -13,10 +13,14 @@ namespace Api_MarketAppFinance.Application.Dtos
         
         public string? Email { get; set; }
 
+        public string? Senha { get; set; }
+
         public string? Imagem { get; set; }
 
         public string? Telefone { get; set; }
         
         public string? Documento { get; set; }
+
+        public string? Token { get; set; }
     }
 }

@@ -4,6 +4,8 @@ namespace Api_MarketAppFinance.Application.Interfaces
 {
     public interface IUsuarioAplicacaoServico
     {
+        UsuarioDto? Autenticar(UsuarioDto userDto);        
+
         UsuarioDto Adicionar(UsuarioDto userDto);
 
         UsuarioDto Atualizar(UsuarioDto userDto);

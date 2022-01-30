@@ -1,5 +1,6 @@
 ﻿using Api_MarketAppFinance.Application.Dtos;
 using Api_MarketAppFinance.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api_MarketAppFinance.Api.Controllers
@@ -16,6 +17,7 @@ namespace Api_MarketAppFinance.Api.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult<IEnumerable<string>> BuscarTodos()
         {
             try
@@ -33,6 +35,7 @@ namespace Api_MarketAppFinance.Api.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public ActionResult<string> BuscarPorCodigo(int id)
         {
             try
@@ -50,6 +53,7 @@ namespace Api_MarketAppFinance.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Adicionar([FromBody] CidadeDto cidadeDto)
         {
             try
@@ -65,6 +69,7 @@ namespace Api_MarketAppFinance.Api.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public ActionResult Atualizar([FromBody] CidadeDto cidadeDto)
         {
             try
@@ -80,6 +85,7 @@ namespace Api_MarketAppFinance.Api.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         public ActionResult Excluir([FromBody] CidadeDto cidadeDto)
         {
             try

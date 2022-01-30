@@ -23,6 +23,16 @@ namespace Api_MarketAppFinance.Domain.Services
         #endregion
 
         #region Metodos Publicos
+        public Usuario BuscarUsuarioPorEmail(string email)
+        {
+            return _repositorioUsuario.BuscarUsuarioPorEmail(email);
+        }
+
+        public string GerarToken(string email)
+        {
+            return TokenServico.GenerateToken(email);
+        }
+
         public Usuario AdicionarUsuario(Usuario usuario)
         {
             var dadosUsuario = new Usuario(
@@ -52,7 +62,9 @@ namespace Api_MarketAppFinance.Domain.Services
             Atualizar(dadosUsuario);
 
             return dadosUsuario;
-        }        
+        }
+
+       
 
         #endregion
 
