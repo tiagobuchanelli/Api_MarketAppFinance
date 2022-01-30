@@ -64,6 +64,19 @@
             ValorMinimoVenda = valorMinimo;
         }
 
+        public void AlterarDescricao(string descricao)
+        {
+            if (string.IsNullOrEmpty(descricao))
+                throw new Exception("Obrigatório informar o nome.");
+
+            Descricao = descricao;
+        }
+
+        public void AlterarAbreviacao(string abreviacao)
+        {
+            Abreviacao = abreviacao;
+        }
+
         #endregion Public Methods
     }
 }

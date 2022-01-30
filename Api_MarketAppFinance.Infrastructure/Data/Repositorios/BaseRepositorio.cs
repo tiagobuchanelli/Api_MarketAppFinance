@@ -51,8 +51,9 @@ namespace Api_MarketAppFinance.Infrastructure.Repositories
         public IEnumerable<TEntity> BuscarTodos()
         {
             try
-            {
+            {               
                 return _contexto.Set<TEntity>().ToList();
+                
             }
             catch (Exception e)
             {
