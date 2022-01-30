@@ -26,8 +26,15 @@ namespace MarketAppFinanceSApi_MarketAppFinanceervice.Application
         public EmpresaDto BuscarInformacoesEmpresa(string documento)
         => _mapper.Map<EmpresaDto>(_servicoEmpresa.BuscarInformacoesEmpresa(documento));
 
-        public EmpresaDto Adicionar(EmpresaDto userDto)
-        => _mapper.Map<EmpresaDto>(_servicoEmpresa.AdicionarEmpresa(_mapper.Map<Empresa>(userDto)));
+        public EmpresaDto Adicionar(EmpresaDto empresaDto)
+        {            
+            if (empresaDto.Documento is not null && _servicoEmpresa.BuscarInformacoesEmpresa(empresaDto.Documento) is null)
+                return _mapper.Map<EmpresaDto>(_servicoEmpresa.AdicionarEmpresa(_mapper.Map<Empresa>(empresaDto)));
+
+            else
+                throw new Exception("Empresa já cadastrada!");
+
+        }
 
         public EmpresaDto Atualizar(EmpresaDto userDto)
         => _mapper.Map<EmpresaDto>(_servicoEmpresa.AtualizarEmpresa(_mapper.Map<Empresa>(userDto)));

@@ -77,7 +77,7 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (empresaDto is null) return NotFound("Erro ao cadastrar empresa!");
+                if (empresaDto is null || empresaDto.Documento is null) return NotFound("Erro ao cadastrar empresa!");
                 
                 return Ok(_applicacaoServico.Adicionar(empresaDto));
             }

@@ -16,9 +16,9 @@ namespace Api_MarketAppFinance.Infrastructure.Data.Repositories
         }
 
         public Empresa BuscarInformacoesEmpresa(string documento)
-       => _sqlContext.Empresas.Include(x => x.Usuario).Include(x => x.Licencas).FirstOrDefault(x => x.NumeroDocumento == documento);
+        => _sqlContext.Empresas.Include(x => x.Usuario).Include(x => x.Licencas).FirstOrDefault(x => x.NumeroDocumento == documento);
 
-        
+                
 
     }
 }

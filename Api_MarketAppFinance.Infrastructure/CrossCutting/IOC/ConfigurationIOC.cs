@@ -32,6 +32,7 @@ namespace Api_MarketAppFinance.Infrastructure.CrossCutting.IOC
             builder.RegisterType<UsuarioRepositorio>().As<IUsuarioRepositorio<Usuario>>();
             builder.RegisterType<CidadeRepositorio>().As<ICidadeRepositorio<Cidade>>();
             builder.RegisterType<EmpresaRepositorio>().As<IEmpresaRepositorio<Empresa>>();
+            builder.RegisterType<LicencaRepositorio>().As<ILicencaRepositorio<Licenca>>();
 
             //mapeamento DTOs
             builder.Register(ctx => new MapperConfiguration(cfg =>
