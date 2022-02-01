@@ -110,7 +110,7 @@ namespace Api_MarketAppFinance.Domain.Entities
 
         public void AlterarValorAcrescimo(decimal valor)
         {
-            if (ValorAcrescimo <= 0)
+            if (ValorAcrescimo < 0)
                 throw new Exception("Obrigatório informar o valor válido.");
 
             ValorAcrescimo = valor;
@@ -118,7 +118,7 @@ namespace Api_MarketAppFinance.Domain.Entities
 
         public void AlterarValorDesconto(decimal valor)
         {
-            if (ValorDesconto <= 0)
+            if (ValorDesconto < 0)
                 throw new Exception("Obrigatório informar o valor válido.");
 
             ValorDesconto = valor;
@@ -126,7 +126,7 @@ namespace Api_MarketAppFinance.Domain.Entities
 
         public void AlterarPrDesconto(decimal percentual)
         {
-            if (PrDesconto <= 0)
+            if (PrDesconto < 0)
                 throw new Exception("Obrigatório informar o percentual válido.");
 
             PrDesconto = percentual;
@@ -134,7 +134,7 @@ namespace Api_MarketAppFinance.Domain.Entities
 
         public void AlterarPrAcrescimo(decimal percentual)
         {
-            if (PrAcrescimo <= 0)
+            if (PrAcrescimo < 0)
                 throw new Exception("Obrigatório informar o percentual válido.");
 
             PrAcrescimo = percentual;
@@ -142,7 +142,7 @@ namespace Api_MarketAppFinance.Domain.Entities
 
         public void AlterarNrDiasIntervalo(decimal dias)
         {
-            if (NrDiasIntervalo <= 0)
+            if (NrDiasIntervalo < 0)
                 throw new Exception("Obrigatório informar o valor válido.");
 
             NrDiasIntervalo = dias;
@@ -150,7 +150,7 @@ namespace Api_MarketAppFinance.Domain.Entities
 
         public void AlterarNrDiasLimiteIntervalo(decimal diasLimiteIntervalo)
         {
-            if (NrDiasLimiteIntervalo <= 0)
+            if (NrDiasLimiteIntervalo < 0)
                 throw new Exception("Obrigatório informar o valor válido.");
 
             NrDiasLimiteIntervalo = diasLimiteIntervalo;
@@ -158,7 +158,7 @@ namespace Api_MarketAppFinance.Domain.Entities
 
         public void AlterarNrIntervalos(decimal numeroIntervalos)
         {
-            if (NrIntervalos <= 0)
+            if (NrIntervalos < 0)
                 throw new Exception("Obrigatório informar o valor válido.");
 
             NrIntervalos = numeroIntervalos;
@@ -174,9 +174,6 @@ namespace Api_MarketAppFinance.Domain.Entities
 
         public void AlterarAbreviacao(string abreviacao)
         {
-            if (string.IsNullOrEmpty(abreviacao))
-                throw new Exception("Obrigatório informar a abreviação.");
-
             Abreviacao = abreviacao;
         }
 
@@ -198,7 +195,7 @@ namespace Api_MarketAppFinance.Domain.Entities
 
         public void AlterarDiaPadraoVencimento(int diaPadrao)
         {
-            if (DiaPadraoVencimento <= 0)
+            if (DiaPadraoVencimento < 0)
                 throw new Exception("Obrigatório informar o valor válido.");
 
             DiaPadraoVencimento = diaPadrao;

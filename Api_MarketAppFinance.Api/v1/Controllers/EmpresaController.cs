@@ -23,7 +23,7 @@ namespace Api_MarketAppFinance.Api.Controllers
         public ActionResult<IEnumerable<string>> BuscarTodos()
         {           
             try
-            {
+            {                
                 var empresas = _applicacaoServico.BuscarTodos();
 
                 if (empresas is null) return Ok("Nenhuma empresa encontrada!");

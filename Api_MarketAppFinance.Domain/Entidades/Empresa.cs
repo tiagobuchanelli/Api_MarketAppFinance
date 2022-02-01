@@ -16,7 +16,9 @@
             UsuarioId = usuarioId;
             Ativo = true;
             Imagem = imagem;
-            
+            ChaveApi = Guid.NewGuid().ToString();
+
+
 
             Validar();
         }
@@ -30,6 +32,8 @@
         #region Actributes Public
 
         public string NomeFantasia { get; private set; }
+
+        public string ChaveApi { get; private set; }
 
         public string RazaoSocial { get; private set; }
 

@@ -10,21 +10,31 @@ namespace Api_MarketAppFinance.Api.Controllers
     public class CarteiraController : Controller
     {
         private readonly ICarteiraAplicacaoServico _aplicacaoServico;
+        private readonly IEmpresaAplicacaoServico _empresaAplicacaoServico;
 
-        public CarteiraController(ICarteiraAplicacaoServico aplicacaoServico)
+        public CarteiraController(ICarteiraAplicacaoServico aplicacaoServico, IEmpresaAplicacaoServico empresaAplicacaoServico)
         {
             _aplicacaoServico = aplicacaoServico;
+            _empresaAplicacaoServico = empresaAplicacaoServico;
         }
 
-        [HttpGet("{id}")]
+        [HttpPost]
+        [Route("codigo")]
         [Authorize]
-        public ActionResult<string> BuscarPorCodigo(int id)
+        public ActionResult<string> BuscarPorCodigo([FromHeader] string chaveApiEmpresa, [FromBody] CarteiraDto carteiraDto)
         {
             try
             {
-                var carteira = _aplicacaoServico.BuscarPorCodigo(id);
+                if (carteiraDto is null || carteiraDto.EmpresaId is null) return NotFound("Erro ao buscar carteira!");
+
+                if (string.IsNullOrEmpty(chaveApiEmpresa) || !_empresaAplicacaoServico.ValidarChaveApiEmpresa(Convert.ToInt32(carteiraDto.EmpresaId), chaveApiEmpresa))
+                    return NotFound("Erro ao realizar a operação, verifique a chave API da empresa!");
+
+                var carteira = _aplicacaoServico.BuscarPorCodigo(carteiraDto.Id);
 
                 if (carteira is null) return Ok("Nenhuma carteira encontrada!");
+
+                
 
                 return Ok(carteira);
             }
@@ -38,11 +48,14 @@ namespace Api_MarketAppFinance.Api.Controllers
         [HttpPost]
         [Route("obter-carteiras")]
         [Authorize]
-        public ActionResult<IEnumerable<string>> BuscarTodos([FromBody] CarteiraDto carteiraDto)
+        public ActionResult<IEnumerable<string>> BuscarTodos([FromHeader] string chaveApiEmpresa, [FromBody] CarteiraDto carteiraDto)
         {
             try
             {
                 if (carteiraDto is null) return NotFound("Erro ao buscar carteiras!");
+
+                if (string.IsNullOrEmpty(chaveApiEmpresa) || !_empresaAplicacaoServico.ValidarChaveApiEmpresa(Convert.ToInt32(carteiraDto.EmpresaId), chaveApiEmpresa))
+                    return NotFound("Erro ao realizar a operação, verifique a chave API da empresa!");
 
                 IEnumerable<CarteiraDto> carteiras = _aplicacaoServico.BuscarCarteiras(Convert.ToInt32(carteiraDto.EmpresaId));
 
@@ -58,11 +71,14 @@ namespace Api_MarketAppFinance.Api.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult Adicionar([FromBody] CarteiraDto carteiraDto)
+        public ActionResult Adicionar([FromHeader] string chaveApiEmpresa, [FromBody] CarteiraDto carteiraDto)
         {
             try
             {
-                if (carteiraDto is null) return NotFound("Erro ao cadastrar carteira!");
+                if (carteiraDto is null || carteiraDto.Empresa is null) return NotFound("Erro ao cadastrar carteira!");
+
+                if (string.IsNullOrEmpty(chaveApiEmpresa) || !_empresaAplicacaoServico.ValidarChaveApiEmpresa(Convert.ToInt32(carteiraDto.Empresa.Id), chaveApiEmpresa))
+                    return NotFound("Erro ao realizar a operação, verifique a chave API da empresa!");
 
                 return Ok(_aplicacaoServico.Adicionar(carteiraDto));
             }
@@ -74,11 +90,15 @@ namespace Api_MarketAppFinance.Api.Controllers
 
         [HttpPut]
         [Authorize]
-        public ActionResult Atualizar([FromBody] CarteiraDto carteiraDto)
+        public ActionResult Atualizar([FromHeader] string chaveApiEmpresa, [FromBody] CarteiraDto carteiraDto)
         {
             try
             {
-                if (carteiraDto is null) return NotFound("Erro ao atualizar carteira!");
+                if (carteiraDto is null || carteiraDto.Empresa is null) return NotFound("Erro ao atualizar carteira!");
+
+                if (string.IsNullOrEmpty(chaveApiEmpresa) || !_empresaAplicacaoServico.ValidarChaveApiEmpresa(Convert.ToInt32(carteiraDto.Empresa.Id), chaveApiEmpresa))
+                    return NotFound("Erro ao realizar a operação, verifique a chave API da empresa!");
+
 
                 return Ok(_aplicacaoServico.Atualizar(carteiraDto));
             }
@@ -90,12 +110,15 @@ namespace Api_MarketAppFinance.Api.Controllers
 
         [HttpDelete]
         [Authorize]
-        public ActionResult Excluir([FromBody] CarteiraDto carteiraDto)
+        public ActionResult Excluir([FromHeader] string chaveApiEmpresa, [FromBody] CarteiraDto carteiraDto)
         {
             try
             {
-                if (carteiraDto is null || carteiraDto.Id <= 0) return NotFound("Erro ao excluir carteira!");
-                 
+                if (carteiraDto is null || carteiraDto.Id <= 0 || carteiraDto.Empresa is null) return NotFound("Erro ao excluir carteira!");
+
+                if (string.IsNullOrEmpty(chaveApiEmpresa) || !_empresaAplicacaoServico.ValidarChaveApiEmpresa(carteiraDto.Empresa.Id, chaveApiEmpresa))
+                    return NotFound("Erro ao realizar a operação, verifique a chave API da empresa!");
+
                 _aplicacaoServico.Excluir(carteiraDto);
                 return Ok("Carteira Removida com sucesso!");
             }

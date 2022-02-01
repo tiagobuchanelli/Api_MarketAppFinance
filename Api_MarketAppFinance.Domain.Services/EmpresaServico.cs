@@ -71,6 +71,15 @@ namespace Api_MarketAppFinance.Domain.Services
         public Empresa BuscarInformacoesEmpresa(string documento)
             => _repositorioEmpresa.BuscarInformacoesEmpresa(documento);
 
+        public bool ValidarChaveApiEmpresa(int idEmpresa, string chave)
+        {
+            var dados = _repositorioEmpresa.BuscarPorCodigo(idEmpresa);
+            if (dados.ChaveApi == chave)
+                return true;
+
+            return false;
+        }
+
 
 
         #endregion

@@ -23,6 +23,7 @@ namespace Api_MarketAppFinance.Infrastructure.CrossCutting.IOC
             builder.RegisterType<CidadeAplicacaoServico>().As<ICidadeAplicacaoServico>();
             builder.RegisterType<EmpresaAplicacaoServico>().As<IEmpresaAplicacaoServico>();
             builder.RegisterType<CarteiraAplicacaoServico>().As<ICarteiraAplicacaoServico>();
+            builder.RegisterType<FormaPagamentoAplicacaoServico>().As<IFormaPagamentoAplicacaoServico>();
 
 
             //mapeamento Service
@@ -30,12 +31,14 @@ namespace Api_MarketAppFinance.Infrastructure.CrossCutting.IOC
             builder.RegisterType<CidadeServico>().As<ICidadeSErvico<Cidade>>();
             builder.RegisterType<EmpresaServico>().As<IEmpresaServico<Empresa>>();
             builder.RegisterType<CarteiraServico>().As<ICarteiraServico<Carteira>>();
+            builder.RegisterType<FormaPagamentoServico>().As<IFormaPagamentoServico<FormaPagamento>>();
 
             builder.RegisterType<UsuarioRepositorio>().As<IUsuarioRepositorio<Usuario>>();
             builder.RegisterType<CidadeRepositorio>().As<ICidadeRepositorio<Cidade>>();
             builder.RegisterType<EmpresaRepositorio>().As<IEmpresaRepositorio<Empresa>>();
             builder.RegisterType<LicencaRepositorio>().As<ILicencaRepositorio<Licenca>>();
             builder.RegisterType<CarteiraRepositorio>().As<ICarteiraRepositorio<Carteira>>();
+            builder.RegisterType<FormaPagamentoRepositorio>().As<IFormaPagamentoRepositorio<FormaPagamento>>();
 
             //mapeamento DTOs
             builder.Register(ctx => new MapperConfiguration(cfg =>
@@ -54,6 +57,9 @@ namespace Api_MarketAppFinance.Infrastructure.CrossCutting.IOC
 
                cfg.AddProfile(new EntidadeCarteiraParaDto());
                cfg.AddProfile(new DtoParaEntidadeCarteira());
+
+               cfg.AddProfile(new EntidadeFormaPagamentoParaDto());
+               cfg.AddProfile(new DtoParaEntidadeFormaPagamento());
            }));
 
             //registro de estado Mapper

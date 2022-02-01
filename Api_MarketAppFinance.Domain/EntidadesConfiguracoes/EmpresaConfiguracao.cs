@@ -17,6 +17,12 @@ namespace Api_MarketAppFinance.Domain.EntitiesConfigurators
                 .IsRequired();
 
             builder
+                .Property(a => a.ChaveApi)
+                .HasColumnType("varchar(500)")
+                .IsRequired();
+            
+
+            builder
                 .Property(a => a.RazaoSocial)
                 .HasColumnType("varchar(250)")
                 .IsRequired();

@@ -9,5 +9,7 @@ namespace Api_MarketAppFinance.Domain.Core.Interfaces.Services
         TEntity AtualizarEmpresa(TEntity dados);
 
         TEntity BuscarInformacoesEmpresa(string documento);
+
+        bool ValidarChaveApiEmpresa(int idEmpresa, string chave);
     }
 }

@@ -41,6 +41,8 @@ namespace MarketAppFinanceSApi_MarketAppFinanceervice.Application
 
         public void Excluir(EmpresaDto userDto)
         => _servicoEmpresa.Excluir(_mapper.Map<Empresa>(userDto));
-               
+
+        public bool ValidarChaveApiEmpresa(int idEmpresa, string chave)
+        => _servicoEmpresa.ValidarChaveApiEmpresa(idEmpresa, chave);
     }
 }

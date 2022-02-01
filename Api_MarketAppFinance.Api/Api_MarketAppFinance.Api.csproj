@@ -22,4 +22,8 @@
     <ProjectReference Include="..\Api_MarketAppFinance.Infrastructure\Api_MarketAppFinance.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Utils\" />
+  </ItemGroup>
+
 </Project>
