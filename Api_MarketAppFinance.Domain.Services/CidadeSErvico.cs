@@ -4,7 +4,7 @@ using Api_MarketAppFinance.Domain.Interrfaces.Repositories;
 
 namespace Api_MarketAppFinance.Domain.Services
 {
-    public class CidadeServico : ServicoBase<Cidade>, ICidadeSErvico<Cidade>
+    public class CidadeServico : ServicoBase<Cidade>, ICidadeServico<Cidade>
     {
         private readonly ICidadeRepositorio<Cidade> _cidadeRepositorio;
 
@@ -35,15 +35,25 @@ namespace Api_MarketAppFinance.Domain.Services
         public Cidade AtualizarCidade(Cidade dadosCidade)
         {
             var cidade = BuscarPorCodigo(dadosCidade.Id);
-            cidade.AlterarNomeCidade(dadosCidade.Nome);            
-            cidade.AlterarCodigoIbge(dadosCidade.CodigoIbge);
-            cidade.AlterarCodigoIbgeEstado(dadosCidade.CodigoIbgeEstado);
-            cidade.AlterarCep(dadosCidade.Cep);
-            cidade.AlterarSiglaEstado(dadosCidade.SiglaEstado);
+           
+            if(cidade is not null)
+            {
+                cidade.AlterarNomeCidade(dadosCidade.Nome);
+                cidade.AlterarCodigoIbge(dadosCidade.CodigoIbge);
+                cidade.AlterarCodigoIbgeEstado(dadosCidade.CodigoIbgeEstado);
+                cidade.AlterarCep(dadosCidade.Cep);
+                cidade.AlterarSiglaEstado(dadosCidade.SiglaEstado);
 
-            Atualizar(cidade);
+                Atualizar(cidade);
+            }
 
             return cidade;
         }
+
+        public List<Cidade> BuscarTodos()
+        => _cidadeRepositorio.BuscarTodos();
+
+        public Cidade BuscarPorCodigo(int codigo)
+        => _cidadeRepositorio.BuscarPorCodigo(codigo);
     }
 }

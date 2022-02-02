@@ -6,5 +6,9 @@ namespace Api_MarketAppFinance.Domain.Interrfaces.Repositories
     public interface ICidadeRepositorio<TEntity> : IBaseRepositorio<Cidade>
     {
         TEntity BuscarCidadePorCodigoIbge(string codigoIbge);
+
+        List<TEntity> BuscarTodos();
+        
+        TEntity BuscarPorCodigo(int codigo);
     }
 }

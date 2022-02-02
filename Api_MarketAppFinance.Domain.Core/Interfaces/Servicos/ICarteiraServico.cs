@@ -4,9 +4,11 @@ namespace Api_MarketAppFinance.Domain.Core.Interfaces.Services
 {
     public interface ICarteiraServico<TEntity> : IBaseServico<Carteira>
     {
-        TEntity AdicionarCarteira(TEntity dados);
+        TEntity BuscarPorCodigo(int idEmpresa, int id);
 
-        TEntity AtualizarCarteira(TEntity dados);
+        TEntity AdicionarCarteira(TEntity carteira);
+
+        TEntity AtualizarCarteira(TEntity carteira);
 
         List<TEntity> BuscarCarteiras(int codigoEmpresa);
     }

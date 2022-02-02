@@ -12,7 +12,7 @@ namespace Api_MarketAppFinance.Application.Interfaces
 
         IEnumerable<FormaPagamentoDto> BuscarFormasPagamento(int codigoEmpresa);
 
-        FormaPagamentoDto BuscarPorCodigo(int id);
+        FormaPagamentoDto BuscarPorCodigo(int idEmpresa, int id);
 
     }
 }

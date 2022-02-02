@@ -23,11 +23,13 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (usuarioDto is null) return NotFound("Erro ao logar usuário!");
+                if (usuarioDto is null) 
+                    return NotFound("Erro ao logar usuário!");
 
                 var dadosUsuario = _applicacaoServico.Autenticar(usuarioDto);
 
-                if (dadosUsuario is null) return NotFound("Usuário ou senha inválidos!");
+                if (dadosUsuario is null) 
+                    return NotFound("Usuário ou senha inválidos!");
                                 
                 return Ok(dadosUsuario);
             }

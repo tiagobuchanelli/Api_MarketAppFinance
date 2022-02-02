@@ -7,9 +7,5 @@
         void Atualizar(TEntity obj);
 
         void Excluir(TEntity obj);
-
-        IEnumerable<TEntity> BuscarTodos();
-
-        TEntity BuscarPorCodigo(int id);
     }
 }

@@ -8,16 +8,14 @@ namespace Api_MarketAppFinance.Application
 {
     public class CidadeAplicacaoServico : ICidadeAplicacaoServico
     {
-        private readonly ICidadeSErvico<Cidade> _servicoCidade;
+        private readonly ICidadeServico<Cidade> _servicoCidade;
         private readonly IMapper _mapper;
 
-        public CidadeAplicacaoServico(ICidadeSErvico<Cidade> servicoCidade, IMapper mapper)
+        public CidadeAplicacaoServico(ICidadeServico<Cidade> servicoCidade, IMapper mapper)
         {
             _servicoCidade = servicoCidade;
             _mapper = mapper;
-        }
-
-        
+        }               
 
         public IEnumerable<CidadeDto> BuscarTodos()
         => _mapper.Map<IEnumerable<CidadeDto>>(_servicoCidade.BuscarTodos());

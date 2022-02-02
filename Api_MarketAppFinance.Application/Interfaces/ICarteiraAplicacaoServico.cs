@@ -12,7 +12,7 @@ namespace Api_MarketAppFinance.Application.Interfaces
 
         IEnumerable<CarteiraDto> BuscarCarteiras(int codigoEmpresa);
 
-        CarteiraDto BuscarPorCodigo(int id);
+        CarteiraDto BuscarPorCodigo(int idEmpresa, int id);
 
     }
 }

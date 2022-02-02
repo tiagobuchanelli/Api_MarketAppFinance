@@ -13,7 +13,7 @@ namespace Api_MarketAppFinance.Test
         private Dispositvo _repoDevice = new Dispositvo(new ContextoBase());
         private LicencaRepositorio _repoLicense = new LicencaRepositorio(new ContextoBase());
         private LicensaDispositivoRepositorio _repoAccessControll = new LicensaDispositivoRepositorio(new ContextoBase());
-
+        /*
         public IEnumerable<Usuario> GetUsuarios()
         => _repoUser.BuscarTodos();
 
@@ -34,6 +34,7 @@ namespace Api_MarketAppFinance.Test
 
         public IEnumerable<Empresa> GetEmpresas()
        => _repoCompany.BuscarTodos();
+        */
 
         /*
         public void teste() {

@@ -8,5 +8,9 @@ namespace Api_MarketAppFinance.Domain.Interrfaces.Repositories
         TEntity BuscarUsuarioPorDocumento(string documento);
 
         TEntity BuscarUsuarioPorEmail(string email);
+
+        List<TEntity> BuscarTodos();
+
+        TEntity BuscarPorCodigo(int codigo);
     }
 }

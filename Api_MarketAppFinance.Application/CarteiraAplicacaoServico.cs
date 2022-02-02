@@ -32,8 +32,9 @@ namespace Api_MarketAppFinance.Application
         public IEnumerable<CarteiraDto> BuscarCarteiras(int codigoEmpresa)
         => _mapper.Map<IEnumerable<CarteiraDto>>(_servicoCarteira.BuscarCarteiras(codigoEmpresa));
 
-        public CarteiraDto BuscarPorCodigo(int id)
-       => _mapper.Map<CarteiraDto>(_servicoCarteira.BuscarPorCodigo(id));        
+        public CarteiraDto BuscarPorCodigo(int idEmpresa, int id)
+        => _mapper.Map<CarteiraDto>(_servicoCarteira.BuscarPorCodigo(idEmpresa, id));
+                
 
         public void Excluir(CarteiraDto carteiraDto)
         => _servicoCarteira.Excluir(_mapper.Map<Carteira>(carteiraDto));

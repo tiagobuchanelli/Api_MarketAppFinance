@@ -1,5 +1,6 @@
 ﻿using Api_MarketAppFinance.Data;
 using Api_MarketAppFinance.Domain.Core.Interfaces.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Api_MarketAppFinance.Infrastructure.Repositories
 {
@@ -47,30 +48,6 @@ namespace Api_MarketAppFinance.Infrastructure.Repositories
                 throw new Exception(e.Message);
             }
         }
-
-        public IEnumerable<TEntity> BuscarTodos()
-        {
-            try
-            {               
-                return _contexto.Set<TEntity>().ToList();
-                
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-        }
-
-        public TEntity BuscarPorCodigo(int id)
-        {
-            try
-            {
-                return _contexto.Set<TEntity>().Find(id);
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-        }
+       
     }
 }

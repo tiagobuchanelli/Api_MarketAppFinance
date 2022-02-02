@@ -15,6 +15,14 @@ namespace Api_MarketAppFinance.Infrastructure.Data.Repositories
             _contexto = sqlContext;
         }
 
+        public FormaPagamento BuscarPorCodigo(int idEmpresa, int codigo)
+        {
+            return _contexto.FormasPagamento.FirstOrDefault(x => x.Id == codigo && x.EmpresaId == idEmpresa);
+        }
+
+        public List<FormaPagamento> BuscarTodos(int idEmpresa)
+        => _contexto.FormasPagamento.Where(x => x.EmpresaId == idEmpresa).ToList();
+
         public List<FormaPagamento> BuscarFormasPagamento(int idEmpresa)
         {
             return _contexto.FormasPagamento.Include(x => x.Empresa).Include(x => x.Carteira).Where(x => x.EmpresaId == idEmpresa).ToList();

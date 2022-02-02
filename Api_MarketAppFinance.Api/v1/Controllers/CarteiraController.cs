@@ -25,17 +25,17 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (carteiraDto is null || carteiraDto.EmpresaId is null) return NotFound("Erro ao buscar carteira!");
+                if (carteiraDto is null || carteiraDto.EmpresaId is null) 
+                    return NotFound("Erro ao buscar carteira!");
 
-                if (string.IsNullOrEmpty(chaveApiEmpresa) || !_empresaAplicacaoServico.ValidarChaveApiEmpresa(Convert.ToInt32(carteiraDto.EmpresaId), chaveApiEmpresa))
+                if (!_empresaAplicacaoServico.ValidarChaveApiEmpresa(Convert.ToInt32(carteiraDto.EmpresaId), chaveApiEmpresa))
                     return NotFound("Erro ao realizar a operação, verifique a chave API da empresa!");
 
-                var carteira = _aplicacaoServico.BuscarPorCodigo(carteiraDto.Id);
+                var carteira = _aplicacaoServico.BuscarPorCodigo(Convert.ToInt32(carteiraDto.EmpresaId), carteiraDto.Id);
 
-                if (carteira is null) return Ok("Nenhuma carteira encontrada!");
-
+                if (carteira is null) 
+                    return Ok("Nenhuma carteira encontrada!");
                 
-
                 return Ok(carteira);
             }
             catch (Exception e)
@@ -52,14 +52,16 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (carteiraDto is null) return NotFound("Erro ao buscar carteiras!");
+                if (carteiraDto is null) 
+                    return NotFound("Erro ao buscar carteiras!");
 
-                if (string.IsNullOrEmpty(chaveApiEmpresa) || !_empresaAplicacaoServico.ValidarChaveApiEmpresa(Convert.ToInt32(carteiraDto.EmpresaId), chaveApiEmpresa))
+                if (!_empresaAplicacaoServico.ValidarChaveApiEmpresa(Convert.ToInt32(carteiraDto.EmpresaId), chaveApiEmpresa))
                     return NotFound("Erro ao realizar a operação, verifique a chave API da empresa!");
 
                 IEnumerable<CarteiraDto> carteiras = _aplicacaoServico.BuscarCarteiras(Convert.ToInt32(carteiraDto.EmpresaId));
 
-                if (!carteiras.Any()) return Ok("Nenhuma carteira encontrada!");
+                if (!carteiras.Any()) 
+                    return Ok("Nenhuma carteira encontrada!");
 
                 return Ok(carteiras);
             }
@@ -75,9 +77,10 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (carteiraDto is null || carteiraDto.Empresa is null) return NotFound("Erro ao cadastrar carteira!");
+                if (carteiraDto is null || carteiraDto.Empresa is null) 
+                    return NotFound("Erro ao cadastrar carteira!");
 
-                if (string.IsNullOrEmpty(chaveApiEmpresa) || !_empresaAplicacaoServico.ValidarChaveApiEmpresa(Convert.ToInt32(carteiraDto.Empresa.Id), chaveApiEmpresa))
+                if (!_empresaAplicacaoServico.ValidarChaveApiEmpresa(Convert.ToInt32(carteiraDto.Empresa.Id), chaveApiEmpresa))
                     return NotFound("Erro ao realizar a operação, verifique a chave API da empresa!");
 
                 return Ok(_aplicacaoServico.Adicionar(carteiraDto));
@@ -94,11 +97,11 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (carteiraDto is null || carteiraDto.Empresa is null) return NotFound("Erro ao atualizar carteira!");
+                if (carteiraDto is null || carteiraDto.Empresa is null) 
+                    return NotFound("Erro ao atualizar carteira!");
 
-                if (string.IsNullOrEmpty(chaveApiEmpresa) || !_empresaAplicacaoServico.ValidarChaveApiEmpresa(Convert.ToInt32(carteiraDto.Empresa.Id), chaveApiEmpresa))
+                if (!_empresaAplicacaoServico.ValidarChaveApiEmpresa(Convert.ToInt32(carteiraDto.Empresa.Id), chaveApiEmpresa))
                     return NotFound("Erro ao realizar a operação, verifique a chave API da empresa!");
-
 
                 return Ok(_aplicacaoServico.Atualizar(carteiraDto));
             }
@@ -114,9 +117,10 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (carteiraDto is null || carteiraDto.Id <= 0 || carteiraDto.Empresa is null) return NotFound("Erro ao excluir carteira!");
+                if (carteiraDto is null || carteiraDto.Id <= 0 || carteiraDto.Empresa is null) 
+                    return NotFound("Erro ao excluir carteira!");
 
-                if (string.IsNullOrEmpty(chaveApiEmpresa) || !_empresaAplicacaoServico.ValidarChaveApiEmpresa(carteiraDto.Empresa.Id, chaveApiEmpresa))
+                if (!_empresaAplicacaoServico.ValidarChaveApiEmpresa(carteiraDto.Empresa.Id, chaveApiEmpresa))
                     return NotFound("Erro ao realizar a operação, verifique a chave API da empresa!");
 
                 _aplicacaoServico.Excluir(carteiraDto);

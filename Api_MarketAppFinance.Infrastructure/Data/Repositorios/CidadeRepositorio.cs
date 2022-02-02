@@ -18,5 +18,15 @@ namespace Api_MarketAppFinance.Infrastructure.Data.Repositories
         {
             return _contexto.Set<Cidade>().FirstOrDefault(x => x.CodigoIbge == codigoIbge);
         }
+
+        public Cidade BuscarPorCodigo(int codigo)
+        {
+            return _contexto.Cidades.FirstOrDefault(x => x.Id == codigo);
+        }
+
+        public List<Cidade> BuscarTodos()
+        {
+            return _contexto.Cidades.ToList();
+        }
     }
 }

@@ -23,5 +23,15 @@ namespace Api_MarketAppFinance.Infrastructure.Data.Repositories
         {
             return _sqlContext.Set<Usuario>().FirstOrDefault(x => x.Email == email);
         }
+
+        public Usuario BuscarPorCodigo(int codigo)
+        {
+            return _contexto.Usuarios.FirstOrDefault(x => x.Id == codigo);
+        }
+
+        public List<Usuario> BuscarTodos()
+        {
+            return _contexto.Usuarios.ToList();
+        }
     }
 }

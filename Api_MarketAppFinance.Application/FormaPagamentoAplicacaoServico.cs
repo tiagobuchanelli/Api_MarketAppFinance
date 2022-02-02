@@ -32,8 +32,8 @@ namespace Api_MarketAppFinance.Application
         public IEnumerable<FormaPagamentoDto> BuscarFormasPagamento(int codigoEmpresa)
         => _mapper.Map<IEnumerable<FormaPagamentoDto>>(_servicoFormaPagamento.BuscarFormasPagamento(codigoEmpresa));
 
-        public FormaPagamentoDto BuscarPorCodigo(int id)
-       => _mapper.Map<FormaPagamentoDto>(_servicoFormaPagamento.BuscarPorCodigo(id));        
+        public FormaPagamentoDto BuscarPorCodigo(int idEmpresa, int id)
+       => _mapper.Map<FormaPagamentoDto>(_servicoFormaPagamento.BuscarPorCodigo(idEmpresa, id));        
 
         public void Excluir(FormaPagamentoDto formaPagamentoDto)
         => _servicoFormaPagamento.Excluir(_mapper.Map<FormaPagamento>(formaPagamentoDto));

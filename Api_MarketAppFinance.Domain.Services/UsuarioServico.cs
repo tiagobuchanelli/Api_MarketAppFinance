@@ -64,7 +64,12 @@ namespace Api_MarketAppFinance.Domain.Services
             return dadosUsuario;
         }
 
-       
+        public List<Usuario> BuscarTodos()
+        => _repositorioUsuario.BuscarTodos();
+
+        public Usuario BuscarPorCodigo(int codigo)
+        => _repositorioUsuario.BuscarPorCodigo(codigo);
+
 
         #endregion
 

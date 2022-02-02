@@ -9,5 +9,7 @@ namespace Api_MarketAppFinance.Domain.Core.Interfaces.Services
         TEntity AtualizarFormaPagamento(TEntity dados);
 
         List<TEntity> BuscarFormasPagamento(int codigoEmpresa);
+
+        TEntity BuscarPorCodigo(int idEmpresa, int codigo);
     }
 }

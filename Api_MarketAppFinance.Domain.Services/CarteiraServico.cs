@@ -11,10 +11,10 @@ namespace Api_MarketAppFinance.Domain.Services
         public CarteiraServico(ICarteiraRepositorio<Carteira> carteiraRepositorio) : base(carteiraRepositorio)
         {
             this._carteiraRepositorio = carteiraRepositorio;
-        }
+        }       
 
         #region Metodos Privados
-        
+
         #endregion
 
         public Carteira AdicionarCarteira(Carteira dadosCarteira)
@@ -32,18 +32,35 @@ namespace Api_MarketAppFinance.Domain.Services
             
         }
 
+        public void Atualizar(FormaPagamento obj)
+        {
+            throw new NotImplementedException();
+        }
+
         public Carteira AtualizarCarteira(Carteira dadosCarteira)
         {
-            var carteira = BuscarPorCodigo(dadosCarteira.Id);
-            carteira.AlterarDescricao(dadosCarteira.Descricao);            
-            carteira.AlterarAbreviacao(dadosCarteira.Abreviacao);
+            var carteira = BuscarPorCodigo(dadosCarteira.EmpresaId, dadosCarteira.Id);
 
-            Atualizar(carteira);
+            if(carteira is not null)
+            {
+                carteira.AlterarDescricao(dadosCarteira.Descricao);
+                carteira.AlterarAbreviacao(dadosCarteira.Abreviacao);
+
+                Atualizar(carteira);
+            }            
 
             return carteira;
         }
 
         public List<Carteira> BuscarCarteiras(int codigoEmpresa)
         => _carteiraRepositorio.BuscarCarteiras(codigoEmpresa);
+
+        public Carteira BuscarPorCodigo(int codigoEmpresa, int codigo)
+        => _carteiraRepositorio.BuscarPorCodigo(codigoEmpresa, codigo);
+
+        public void Excluir(FormaPagamento obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

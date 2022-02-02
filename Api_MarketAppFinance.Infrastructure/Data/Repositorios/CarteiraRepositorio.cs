@@ -15,6 +15,14 @@ namespace Api_MarketAppFinance.Infrastructure.Data.Repositories
             _contexto = sqlContext;
         }
 
+        public Carteira BuscarPorCodigo(int idEmpresa, int codigo)
+        {
+            return _contexto.Carteiras.FirstOrDefault(x => x.Id == codigo && x.EmpresaId == idEmpresa);
+        }
+
+        public List<Carteira> BuscarTodos(int idEmpresa)
+        => _contexto.Carteiras.Where(x => x.EmpresaId == idEmpresa).ToList();
+
         public List<Carteira> BuscarCarteiras(int idEmpresa)
         {
             return _contexto.Carteiras.Include(x => x.Empresa).Where(x => x.EmpresaId == idEmpresa).ToList();

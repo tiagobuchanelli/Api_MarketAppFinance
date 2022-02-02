@@ -12,5 +12,9 @@ namespace Api_MarketAppFinance.Domain.Core.Interfaces.Services
 
         string GerarToken(string dados);
 
+        List<TEntity> BuscarTodos();
+
+        TEntity BuscarPorCodigo(int codigo);
+
     }
 }

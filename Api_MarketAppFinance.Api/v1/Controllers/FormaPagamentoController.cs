@@ -26,14 +26,16 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try                
             {
-                if (formaPagamentoDto is null || formaPagamentoDto.EmpresaId is null) return Ok("Nenhuma forma de pagamento encontrada!");
+                if (formaPagamentoDto is null || formaPagamentoDto.EmpresaId is null) 
+                    return Ok("Nenhuma forma de pagamento encontrada!");
 
-                if (string.IsNullOrEmpty(chaveApiEmpresa) || !_empresaAplicacaoServico.ValidarChaveApiEmpresa(Convert.ToInt32(formaPagamentoDto.EmpresaId), chaveApiEmpresa))
+                if (!_empresaAplicacaoServico.ValidarChaveApiEmpresa(Convert.ToInt32(formaPagamentoDto.EmpresaId), chaveApiEmpresa))
                     return NotFound("Erro ao realizar a operação, verifique a chave API da empresa!");
 
-                var formaPagamento = _aplicacaoServico.BuscarPorCodigo(formaPagamentoDto.Id);
+                var formaPagamento = _aplicacaoServico.BuscarPorCodigo(Convert.ToInt32(formaPagamentoDto.EmpresaId), formaPagamentoDto.Id);
 
-                if (formaPagamento is null) return Ok("Nenhuma carteira encontrada!");
+                if (formaPagamento is null) 
+                    return Ok("Nenhuma carteira encontrada!");
 
                 return Ok(formaPagamento);
             }
@@ -51,14 +53,16 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (formaPagamentoDto is null) return NotFound("Erro ao buscar formas de pagamento!");
+                if (formaPagamentoDto is null) 
+                    return NotFound("Erro ao buscar formas de pagamento!");
                 
-                if(string.IsNullOrEmpty(chaveApiEmpresa) || !_empresaAplicacaoServico.ValidarChaveApiEmpresa(Convert.ToInt32(formaPagamentoDto.EmpresaId), chaveApiEmpresa))
+                if(!_empresaAplicacaoServico.ValidarChaveApiEmpresa(Convert.ToInt32(formaPagamentoDto.EmpresaId), chaveApiEmpresa))
                     return NotFound("Erro ao realizar a operação, verifique a chave API da empresa!");
 
                 IEnumerable<FormaPagamentoDto> formasPagamento = _aplicacaoServico.BuscarFormasPagamento(Convert.ToInt32(formaPagamentoDto.EmpresaId));
 
-                if (!formasPagamento.Any()) return Ok("Nenhuma formas de pagamento encontrada!");
+                if (!formasPagamento.Any()) 
+                    return Ok("Nenhuma formas de pagamento encontrada!");
 
                 return Ok(formasPagamento);
             }
@@ -74,9 +78,10 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (formaPagamentoDto is null || formaPagamentoDto.Empresa is null) return NotFound("Erro ao cadastrar forma de pagamento!");
+                if (formaPagamentoDto is null || formaPagamentoDto.Empresa is null) 
+                    return NotFound("Erro ao cadastrar forma de pagamento!");
 
-                if (string.IsNullOrEmpty(chaveApiEmpresa) || !_empresaAplicacaoServico.ValidarChaveApiEmpresa(Convert.ToInt32(formaPagamentoDto.Empresa.Id), chaveApiEmpresa))
+                if (!_empresaAplicacaoServico.ValidarChaveApiEmpresa(Convert.ToInt32(formaPagamentoDto.Empresa.Id), chaveApiEmpresa))
                     return NotFound("Erro ao realizar a operação, verifique a chave API da empresa!");
 
                 return Ok(_aplicacaoServico.Adicionar(formaPagamentoDto));
@@ -93,9 +98,10 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (formaPagamentoDto is null || formaPagamentoDto.Empresa is null) return NotFound("Erro ao cadastrar forma de pagamento!");
+                if (formaPagamentoDto is null || formaPagamentoDto.Empresa is null) 
+                    return NotFound("Erro ao cadastrar forma de pagamento!");
 
-                if (string.IsNullOrEmpty(chaveApiEmpresa) || !_empresaAplicacaoServico.ValidarChaveApiEmpresa(Convert.ToInt32(formaPagamentoDto.Empresa.Id), chaveApiEmpresa))
+                if (!_empresaAplicacaoServico.ValidarChaveApiEmpresa(Convert.ToInt32(formaPagamentoDto.Empresa.Id), chaveApiEmpresa))
                     return NotFound("Erro ao realizar a operação, verifique a chave API da empresa!");
 
                 return Ok(_aplicacaoServico.Atualizar(formaPagamentoDto));
@@ -112,9 +118,10 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (formaPagamentoDto is null || formaPagamentoDto.Id <= 0 || formaPagamentoDto.Empresa is null) return NotFound("Erro ao excluir forma de pagamento!");
+                if (formaPagamentoDto is null || formaPagamentoDto.Id <= 0 || formaPagamentoDto.Empresa is null) 
+                    return NotFound("Erro ao excluir forma de pagamento!");
 
-                if (string.IsNullOrEmpty(chaveApiEmpresa) || !_empresaAplicacaoServico.ValidarChaveApiEmpresa(formaPagamentoDto.Empresa.Id, chaveApiEmpresa))
+                if (!_empresaAplicacaoServico.ValidarChaveApiEmpresa(formaPagamentoDto.Empresa.Id, chaveApiEmpresa))
                     return NotFound("Erro ao realizar a operação, verifique a chave API da empresa!");
 
                 _aplicacaoServico.Excluir(formaPagamentoDto);

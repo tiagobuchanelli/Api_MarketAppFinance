@@ -79,7 +79,7 @@ namespace Api_MarketAppFinance.Data
             return base.SaveChanges();
         }
 
-        public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
         public DbSet<Cidade> Cidades { get; set; }
 

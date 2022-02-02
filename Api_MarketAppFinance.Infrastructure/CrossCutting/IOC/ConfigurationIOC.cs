@@ -28,7 +28,7 @@ namespace Api_MarketAppFinance.Infrastructure.CrossCutting.IOC
 
             //mapeamento Service
             builder.RegisterType<UsuarioServico>().As<IUsuarioServico<Usuario>>();
-            builder.RegisterType<CidadeServico>().As<ICidadeSErvico<Cidade>>();
+            builder.RegisterType<CidadeServico>().As<ICidadeServico<Cidade>>();
             builder.RegisterType<EmpresaServico>().As<IEmpresaServico<Empresa>>();
             builder.RegisterType<CarteiraServico>().As<ICarteiraServico<Carteira>>();
             builder.RegisterType<FormaPagamentoServico>().As<IFormaPagamentoServico<FormaPagamento>>();

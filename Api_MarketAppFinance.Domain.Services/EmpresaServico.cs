@@ -80,6 +80,11 @@ namespace Api_MarketAppFinance.Domain.Services
             return false;
         }
 
+        public List<Empresa> BuscarTodos()
+        => _repositorioEmpresa.BuscarTodos();
+
+        public Empresa BuscarPorCodigo(int codigo)
+        => _repositorioEmpresa.BuscarPorCodigo(codigo);
 
 
         #endregion

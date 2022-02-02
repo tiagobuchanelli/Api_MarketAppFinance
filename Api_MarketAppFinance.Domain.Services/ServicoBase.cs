@@ -26,15 +26,6 @@ namespace Api_MarketAppFinance.Domain.Services
         {
             _repository.Excluir(obj);
         }
-
-        public IEnumerable<TEntity> BuscarTodos()
-        {
-            return _repository.BuscarTodos();
-        }
-
-        public TEntity BuscarPorCodigo(int id)
-        {
-            return _repository.BuscarPorCodigo(id);
-        }
+       
     }
 }
