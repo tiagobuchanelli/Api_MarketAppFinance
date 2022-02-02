@@ -15,6 +15,6 @@ Api de projeto "Não Real" simulando um ERP, com recursos e rotinas básicas, co
 - .Net 6
 
 # Integrações
-Objetivo da Api é servir de integração de mais dois projeto: 
+Objetivo da Api é servir de integração aos projetos: 
 - Front: Angular
 - Mobile: Flutter
