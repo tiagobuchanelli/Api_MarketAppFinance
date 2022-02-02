@@ -3,7 +3,7 @@
 - Projeto em andamento
 
 # Resumo
-Api de um projeto "Não Real" simulando um ERP, com recursos e rotinas básicas, como:
+Api de projeto "Não Real" simulando um ERP, com recursos e rotinas básicas, como:
 - Estoque: Cadastros de Proudos, Categorias, Marcas, Movimentações de Estoque, etc..
 - Financeiro: Contas à Pagar/Receber, Vendas, Formas de Pagamento, Carteiras, etc..
 - Cadastros de Clientes e Usuários.
