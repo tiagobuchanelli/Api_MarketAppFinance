@@ -11,12 +11,22 @@ namespace Api_MarketAppFinance.Api.Controllers
     [ApiController]
     public class UsuarioController : Controller
     {
+        #region Atributos Privados
+
         private readonly IUsuarioAplicacaoServico _applicacaoServico;
+
+        #endregion
+
+        #region Construtores
 
         public UsuarioController(IUsuarioAplicacaoServico aplicacaoServico)
         {
             _applicacaoServico = aplicacaoServico;
         }
+
+        #endregion
+
+        #region Metodos Publicos
 
         [HttpGet]
         [Authorize]
@@ -98,5 +108,7 @@ namespace Api_MarketAppFinance.Api.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        #endregion
     }
 }

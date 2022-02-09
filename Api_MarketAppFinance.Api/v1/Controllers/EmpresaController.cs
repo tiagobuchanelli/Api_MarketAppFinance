@@ -11,12 +11,22 @@ namespace Api_MarketAppFinance.Api.Controllers
     [ApiController]
     public class EmpresaController : Controller
     {
+        #region Atributos Privados
+
         private readonly IEmpresaAplicacaoServico _applicacaoServico;
+
+        #endregion
+
+        #region Construtores
 
         public EmpresaController(IEmpresaAplicacaoServico aplicacaoServico)
         {
             _applicacaoServico = aplicacaoServico;
         }
+
+        #endregion
+
+        #region Metodos Publicos
 
         [HttpGet]
         [Authorize]
@@ -116,5 +126,6 @@ namespace Api_MarketAppFinance.Api.Controllers
                 return BadRequest(e.Message);
             }
         }
+        #endregion
     }
 }

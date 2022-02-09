@@ -5,17 +5,26 @@ using Newtonsoft.Json;
 using System.Text.Json;
 
 namespace Api_MarketAppFinance.Api.Controllers
-{
+{    
     [Route("v1/autenticacao")]
     [ApiController]
     public class AutenticacaoController : Controller
     {
+        #region Metodos Privados
+
         private readonly IUsuarioAplicacaoServico _applicacaoServico;
+
+        #endregion
+
+        #region Construtores
 
         public AutenticacaoController(IUsuarioAplicacaoServico aplicacaoServico)
         {
             _applicacaoServico = aplicacaoServico;
-        }        
+        }
+        #endregion
+
+        #region Metodos Publicos
 
         [HttpPost]
         [Route("login")]
@@ -23,7 +32,7 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (usuarioDto.Email is not null) 
+                if (usuarioDto.Email is not null)
                     return NotFound("Erro ao logar usuário!");
 
                 return Ok(_applicacaoServico.Autenticar(usuarioDto));
@@ -34,6 +43,9 @@ namespace Api_MarketAppFinance.Api.Controllers
             }
         }
 
-        
+        #endregion
+
+
+
     }
 }

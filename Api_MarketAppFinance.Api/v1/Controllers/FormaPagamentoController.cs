@@ -9,15 +9,22 @@ namespace Api_MarketAppFinance.Api.Controllers
     [ApiController]
     public class FormaPagamentoController : Controller
     {
-        private readonly IFormaPagamentoAplicacaoServico _aplicacaoServico;
+        #region Atributos Privados
 
+        private readonly IFormaPagamentoAplicacaoServico _aplicacaoServico;
         private readonly IEmpresaAplicacaoServico _empresaAplicacaoServico;
+
+        #endregion
+
+        #region Construtores
 
         public FormaPagamentoController(IFormaPagamentoAplicacaoServico aplicacaoServico, IEmpresaAplicacaoServico empresaAplicacaoServico)
         {
             _aplicacaoServico = aplicacaoServico;
             _empresaAplicacaoServico = empresaAplicacaoServico;
         }
+
+        #endregion
 
         #region Metodos Privados
         private void ValidarAutorizacaoEmpresa(int idEmpresa, string chaveApi)

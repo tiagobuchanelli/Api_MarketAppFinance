@@ -9,13 +9,22 @@ namespace Api_MarketAppFinance.Api.Controllers
     [ApiController]
     public class CidadeController : Controller
     {
+        #region Metodos Privados
+
         private readonly ICidadeAplicacaoServico _aplicacaoServico;
+
+        #endregion
+
+        #region Construtores
 
         public CidadeController(ICidadeAplicacaoServico aplicacaoServico)
         {
             _aplicacaoServico = aplicacaoServico;
-        }      
+        }
 
+        #endregion
+
+        #region Metodos Publicos
 
         [HttpGet]
         [Authorize]
@@ -96,5 +105,6 @@ namespace Api_MarketAppFinance.Api.Controllers
                 return BadRequest(e.Message);
             }
         }
+        #endregion
     }
 }

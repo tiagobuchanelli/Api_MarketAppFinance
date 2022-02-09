@@ -9,14 +9,21 @@ namespace Api_MarketAppFinance.Api.Controllers
     [ApiController]
     public class CarteiraController : Controller
     {
+        #region Atributos Privados
+
         private readonly ICarteiraAplicacaoServico _aplicacaoServico;
         private readonly IEmpresaAplicacaoServico _empresaServico;
+
+        #endregion
+
+        #region Construtores
 
         public CarteiraController(ICarteiraAplicacaoServico aplicacaoServico, IEmpresaAplicacaoServico empresaAplicacaoServico)
         {
             _aplicacaoServico = aplicacaoServico;
             _empresaServico = empresaAplicacaoServico;
         }
+        #endregion
 
         #region Metodos Privados
         private void ValidarAutorizacaoEmpresa(int idEmpresa, string chaveApi)
