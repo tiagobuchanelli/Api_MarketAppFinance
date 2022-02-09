@@ -23,19 +23,14 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (usuarioDto is null) 
+                if (usuarioDto.Email is not null) 
                     return NotFound("Erro ao logar usuário!");
 
-                var dadosUsuario = _applicacaoServico.Autenticar(usuarioDto);
-
-                if (dadosUsuario is null) 
-                    return NotFound("Usuário ou senha inválidos!");
-                                
-                return Ok(dadosUsuario);
+                return Ok(_applicacaoServico.Autenticar(usuarioDto));
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao cadastrar Usuário: " + "\n" + e.Message);
+                return BadRequest(e.Message);
             }
         }
 

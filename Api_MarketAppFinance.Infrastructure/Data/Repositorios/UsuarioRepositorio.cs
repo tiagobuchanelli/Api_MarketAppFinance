@@ -16,22 +16,71 @@ namespace Api_MarketAppFinance.Infrastructure.Data.Repositories
 
         public Usuario BuscarUsuarioPorDocumento(string numeroDoc)
         {
-            return _contexto.Set<Usuario>().FirstOrDefault(x => x.NumeroDocumento == numeroDoc);
+            try
+            {
+                var dados = _contexto.Usuarios.FirstOrDefault(x => x.NumeroDocumento == numeroDoc);
+
+                if (dados is null)
+                    throw new Exception("Nenhuma cidade encontrada");
+
+                return dados;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+
         }
 
         public Usuario BuscarUsuarioPorEmail(string email)
         {
-            return _sqlContext.Set<Usuario>().FirstOrDefault(x => x.Email == email);
+            try
+            {
+                var dados = _sqlContext.Usuarios.FirstOrDefault(x => x.Email == email);
+
+                if (dados is null)
+                    throw new Exception("Nenhuma cidade encontrada");
+
+                return dados;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public Usuario BuscarPorCodigo(int codigo)
         {
-            return _contexto.Usuarios.FirstOrDefault(x => x.Id == codigo);
+            try
+            {
+                var dados = _contexto.Usuarios.FirstOrDefault(x => x.Id == codigo);
+
+                if (dados is null)
+                    throw new Exception("Nenhuma cidade encontrada");
+
+                return dados;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public List<Usuario> BuscarTodos()
         {
-            return _contexto.Usuarios.ToList();
+            try
+            {
+                var dados = _contexto.Usuarios.ToList();
+
+                if (dados is null)
+                    throw new Exception("Nenhuma cidade encontrada");
+
+                return dados;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
     }
 }

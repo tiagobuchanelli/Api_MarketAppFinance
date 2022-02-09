@@ -16,6 +16,6 @@ namespace Api_MarketAppFinance.Application.Interfaces
 
         EmpresaDto BuscarInformacoesEmpresa(string documento);
 
-        bool ValidarChaveApiEmpresa(int idEmpresa, string chave);
+        bool Autorizacao(int idEmpresa, string chave);
     }
 }

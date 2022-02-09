@@ -23,16 +23,12 @@ namespace Api_MarketAppFinance.Api.Controllers
         public ActionResult<IEnumerable<string>> BuscarTodos()
         {           
             try
-            {
-                var usuarios = _applicacaoServico.BuscarTodos();
-
-                if (usuarios is null) return Ok("Nenhum usuário encontrado!");
-
-                return Ok(usuarios);                
+            {   
+                return Ok(_applicacaoServico.BuscarTodos());                
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao buscar usuários: " + "\n" + e.Message);
+                return BadRequest(e.Message);
             }
 
         }
@@ -43,15 +39,11 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                var usuario = _applicacaoServico.BuscarPorCodigo(id);
-
-                if (usuario is null) return Ok("Nenhum usuário encontrado!");
-
-                return Ok(usuario);
+                return Ok(_applicacaoServico.BuscarPorCodigo(id));
             }
            catch (Exception e)
             {
-                return BadRequest("Erro ao buscar usuário: " + "\n" + e.Message);
+                return BadRequest(e.Message);
             }
         }
 
@@ -61,13 +53,14 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (usuarioDto is null) return NotFound("Erro ao cadastrar usuário!");
-                
+                if (usuarioDto is null)
+                    throw new Exception("Dados inválidos!");
+
                 return Ok(_applicacaoServico.Adicionar(usuarioDto));
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao cadastrar Usuário: " + "\n" + e.Message);
+                return BadRequest(e.Message);
             }
         }
 
@@ -77,13 +70,14 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (usuarioDto is null || usuarioDto.Id <= 0) return NotFound("Erro ao atualizar usuário!");
+                if (usuarioDto is null || usuarioDto.Id <= 0)
+                    throw new Exception("Dados inválidos!");
 
                 return Ok(_applicacaoServico.Atualizar(usuarioDto));
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao atualizar Usuário: " + "\n" + e.Message);
+                return BadRequest(e.Message);
             }
         }
 
@@ -93,14 +87,15 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (usuarioDto is null || usuarioDto.Id <= 0) return NotFound("Erro ao excluir usuário!");
+                if (usuarioDto is null || usuarioDto.Id <= 0)
+                    throw new Exception("Dados inválidos!");
 
                 _applicacaoServico.Excluir(usuarioDto);
                 return Ok("Usuário Removido com sucesso!");
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao excluir Usuário: " + "\n" + e.Message);
+                return BadRequest(e.Message);
             }
         }
     }

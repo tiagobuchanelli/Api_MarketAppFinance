@@ -16,17 +16,53 @@ namespace Api_MarketAppFinance.Infrastructure.Data.Repositories
 
         public Cidade BuscarCidadePorCodigoIbge(string codigoIbge)
         {
-            return _contexto.Set<Cidade>().FirstOrDefault(x => x.CodigoIbge == codigoIbge);
+            try
+            {
+                var dados = _contexto.Cidades.FirstOrDefault(x => x.CodigoIbge == codigoIbge);
+
+                if (dados is null)
+                    throw new Exception("Nenhuma cidade encontrada");
+
+                return dados;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public Cidade BuscarPorCodigo(int codigo)
         {
-            return _contexto.Cidades.FirstOrDefault(x => x.Id == codigo);
+            try
+            {
+                var dados = _contexto.Cidades.FirstOrDefault(x => x.Id == codigo);
+
+                if (dados is null)
+                    throw new Exception("Nenhuma cidade encontrada");
+
+                return dados;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public List<Cidade> BuscarTodos()
         {
-            return _contexto.Cidades.ToList();
+            try
+            {
+                var dados = _contexto.Cidades.ToList();
+
+                if (dados is null || dados.Count == 0)
+                    throw new Exception("Nenhuma cidade encontrada");
+
+                return dados;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
     }
 }

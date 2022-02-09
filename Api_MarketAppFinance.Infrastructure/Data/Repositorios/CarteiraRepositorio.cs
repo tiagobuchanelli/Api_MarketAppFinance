@@ -16,16 +16,37 @@ namespace Api_MarketAppFinance.Infrastructure.Data.Repositories
         }
 
         public Carteira BuscarPorCodigo(int idEmpresa, int codigo)
-        {
-            return _contexto.Carteiras.FirstOrDefault(x => x.Id == codigo && x.EmpresaId == idEmpresa);
-        }
+        {            
+            try
+            {
+                var dados = _contexto.Carteiras.FirstOrDefault(x => x.Id == codigo && x.EmpresaId == idEmpresa);
 
-        public List<Carteira> BuscarTodos(int idEmpresa)
-        => _contexto.Carteiras.Where(x => x.EmpresaId == idEmpresa).ToList();
+                if (dados is null)
+                    throw new Exception("Nenhuma carteira encontrada");
+
+                return dados;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }        
 
         public List<Carteira> BuscarCarteiras(int idEmpresa)
-        {
-            return _contexto.Carteiras.Include(x => x.Empresa).Where(x => x.EmpresaId == idEmpresa).ToList();
+        {   
+            try
+            {
+                var dados = _contexto.Carteiras.Include(x => x.Empresa).Where(x => x.EmpresaId == idEmpresa).ToList();
+
+                if (dados is null || dados.Count == 0)
+                    throw new Exception("Nenhuma carteira encontrada");
+
+                return dados;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
     }
 }

@@ -7,8 +7,6 @@ namespace Api_MarketAppFinance.Domain.Interrfaces.Repositories
     {
         TEntity BuscarPorCodigo(int idEmpresa, int codigo);
 
-        List<TEntity> BuscarTodos(int idEmpresa);
-
         List<TEntity> BuscarCarteiras(int idEmpresa);
     }
 }

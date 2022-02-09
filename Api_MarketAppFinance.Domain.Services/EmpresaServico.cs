@@ -74,10 +74,10 @@ namespace Api_MarketAppFinance.Domain.Services
         public bool ValidarChaveApiEmpresa(int idEmpresa, string chave)
         {
             var dados = _repositorioEmpresa.BuscarPorCodigo(idEmpresa);
-            if (dados.ChaveApi == chave)
-                return true;
+            if (dados.ChaveApi != chave)
+                throw new Exception("Erro ao realizar a operação, verifique a chave API da empresa!");
 
-            return false;
+            return (dados.ChaveApi == chave);
         }
 
         public List<Empresa> BuscarTodos()

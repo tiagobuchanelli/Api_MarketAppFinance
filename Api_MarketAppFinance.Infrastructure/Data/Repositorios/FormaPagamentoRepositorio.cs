@@ -17,15 +17,53 @@ namespace Api_MarketAppFinance.Infrastructure.Data.Repositories
 
         public FormaPagamento BuscarPorCodigo(int idEmpresa, int codigo)
         {
-            return _contexto.FormasPagamento.FirstOrDefault(x => x.Id == codigo && x.EmpresaId == idEmpresa);
+            try
+            {
+                var dados = _contexto.FormasPagamento.FirstOrDefault(x => x.Id == codigo && x.EmpresaId == idEmpresa);
+
+                if (dados is null)
+                    throw new Exception("Nenhuma forma de pagamento encontrada");
+
+                return dados;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public List<FormaPagamento> BuscarTodos(int idEmpresa)
-        => _contexto.FormasPagamento.Where(x => x.EmpresaId == idEmpresa).ToList();
+        {
+            try
+            {
+                var dados = _contexto.FormasPagamento.Where(x => x.EmpresaId == idEmpresa).ToList();
+
+                if (dados is null || dados.Count == 0)
+                    throw new Exception("Nenhuma forma de pagamento encontrada");
+
+                return dados;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
 
         public List<FormaPagamento> BuscarFormasPagamento(int idEmpresa)
         {
-            return _contexto.FormasPagamento.Include(x => x.Empresa).Include(x => x.Carteira).Where(x => x.EmpresaId == idEmpresa).ToList();
+            try
+            {
+                var dados = _contexto.FormasPagamento.Include(x => x.Empresa).Include(x => x.Carteira).Where(x => x.EmpresaId == idEmpresa).ToList();
+
+                if (dados is null || dados.Count == 0)
+                    throw new Exception("Nenhuma forma de pagamento encontrada");
+
+                return dados;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
     }
 }

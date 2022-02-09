@@ -14,7 +14,8 @@ namespace Api_MarketAppFinance.Api.Controllers
         public CidadeController(ICidadeAplicacaoServico aplicacaoServico)
         {
             _aplicacaoServico = aplicacaoServico;
-        }
+        }      
+
 
         [HttpGet]
         [Authorize]
@@ -22,15 +23,11 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                IEnumerable<CidadeDto> cidades = _aplicacaoServico.BuscarTodos();
-
-                if (!cidades.Any()) return Ok("Nenhuma cidade encontrada!");
-
-                return Ok(cidades);
+                return Ok(_aplicacaoServico.BuscarTodos());
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao buscar cidades: " + "\n" + e.Message);
+                return BadRequest(e.Message);
             }
         }
 
@@ -40,15 +37,11 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                var cidade = _aplicacaoServico.BuscarPorCodigo(id);
-
-                if (cidade is null) return Ok("Nenhuma cidade encontrada!");
-
-                return Ok(cidade);
+                return Ok(_aplicacaoServico.BuscarPorCodigo(id));
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao buscar cidade: " + "\n" + e.Message);
+                return BadRequest(e.Message);
             }
         }
 
@@ -58,13 +51,14 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (cidadeDto is null) return NotFound("Erro ao cadastrar cidade!");
+                if (cidadeDto is null) 
+                    throw new Exception("Dados inválidos!");
 
                 return Ok(_aplicacaoServico.Adicionar(cidadeDto));
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao cadastrar cidade: " + "\n" + e.Message);
+                return BadRequest(e.Message);
             }
         }
 
@@ -74,13 +68,14 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (cidadeDto is null) return NotFound("Erro ao atualizar cidade!");
+                if (cidadeDto is null) 
+                    throw new Exception("Dados inválidos!");
 
                 return Ok(_aplicacaoServico.Atualizar(cidadeDto));
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao atualizar cidade: " + "\n" + e.Message);
+                return BadRequest(e.Message);
             }
         }
 
@@ -90,14 +85,15 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (cidadeDto is null || cidadeDto.Id <= 0) return NotFound("Erro ao excluir cidade!");
-                 
+                if (cidadeDto is null || cidadeDto.Id <= 0) 
+                    throw new Exception("Dados inválidos!");
+
                 _aplicacaoServico.Excluir(cidadeDto);
                 return Ok("Cidade Removida com sucesso!");
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao excluir cidade: " + "\n" + e.Message);
+                return BadRequest(e.Message);
             }
         }
     }

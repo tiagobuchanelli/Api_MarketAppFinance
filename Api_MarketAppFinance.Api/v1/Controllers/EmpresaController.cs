@@ -23,16 +23,12 @@ namespace Api_MarketAppFinance.Api.Controllers
         public ActionResult<IEnumerable<string>> BuscarTodos()
         {           
             try
-            {                
-                var empresas = _applicacaoServico.BuscarTodos();
-
-                if (empresas is null) return Ok("Nenhuma empresa encontrada!");
-
-                return Ok(empresas);                
+            {   
+                return Ok(_applicacaoServico.BuscarTodos());                
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao buscar empresa: " + "\n" + e.Message);
+                return BadRequest(e.Message);
             }
 
         }
@@ -43,15 +39,11 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                var empresa = _applicacaoServico.BuscarPorCodigo(id);
-
-                if (empresa is null) return Ok("Nenhuma empresa encontrada!");
-                
-                return Ok(empresa);
+                return Ok(_applicacaoServico.BuscarPorCodigo(id));
             }
            catch (Exception e)
             {
-                return BadRequest("Erro ao buscar empresa: " + "\n" + e.Message);
+                return BadRequest(e.Message);
             }
         }        
         
@@ -62,17 +54,14 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (empresaDto is null || string.IsNullOrEmpty(empresaDto.Documento)) return NotFound("Erro ao buscar empresa!");
+                if (empresaDto is null || string.IsNullOrEmpty(empresaDto.Documento))
+                    throw new Exception("Dados inválidos!");
 
-                var empresa = _applicacaoServico.BuscarInformacoesEmpresa(empresaDto.Documento);
-
-                if (empresa is null) return Ok("Nenhuma empresa encontrada!");
-
-                return Ok(empresa);
+                return Ok(_applicacaoServico.BuscarInformacoesEmpresa(empresaDto.Documento));
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao buscar empresa: " + "\n" + e.Message);
+                return BadRequest(e.Message);
             }
         }
 
@@ -82,13 +71,14 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (empresaDto is null || empresaDto.Documento is null) return NotFound("Erro ao cadastrar empresa!");
-                
+                if (empresaDto is null || empresaDto.Documento is null) 
+                    throw new Exception("Dados inválidos!");
+
                 return Ok(_applicacaoServico.Adicionar(empresaDto));
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao cadastrar empresa: " + "\n" + e.Message);
+                return BadRequest(e.Message);
             }
         }
 
@@ -98,13 +88,14 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (empresaDto is null || empresaDto.Id <= 0) return NotFound("Erro ao atualizar empresa!");
+                if (empresaDto is null || empresaDto.Id <= 0) 
+                    throw new Exception("Dados inválidos!");
 
                 return Ok(_applicacaoServico.Atualizar(empresaDto));
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao atualizar empresa: " + "\n" + e.Message);
+                return BadRequest(e.Message);
             }
         }
 
@@ -114,14 +105,15 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (empresaDto is null || empresaDto.Id <= 0) return NotFound("Erro ao excluir empresa!");
+                if (empresaDto is null || empresaDto.Id <= 0) 
+                    throw new Exception("Dados inválidos!");
 
                 _applicacaoServico.Excluir(empresaDto);
                 return Ok("Empresa Removida com sucesso!");
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao excluir Empresa: " + "\n" + e.Message);
+                return BadRequest(e.Message);
             }
         }
     }

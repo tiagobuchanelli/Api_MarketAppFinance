@@ -16,7 +16,19 @@ namespace Api_MarketAppFinance.Infrastructure.Data.Repositories
 
         public List<Licenca> BuscarLicencaPorEmpresa(int codigoEmpresa)
         {
-           return _sqlContext.Licensas.Where(x => x.EmpresaId == codigoEmpresa).ToList();
+            try
+            {
+                var dados = _sqlContext.Licensas.Where(x => x.EmpresaId == codigoEmpresa).ToList();
+
+                if (dados is null || dados.Count == 0)
+                    throw new Exception("Nenhuma cidade encontrada");
+
+                return dados;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
     }
 }

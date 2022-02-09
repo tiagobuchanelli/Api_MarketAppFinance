@@ -17,13 +17,9 @@ namespace MarketAppFinanceSApi_MarketAppFinanceervice.Application
             _mapper = mapper;
         }        
 
-        public UsuarioDto? Autenticar(UsuarioDto userDto)
+        public UsuarioDto Autenticar(UsuarioDto userDto)
         {
             var dados = _mapper.Map<UsuarioDto>(_servicoUsuario.BuscarUsuarioPorEmail(userDto.Email));
-
-            if (dados is null)
-                return null;
-           
 
             dados.Token = _servicoUsuario.GerarToken(userDto.Email);
             dados.Senha = null;

@@ -16,16 +16,55 @@ namespace Api_MarketAppFinance.Infrastructure.Data.Repositories
         }
 
         public Empresa BuscarInformacoesEmpresa(string documento)
-        => _sqlContext.Empresas.Include(x => x.Usuario).Include(x => x.Licencas).FirstOrDefault(x => x.NumeroDocumento == documento);
+        {
+            try
+            {
+                var dados = _sqlContext.Empresas.Include(x => x.Usuario).Include(x => x.Licencas).FirstOrDefault(x => x.NumeroDocumento == documento);
+
+                if (dados is null)
+                    throw new Exception("Nenhuma empresa encontrada");
+
+                return dados;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            
+        }
 
         public Empresa BuscarPorCodigo(int codigo)
         {
-            return _contexto.Empresas.FirstOrDefault(x => x.Id == codigo);
+            try
+            {
+                var dados = _contexto.Empresas.FirstOrDefault(x => x.Id == codigo);
+
+                if (dados is null)
+                    throw new Exception("Nenhuma empresa encontrada");
+
+                return dados;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public List<Empresa> BuscarTodos()
         {
-            return _contexto.Empresas.ToList();
+            try
+            {
+                var dados = _contexto.Empresas.ToList();
+
+                if (dados is null)
+                    throw new Exception("Nenhuma empresa encontrada");
+
+                return dados;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
 

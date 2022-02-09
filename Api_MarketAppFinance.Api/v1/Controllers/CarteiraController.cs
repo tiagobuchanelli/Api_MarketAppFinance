@@ -10,13 +10,22 @@ namespace Api_MarketAppFinance.Api.Controllers
     public class CarteiraController : Controller
     {
         private readonly ICarteiraAplicacaoServico _aplicacaoServico;
-        private readonly IEmpresaAplicacaoServico _empresaAplicacaoServico;
+        private readonly IEmpresaAplicacaoServico _empresaServico;
 
         public CarteiraController(ICarteiraAplicacaoServico aplicacaoServico, IEmpresaAplicacaoServico empresaAplicacaoServico)
         {
             _aplicacaoServico = aplicacaoServico;
-            _empresaAplicacaoServico = empresaAplicacaoServico;
+            _empresaServico = empresaAplicacaoServico;
         }
+
+        #region Metodos Privados
+        private void ValidarAutorizacaoEmpresa(int idEmpresa, string chaveApi)
+        {
+            _empresaServico.Autorizacao(idEmpresa, chaveApi);
+        }
+        #endregion
+
+        #region Metodos Publicos
 
         [HttpPost]
         [Route("codigo")]
@@ -26,24 +35,17 @@ namespace Api_MarketAppFinance.Api.Controllers
             try
             {
                 if (carteiraDto is null || carteiraDto.EmpresaId is null) 
-                    return NotFound("Erro ao buscar carteira!");
+                    throw new Exception("Dados inválidos!");
 
-                if (!_empresaAplicacaoServico.ValidarChaveApiEmpresa(Convert.ToInt32(carteiraDto.EmpresaId), chaveApiEmpresa))
-                    return NotFound("Erro ao realizar a operação, verifique a chave API da empresa!");
-
-                var carteira = _aplicacaoServico.BuscarPorCodigo(Convert.ToInt32(carteiraDto.EmpresaId), carteiraDto.Id);
-
-                if (carteira is null) 
-                    return Ok("Nenhuma carteira encontrada!");
+                ValidarAutorizacaoEmpresa(Convert.ToInt32(carteiraDto.EmpresaId), chaveApiEmpresa);               
                 
-                return Ok(carteira);
+                return Ok(_aplicacaoServico.BuscarPorCodigo(Convert.ToInt32(carteiraDto.EmpresaId), carteiraDto.Id));
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao buscar carteira: " + "\n" + e.Message);
+                return BadRequest(e.Message);
             }
-        }
-
+        }        
 
         [HttpPost]
         [Route("obter-carteiras")]
@@ -52,22 +54,16 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (carteiraDto is null) 
-                    return NotFound("Erro ao buscar carteiras!");
+                if (carteiraDto is null)
+                    throw new Exception("Dados inválidos!");
 
-                if (!_empresaAplicacaoServico.ValidarChaveApiEmpresa(Convert.ToInt32(carteiraDto.EmpresaId), chaveApiEmpresa))
-                    return NotFound("Erro ao realizar a operação, verifique a chave API da empresa!");
+                ValidarAutorizacaoEmpresa(Convert.ToInt32(carteiraDto.EmpresaId), chaveApiEmpresa);
 
-                IEnumerable<CarteiraDto> carteiras = _aplicacaoServico.BuscarCarteiras(Convert.ToInt32(carteiraDto.EmpresaId));
-
-                if (!carteiras.Any()) 
-                    return Ok("Nenhuma carteira encontrada!");
-
-                return Ok(carteiras);
+                return Ok(_aplicacaoServico.BuscarCarteiras(Convert.ToInt32(carteiraDto.EmpresaId)));
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao buscar carteira: " + "\n" + e.Message);
+                return BadRequest(e.Message);
             }
         }
 
@@ -77,17 +73,16 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (carteiraDto is null || carteiraDto.Empresa is null) 
-                    return NotFound("Erro ao cadastrar carteira!");
+                if (carteiraDto is null || carteiraDto.Empresa is null)
+                    throw new Exception("Dados inválidos!");
 
-                if (!_empresaAplicacaoServico.ValidarChaveApiEmpresa(Convert.ToInt32(carteiraDto.Empresa.Id), chaveApiEmpresa))
-                    return NotFound("Erro ao realizar a operação, verifique a chave API da empresa!");
+                ValidarAutorizacaoEmpresa(Convert.ToInt32(carteiraDto.EmpresaId), chaveApiEmpresa);
 
                 return Ok(_aplicacaoServico.Adicionar(carteiraDto));
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao cadastrar carteira: " + "\n" + e.Message);
+                return BadRequest(e.Message);
             }
         }
 
@@ -97,17 +92,16 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (carteiraDto is null || carteiraDto.Empresa is null) 
-                    return NotFound("Erro ao atualizar carteira!");
+                if (carteiraDto is null || carteiraDto.Empresa is null)
+                    throw new Exception("Dados inválidos!");
 
-                if (!_empresaAplicacaoServico.ValidarChaveApiEmpresa(Convert.ToInt32(carteiraDto.Empresa.Id), chaveApiEmpresa))
-                    return NotFound("Erro ao realizar a operação, verifique a chave API da empresa!");
+                ValidarAutorizacaoEmpresa(Convert.ToInt32(carteiraDto.EmpresaId), chaveApiEmpresa);
 
                 return Ok(_aplicacaoServico.Atualizar(carteiraDto));
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao atualizar carteira: " + "\n" + e.Message);
+                return BadRequest(e.Message);
             }
         }
 
@@ -117,19 +111,19 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (carteiraDto is null || carteiraDto.Id <= 0 || carteiraDto.Empresa is null) 
-                    return NotFound("Erro ao excluir carteira!");
+                if (carteiraDto is null || carteiraDto.Id <= 0 || carteiraDto.Empresa is null)
+                    throw new Exception("Dados inválidos!");
 
-                if (!_empresaAplicacaoServico.ValidarChaveApiEmpresa(carteiraDto.Empresa.Id, chaveApiEmpresa))
-                    return NotFound("Erro ao realizar a operação, verifique a chave API da empresa!");
+                ValidarAutorizacaoEmpresa(Convert.ToInt32(carteiraDto.EmpresaId), chaveApiEmpresa);
 
                 _aplicacaoServico.Excluir(carteiraDto);
                 return Ok("Carteira Removida com sucesso!");
             }
             catch (Exception e)
             {
-                return BadRequest("Erro ao excluir carteira: " + "\n" + e.Message);
+                return BadRequest(e.Message);
             }
         }
+        #endregion
     }
 }
