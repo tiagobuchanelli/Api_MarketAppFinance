@@ -162,7 +162,6 @@ namespace Api_MarketAppFinance.Testes
             var retorno = mockAplicacao.BuscarPorCodigo(1, 1);
 
             Assert.True(retorno is not null);
-        }
-       
+        }       
     }
 }
