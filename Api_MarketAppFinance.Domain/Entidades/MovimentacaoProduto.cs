@@ -30,8 +30,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
             QuantidadeSaida = quantidadeSaida;
             SaldoAnterior = ObterSaldoAnterior();
             Saldo = CalcularSaldoAtual();
-
-            Validar();
         }
 
         #endregion Construtores
@@ -68,7 +66,21 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         #region Metodos Privados
 
-        private void Validar()
+        private decimal ObterSaldoAnterior()
+        {
+            return 0;
+        }
+
+        private decimal CalcularSaldoAtual()
+        {
+            return 0;
+        }
+
+        #endregion Metodos Privados
+
+        #region Metodos Publicos
+
+        public void Validar()
         {
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida");
@@ -92,16 +104,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
                 throw new Exception("Quantidade de Saída inválida");
         }
 
-        private decimal ObterSaldoAnterior()
-        {
-            return 0;
-        }
-
-        private decimal CalcularSaldoAtual()
-        {
-            return 0;
-        }
-
-        #endregion Metodos Privados
+        #endregion
     }
 }

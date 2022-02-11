@@ -17,10 +17,6 @@
             Ativo = true;
             Imagem = imagem;
             ChaveApi = Guid.NewGuid().ToString();
-
-
-
-            Validar();
         }
 
         #endregion Constructos
@@ -49,13 +45,17 @@
 
         public Usuario Usuario { get; private set; }
 
-        public IReadOnlyCollection<Licenca> Licencas { get; private set; } 
+        public IReadOnlyCollection<Licenca> Licencas { get; private set; }
 
         #endregion Actributes Public
 
-        #region Private Methods
+        #region Private Methods        
 
-        private void Validar()
+        #endregion Private Methods
+
+        #region Public Methods
+        
+        public void Validar()
         {
             if (string.IsNullOrEmpty(NomeFantasia))
                 throw new Exception("Obrigatório informar o nome da empresa.");
@@ -69,10 +69,6 @@
             if (UsuarioId == default)
                 throw new Exception("Obrigatório informar um usuário valido");
         }
-
-        #endregion Private Methods
-
-        #region Public Methods
 
         public void Ativar() => Ativo = true;
 

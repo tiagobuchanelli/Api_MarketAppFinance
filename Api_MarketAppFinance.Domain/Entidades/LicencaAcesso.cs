@@ -14,8 +14,6 @@
             this.LicencaId = licenca.Id;
             this.DispositivoId = dispositivo.Id;
             EmpresaId = empresa.Id;
-
-            Validar();
         }
 
         #endregion Constructos
@@ -40,7 +38,11 @@
 
         #region Private Methos
 
-        private void Validar()
+        #endregion Private Methos
+
+        #region Metodos Publicos
+
+        public void Validar()
         {
             if (string.IsNullOrEmpty(Descricao))
                 throw new Exception("Obrigatório informar a descrição.");
@@ -55,6 +57,7 @@
                 throw new Exception("Obrigatório informar uma empresa válida");
         }
 
-        #endregion Private Methos
+
+        #endregion
     }
 }

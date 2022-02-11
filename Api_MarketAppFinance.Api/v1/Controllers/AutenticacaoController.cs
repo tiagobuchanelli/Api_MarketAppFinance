@@ -32,8 +32,8 @@ namespace Api_MarketAppFinance.Api.Controllers
         {
             try
             {
-                if (usuarioDto.Email is not null)
-                    return NotFound("Erro ao logar usuário!");
+                if (usuarioDto.Email is null)
+                    throw new Exception("Erro ao logar usuário!");
 
                 return Ok(_applicacaoServico.Autenticar(usuarioDto));
             }

@@ -8,7 +8,7 @@ namespace Api_MarketAppFinance.Application.Interfaces
 
         CarteiraDto Atualizar(CarteiraDto carteira);
 
-        void Excluir(CarteiraDto carteira);
+        //void Excluir(CarteiraDto carteira);
 
         IEnumerable<CarteiraDto> BuscarCarteiras(int codigoEmpresa);
 

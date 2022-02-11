@@ -36,8 +36,8 @@ namespace Api_MarketAppFinance.Application
         => _mapper.Map<CarteiraDto>(_servicoCarteira.BuscarPorCodigo(idEmpresa, id));
                 
 
-        public void Excluir(CarteiraDto carteiraDto)
-        => _servicoCarteira.Excluir(_mapper.Map<Carteira>(carteiraDto));
+        //public void Excluir(CarteiraDto carteiraDto)
+        //=> _servicoCarteira.Excluir(_mapper.Map<Carteira>(carteiraDto));
 
         
     }

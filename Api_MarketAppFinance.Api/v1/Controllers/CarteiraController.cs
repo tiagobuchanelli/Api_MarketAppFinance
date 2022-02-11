@@ -27,9 +27,7 @@ namespace Api_MarketAppFinance.Api.Controllers
 
         #region Metodos Privados
         private void ValidarAutorizacaoEmpresa(int idEmpresa, string chaveApi)
-        {
-            _empresaServico.Autorizacao(idEmpresa, chaveApi);
-        }
+        => _empresaServico.Autorizacao(idEmpresa, chaveApi);
         #endregion
 
         #region Metodos Publicos
@@ -112,6 +110,7 @@ namespace Api_MarketAppFinance.Api.Controllers
             }
         }
 
+        /*
         [HttpDelete]
         [Authorize]
         public ActionResult Excluir([FromHeader] string chaveApiEmpresa, [FromBody] CarteiraDto carteiraDto)
@@ -130,7 +129,7 @@ namespace Api_MarketAppFinance.Api.Controllers
             {
                 return BadRequest(e.Message);
             }
-        }
+        }*/
         #endregion
     }
 }

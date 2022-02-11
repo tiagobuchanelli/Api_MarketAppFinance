@@ -25,8 +25,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
             DataVencimento = dataVencimento;
             ValorParcela = valorParcela;
             EmpresaId = empresa.Id;
-
-            Validar();
         }
 
         #endregion Construtores
@@ -55,7 +53,11 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         #region Metodos Privados
 
-        private void Validar()
+        #endregion Metodos Privados
+
+        #region Metodos Publicos
+
+        public void Validar()
         {
             if (VendaId == default)
                 throw new Exception("Obrigatório informar uma venda válida");
@@ -73,6 +75,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
                 throw new Exception("Obrigatório informar uma empresa válida");
         }
 
-        #endregion Metodos Privados
+        #endregion
     }
 }

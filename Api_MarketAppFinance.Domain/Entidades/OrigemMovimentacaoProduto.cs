@@ -14,8 +14,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
         {
             Descricao = descricao;
             Ativo = true;
-
-            Validar();
         }
 
         #endregion Construtores
@@ -30,15 +28,15 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         #region Metodos Privados
 
-        private void Validar()
+        #endregion Metodos Privados
+
+        #region Metodos Publicos
+
+        public void Validar()
         {
             if (string.IsNullOrEmpty(Descricao))
                 throw new Exception("Obrigatório informar a descrição.");
         }
-
-        #endregion Metodos Privados
-
-        #region Metodos Publicos
 
         public void Ativar() => Ativo = true;
 

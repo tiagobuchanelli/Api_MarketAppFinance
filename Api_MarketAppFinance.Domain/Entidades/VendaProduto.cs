@@ -39,8 +39,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
             PesoLiquido = pesoLiquido ?? 0;
             PesoBruto = pesoBruto ?? 0;
             Observacao = observacao;
-
-            Validar();
         }
 
         #endregion Construtores
@@ -83,7 +81,11 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         #region Metodos Privados
 
-        private void Validar()
+        #endregion Metodos Privados
+
+        #region Metodos Publicos
+
+        public void Validar()
         {
             if (VendaId == default)
                 throw new Exception("Obrigatório informar uma venda válida");
@@ -107,6 +109,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
                 throw new Exception("Obrigatório informar uma empresa válida");
         }
 
-        #endregion Metodos Privados
+        #endregion
     }
 }

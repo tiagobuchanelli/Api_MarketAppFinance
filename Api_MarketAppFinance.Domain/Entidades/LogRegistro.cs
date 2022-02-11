@@ -22,8 +22,6 @@
             UsuarioId = usuario.Id;
             ValorAnterior = valorAnterior;
             ValorAtual = valorAtual;
-
-            Validar();
         }
 
         #endregion Constructos
@@ -50,7 +48,11 @@
 
         #region Private Methods
 
-        private void Validar()
+        #endregion Private Methods
+
+        #region Metodos Publicos
+
+        public void Validar()
         {
             if (string.IsNullOrEmpty(Tabela))
                 throw new Exception("Obrigatório informar a tabela.");
@@ -71,6 +73,6 @@
                 throw new Exception("Obrigatório informar um usuário válido");
         }
 
-        #endregion Private Methods
+        #endregion
     }
 }

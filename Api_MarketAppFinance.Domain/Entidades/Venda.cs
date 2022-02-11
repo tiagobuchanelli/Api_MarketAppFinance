@@ -40,8 +40,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
             ValorDesconto = valorDesconto ?? 0;
             ValorAcrescimo = valorAcrescimo ?? 0;
             Observacao = observacao;
-
-            Validar();
         }
 
         #endregion Construtores
@@ -88,7 +86,11 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         #region Metodos Privados
 
-        private void Validar()
+        #endregion Metodos Privados
+
+        #region Metodos Publicos
+
+        public void Validar()
         {
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida");
@@ -108,10 +110,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
             if (DataEmissao > DateTime.Now)
                 throw new Exception("Data de emissão não pode ser posterior a data atual.");
         }
-
-        #endregion Metodos Privados
-
-        #region Metodos Publicos
 
         public void Ativar() => Ativo = true;
 

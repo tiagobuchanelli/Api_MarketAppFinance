@@ -8,15 +8,13 @@
         {
         }
 
-        public Carteira(string desc, Empresa empresa, string? abreviacao = null, decimal? valorMinimoVenda = null)
+        public Carteira(string desc, int empresaId, string? abreviacao = null, decimal? valorMinimoVenda = null)
         {
             Descricao = desc;
             Abreviacao = abreviacao;
             Ativo = true;
-            EmpresaId = empresa.Id;
-            ValorMinimoVenda = valorMinimoVenda ?? 0;
-
-            Validar();
+            EmpresaId = empresaId;
+            ValorMinimoVenda = valorMinimoVenda ?? 0;            
         }
 
         #endregion Constructos
@@ -37,9 +35,13 @@
 
         #endregion Actributes Public
 
-        #region Private Methods
+        #region Private Methods        
 
-        private void Validar()
+        #endregion Private Methods
+
+        #region Public Methods
+
+        public void Validar()
         {
             if (string.IsNullOrEmpty(Descricao))
                 throw new Exception("Obrigatório informar o nome.");
@@ -47,10 +49,6 @@
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida.");
         }
-
-        #endregion Private Methods
-
-        #region Public Methods
 
         public void Ativar() => Ativo = true;
 

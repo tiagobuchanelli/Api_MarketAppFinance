@@ -10,7 +10,7 @@ namespace Api_MarketAppFinance.Domain.Core.Interfaces.Services
 
         TEntity BuscarInformacoesEmpresa(string documento);
 
-        bool ValidarChaveApiEmpresa(int idEmpresa, string chave);
+        void ValidarChaveApiEmpresa(int idEmpresa, string chave);
 
         List<TEntity> BuscarTodos();
 

@@ -14,8 +14,6 @@
             this.Chave = chave;
             this.UsuarioId = usuario.Id;
             EmpresaId = empresa.Id;
-
-            Validar();
         }
 
         #endregion Constructos
@@ -38,7 +36,11 @@
 
         #region Private Methods
 
-        private void Validar()
+        #endregion Private Methods
+
+        #region Public Methods
+
+        public void Validar()
         {
             if (string.IsNullOrEmpty(Nome))
                 throw new Exception("Obrigatório informar o nome do dispositivo.");
@@ -52,10 +54,6 @@
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida");
         }
-
-        #endregion Private Methods
-
-        #region Public Methods
 
         public void AlterarNome(string nameDevice)
         {

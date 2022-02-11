@@ -60,7 +60,11 @@ namespace Api_MarketAppFinance.Domain.Entities
 
         #region Private Methods
 
-        private void Validar()
+        #endregion Private Methods
+
+        #region Metodos Publicos
+
+        public void Validar()
         {
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida.");
@@ -75,6 +79,6 @@ namespace Api_MarketAppFinance.Domain.Entities
                 throw new Exception("Obrigatório informar um valor válido.");
         }
 
-        #endregion Private Methods
+        #endregion
     }
 }

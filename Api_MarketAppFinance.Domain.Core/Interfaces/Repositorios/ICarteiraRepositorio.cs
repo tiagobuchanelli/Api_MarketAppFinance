@@ -5,7 +5,7 @@ namespace Api_MarketAppFinance.Domain.Interrfaces.Repositories
 {
     public interface ICarteiraRepositorio<TEntity> : IBaseRepositorio<Carteira>
     {
-        TEntity BuscarPorCodigo(int idEmpresa, int codigo);
+        TEntity? BuscarPorCodigo(int idEmpresa, int codigo);
 
         List<TEntity> BuscarCarteiras(int idEmpresa);
     }

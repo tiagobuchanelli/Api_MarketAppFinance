@@ -16,8 +16,6 @@
             CodigoIbgeEstado = codigoIbgeEstado;
             SiglaEstado = sigla;
             Ativo = true;
-
-            Validar();
         }
 
         #endregion Constructos
@@ -40,7 +38,11 @@
 
         #region Private Methods
 
-        private void Validar()
+        #endregion Private Methods
+
+        #region Public Methods
+
+        public void Validar()
         {
             if (string.IsNullOrEmpty(Nome))
                 throw new Exception("Obrigatório informar o nome.");
@@ -51,10 +53,6 @@
             if (string.IsNullOrEmpty(CodigoIbgeEstado))
                 throw new Exception("Obrigatório informar o códigto ibge do estado.");
         }
-
-        #endregion Private Methods
-
-        #region Public Methods
 
         public void Ativar() => Ativo = true;
 

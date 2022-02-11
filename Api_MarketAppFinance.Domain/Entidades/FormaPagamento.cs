@@ -12,9 +12,9 @@ namespace Api_MarketAppFinance.Domain.Entities
 
         public FormaPagamento(
             string desc,
-            Empresa empresa,
+            int empresaId,
             TipoPagamento tipoPagamento,
-            Carteira carteira,
+            int carteiraId,
             string? abreviacao = null,
             decimal? valorAcrescimo = null,
             decimal? valorDesconto = null,
@@ -30,9 +30,9 @@ namespace Api_MarketAppFinance.Domain.Entities
             Descricao = desc;
             Abreviacao = abreviacao;
             Ativo = true;
-            EmpresaId = empresa.Id;
+            EmpresaId = empresaId;
             TipoPagamento = tipoPagamento;
-            CarteiraId = carteira.Id;
+            CarteiraId = carteiraId;
             ValorAcrescimo = valorAcrescimo ?? 0;
             ValorDesconto = valorDesconto ?? 0;
             PrDesconto = prDesconto ?? 0;
@@ -42,8 +42,6 @@ namespace Api_MarketAppFinance.Domain.Entities
             NrIntervalos = nrIntervalos ?? 0;
             DiaPadraoVencimento = diaPadraoVencimento ?? 0;
             GerarFinanceiro = gerarFinanceiro ?? false;
-
-            Validar();
         }
 
         #endregion Constructos
@@ -86,9 +84,13 @@ namespace Api_MarketAppFinance.Domain.Entities
 
         #endregion Actributes Public
 
-        #region Private Methods
+        #region Private Methods        
 
-        private void Validar()
+        #endregion Private Methods
+
+        #region Public Methods
+
+        public void Validar()
         {
             if (string.IsNullOrEmpty(Descricao))
                 throw new Exception("Obrigatório informar o nome.");
@@ -99,10 +101,6 @@ namespace Api_MarketAppFinance.Domain.Entities
             if (CarteiraId == default)
                 throw new Exception("Obrigatório informar uma carteira válida.");
         }
-
-        #endregion Private Methods
-
-        #region Public Methods
 
         public void AlterarStatus(bool status) => Ativo = status;
 

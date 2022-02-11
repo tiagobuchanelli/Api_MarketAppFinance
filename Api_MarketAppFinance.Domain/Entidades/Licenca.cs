@@ -20,8 +20,6 @@
             NumeroAcessosPermitido = numeroAcessosPermitido;
             DataExpiracao = dataValidade;
             EmpresaId = empresa.Id;
-
-            Validar();
         }
 
         #endregion Constructos
@@ -44,7 +42,11 @@
 
         #region Private Methods
 
-        private void Validar()
+        #endregion Private Methods
+
+        #region Public Methods
+
+        public void Validar()
         {
             if (string.IsNullOrEmpty(Descricao))
                 throw new Exception("Obrigatório informar a descrição.");
@@ -55,10 +57,6 @@
             if (DataExpiracao < DateTime.Now.Date)
                 throw new Exception("Não é possível inserir data de validade menor que a data atual");
         }
-
-        #endregion Private Methods
-
-        #region Public Methods
 
         public void GerarChaveLicenca()
         {

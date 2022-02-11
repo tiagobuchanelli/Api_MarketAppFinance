@@ -14,8 +14,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
         {
             EmpresaId = empresa.Id;
             UsaControleLotes = usaControleLotes ?? false;
-
-            Validar();
         }
 
         #endregion Construtores
@@ -32,12 +30,16 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         #region Metodos Privados
 
-        private void Validar()
+        #endregion Metodos Privados
+
+        #region Metodos Publicos
+
+        public void Validar()
         {
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida");
         }
 
-        #endregion Metodos Privados
+        #endregion
     }
 }

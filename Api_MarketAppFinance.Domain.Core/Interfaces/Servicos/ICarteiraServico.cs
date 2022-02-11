@@ -2,7 +2,7 @@
 
 namespace Api_MarketAppFinance.Domain.Core.Interfaces.Services
 {
-    public interface ICarteiraServico<TEntity> : IBaseServico<Carteira>
+    public interface ICarteiraServico<TEntity> //: IBaseServico<Carteira>
     {
         TEntity BuscarPorCodigo(int idEmpresa, int id);
 

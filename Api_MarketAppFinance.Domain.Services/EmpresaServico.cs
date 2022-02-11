@@ -36,17 +36,10 @@ namespace Api_MarketAppFinance.Domain.Services
         #endregion
 
         #region Metodos Publicos
-        public Empresa AdicionarEmpresa(Empresa empresa)
+        public Empresa AdicionarEmpresa(Empresa dadosEmpresa)
         {
-            var dadosEmpresa = new Empresa(
-                razaoSocial: empresa.RazaoSocial,
-                nomeFantasia: empresa.NomeFantasia,
-                numeroDocumento: empresa.NumeroDocumento,
-                telefone: empresa.Telefone,
-                usuarioId: empresa.UsuarioId,
-                imagem: empresa.Imagem
-                );
-            
+            dadosEmpresa.Validar();
+
             Adicionar(dadosEmpresa);            
             GerarLicencaEmpresa("Licença Software", "Padrão", dadosEmpresa.NumeroDocumento);
 
@@ -71,20 +64,19 @@ namespace Api_MarketAppFinance.Domain.Services
         public Empresa BuscarInformacoesEmpresa(string documento)
             => _repositorioEmpresa.BuscarInformacoesEmpresa(documento);
 
-        public bool ValidarChaveApiEmpresa(int idEmpresa, string chave)
+        public void ValidarChaveApiEmpresa(int idEmpresa, string chave)
         {
             var dados = _repositorioEmpresa.BuscarPorCodigo(idEmpresa);
-            if (dados.ChaveApi != chave)
-                throw new Exception("Erro ao realizar a operação, verifique a chave API da empresa!");
 
-            return (dados.ChaveApi == chave);
+            if (dados is null || dados.ChaveApi != chave)
+                throw new Exception("Erro ao realizar a operação, verifique a chave API da empresa!");                       
         }
 
         public List<Empresa> BuscarTodos()
         => _repositorioEmpresa.BuscarTodos();
 
         public Empresa BuscarPorCodigo(int codigo)
-        => _repositorioEmpresa.BuscarPorCodigo(codigo);
+        => _repositorioEmpresa.BuscarPorCodigo(codigo);      
 
 
         #endregion

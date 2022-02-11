@@ -28,9 +28,7 @@ namespace Api_MarketAppFinance.Api.Controllers
 
         #region Metodos Privados
         private void ValidarAutorizacaoEmpresa(int idEmpresa, string chaveApi)
-        {
-            _empresaAplicacaoServico.Autorizacao(idEmpresa, chaveApi);
-        }
+        => _empresaAplicacaoServico.Autorizacao(idEmpresa, chaveApi);
         #endregion
 
         #region Metodos Publicos

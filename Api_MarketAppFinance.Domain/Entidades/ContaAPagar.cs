@@ -30,8 +30,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
             Observacao = observacao;
             Ativo = ativo;
             FornecedorId = fornecedor.Id;
-
-            Validar();
         }
 
         #endregion Construtores
@@ -68,7 +66,11 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         #region Metodos Privados
 
-        private void Validar()
+        #endregion Metodos Privados
+
+        #region Metodos Publicos
+
+        public void Validar()
         {
             if (CodigoLancamentoId <= 0)
                 throw new Exception("Obrigatório informar um lançamento válido");
@@ -84,11 +86,7 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
             if (FornecedorId == default)
                 throw new Exception("Obrigatório informar um fornecedor válido");
-        }
-
-        #endregion Metodos Privados
-
-        #region Metodos Publicos
+        }        
 
         public void Ativar() => Ativo = true;
 

@@ -66,8 +66,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
             Espessura = espessura ?? 0;
             EstoqueMinimo = estoqueMinimo ?? 0;
             ControlaEstoqueLote = controlaEstoqueLote ?? false;
-
-            Validar();
         }
 
         #endregion Construtores
@@ -142,7 +140,11 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         #region Metodos Privados
 
-        private void Validar()
+        #endregion Metodos Privados
+
+        #region Metodos Publicos
+
+        public void Validar()
         {
             if (string.IsNullOrEmpty(Descricao))
                 throw new Exception("Obrigatório informar a descrição.");
@@ -153,10 +155,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
             if (CategoriaId == default)
                 throw new Exception("Obrigatório informar uma categoria válida");
         }
-
-        #endregion Metodos Privados
-
-        #region Metodos Publicos
 
         public void AlterarDescricao(string descricao)
         {

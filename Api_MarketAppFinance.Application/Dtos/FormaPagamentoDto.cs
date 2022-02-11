@@ -12,11 +12,13 @@ namespace Api_MarketAppFinance.Application.Dtos
 
         public string? Descricao { get; set; }
 
-        public int? EmpresaId { get; set; }
-
         public EmpresaDto? Empresa { get; set; }
 
+        public int? EmpresaId { get; set; }
+
         public int? TipoPagamento { get; set; }
+
+        public int? CarteiraId { get; set; }
 
         public CarteiraDto? Carteira { get; set; }
 

@@ -33,17 +33,10 @@ namespace Api_MarketAppFinance.Domain.Services
             return TokenServico.GenerateToken(email);
         }
 
-        public Usuario AdicionarUsuario(Usuario usuario)
+        public Usuario AdicionarUsuario(Usuario dadosUsuario)
         {
-            var dadosUsuario = new Usuario(
-                nome: usuario.Nome,
-                sobrenome: usuario.Sobrenome,
-                email: usuario.Email,
-                documento: usuario.NumeroDocumento,
-                telefone: usuario.Telefone,
-                imagem: usuario.Imagem
-                );
-            
+            dadosUsuario.Validar();
+
             Adicionar(dadosUsuario);
             return BuscarUsuarioPorDocumento(dadosUsuario.NumeroDocumento);
         }

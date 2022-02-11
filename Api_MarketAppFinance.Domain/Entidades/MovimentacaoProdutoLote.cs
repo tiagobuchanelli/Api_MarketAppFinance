@@ -32,8 +32,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
             SaldoAnterior = ObterSaldoAnterior();
             Saldo = CalcularSaldoAtual();
             LoteId = lote.Id;
-
-            Validar();
         }
 
         #endregion Construtores
@@ -74,7 +72,21 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         #region Metodos Privados
 
-        private void Validar()
+        private decimal ObterSaldoAnterior()
+        {
+            return 0;
+        }
+
+        private decimal CalcularSaldoAtual()
+        {
+            return 0;
+        }
+
+        #endregion Metodos Privados
+
+        #region Metodos Publicos
+
+        public void Validar()
         {
             if (LoteId == default)
                 throw new Exception("Obrigatório informar um lote válido");
@@ -101,16 +113,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
                 throw new Exception("Quantidade de Saída inválida");
         }
 
-        private decimal ObterSaldoAnterior()
-        {
-            return 0;
-        }
-
-        private decimal CalcularSaldoAtual()
-        {
-            return 0;
-        }
-
-        #endregion Metodos Privados
+        #endregion
     }
 }

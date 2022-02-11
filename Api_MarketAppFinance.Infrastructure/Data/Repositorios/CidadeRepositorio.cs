@@ -7,23 +7,18 @@ namespace Api_MarketAppFinance.Infrastructure.Data.Repositories
 {
     public class CidadeRepositorio : BaseRepositorio<Cidade>, ICidadeRepositorio<Cidade>
     {
-        private readonly ContextoBase _contexto;
+        private new readonly ContextoBase _contexto;
 
         public CidadeRepositorio(ContextoBase sqlContext) : base(sqlContext)
         {
             _contexto = sqlContext;
         }
 
-        public Cidade BuscarCidadePorCodigoIbge(string codigoIbge)
+        public Cidade? BuscarCidadePorCodigoIbge(string codigoIbge)
         {
             try
             {
-                var dados = _contexto.Cidades.FirstOrDefault(x => x.CodigoIbge == codigoIbge);
-
-                if (dados is null)
-                    throw new Exception("Nenhuma cidade encontrada");
-
-                return dados;
+                return _contexto.Cidades.FirstOrDefault(x => x.CodigoIbge == codigoIbge);
             }
             catch (Exception e)
             {
@@ -31,16 +26,11 @@ namespace Api_MarketAppFinance.Infrastructure.Data.Repositories
             }
         }
 
-        public Cidade BuscarPorCodigo(int codigo)
+        public Cidade? BuscarPorCodigo(int codigo)
         {
             try
             {
-                var dados = _contexto.Cidades.FirstOrDefault(x => x.Id == codigo);
-
-                if (dados is null)
-                    throw new Exception("Nenhuma cidade encontrada");
-
-                return dados;
+                return _contexto.Cidades.FirstOrDefault(x => x.Id == codigo);
             }
             catch (Exception e)
             {

@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api_MarketAppFinance.Domain
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api_MarketAppFinance.Infrastructure", "Api_MarketAppFinance.Infrastructure\Api_MarketAppFinance.Infrastructure.csproj", "{7FA6E93F-1716-49E9-A076-93477A2EFF22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api_MarketAppFinance.Test", "Api_MarketAppFinance.Test\Api_MarketAppFinance.Test.csproj", "{A1BFC5BE-2510-4A27-B020-9BFCB8DD1D75}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api_MarketAppFinance.Testes", "Api_MarketAppFinance.Testes\Api_MarketAppFinance.Testes.csproj", "{384B15CD-EEE1-4506-993D-230A47F3D30D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,10 +57,10 @@ Global
 		{7FA6E93F-1716-49E9-A076-93477A2EFF22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FA6E93F-1716-49E9-A076-93477A2EFF22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FA6E93F-1716-49E9-A076-93477A2EFF22}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1BFC5BE-2510-4A27-B020-9BFCB8DD1D75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1BFC5BE-2510-4A27-B020-9BFCB8DD1D75}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1BFC5BE-2510-4A27-B020-9BFCB8DD1D75}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1BFC5BE-2510-4A27-B020-9BFCB8DD1D75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{384B15CD-EEE1-4506-993D-230A47F3D30D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{384B15CD-EEE1-4506-993D-230A47F3D30D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{384B15CD-EEE1-4506-993D-230A47F3D30D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{384B15CD-EEE1-4506-993D-230A47F3D30D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,7 +72,7 @@ Global
 		{96EBFFC6-FE1A-461E-9622-23804631F433} = {92988655-D2A0-434D-BC97-CB653F4B1451}
 		{ADF14CF5-67E0-44FC-B7E1-66A1DD19991B} = {92988655-D2A0-434D-BC97-CB653F4B1451}
 		{7FA6E93F-1716-49E9-A076-93477A2EFF22} = {7BE3053D-1BDE-4C7C-8019-C21D78109281}
-		{A1BFC5BE-2510-4A27-B020-9BFCB8DD1D75} = {4AAD85E5-FD6D-45DA-ACD2-19A275D1865E}
+		{384B15CD-EEE1-4506-993D-230A47F3D30D} = {4AAD85E5-FD6D-45DA-ACD2-19A275D1865E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {166E2EC0-1360-432D-8BB2-3FBDD9516C67}

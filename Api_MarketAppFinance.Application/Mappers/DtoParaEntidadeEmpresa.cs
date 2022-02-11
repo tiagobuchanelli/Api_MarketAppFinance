@@ -26,7 +26,6 @@ namespace Api_MarketAppFinance.Application.Mappers
                 .ForMember(dest => dest.UsuarioId, opt => opt.MapFrom(x => x.UsuarioId))
                 .ForMember(dest => dest.Imagem, opt => opt.MapFrom(x => x.Imagem))
                 .ForMember(dest => dest.Telefone, opt => opt.MapFrom(x => x.Telefone))
-                .ForMember(dest => dest.Usuario, opt => opt.MapFrom(x => x.Usuario))
                 .ForMember(dest => dest.Licencas, opt => opt.MapFrom(x => x.Licencas));
 
         }

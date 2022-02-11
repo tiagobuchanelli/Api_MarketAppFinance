@@ -20,15 +20,9 @@ namespace Api_MarketAppFinance.Domain.Services
 
         public Cidade AdicionarCidade(Cidade dadosCidade)
         {
-            var cidade = new Cidade(
-                nomeCidade: dadosCidade.Nome,
-                codigoIbge: dadosCidade.CodigoIbge,
-                codigoIbgeEstado: dadosCidade.CodigoIbgeEstado,
-                sigla: dadosCidade.SiglaEstado,
-                cep: dadosCidade.Cep
-                );
+            dadosCidade.Validar();
 
-            Adicionar(cidade);
+            Adicionar(dadosCidade);
             return BuscarCidadePorCodigoIbge(dadosCidade.CodigoIbge);
         }
 

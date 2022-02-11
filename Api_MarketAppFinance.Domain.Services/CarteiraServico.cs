@@ -18,49 +18,46 @@ namespace Api_MarketAppFinance.Domain.Services
         #endregion
 
         public Carteira AdicionarCarteira(Carteira dadosCarteira)
-        {
-            
-            var carteira = new Carteira(
-                desc: dadosCarteira.Descricao,
-                empresa: dadosCarteira.Empresa,
-                abreviacao: dadosCarteira.Abreviacao,
-                valorMinimoVenda: dadosCarteira.ValorMinimoVenda
-                );
+        {   
+            dadosCarteira.Validar();
 
-            Adicionar(carteira);
+            Adicionar(dadosCarteira);
             return BuscarCarteiras(dadosCarteira.Empresa.Id).Last();
             
         }
-
-        public void Atualizar(FormaPagamento obj)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public Carteira AtualizarCarteira(Carteira dadosCarteira)
         {
-            var carteira = BuscarPorCodigo(dadosCarteira.EmpresaId, dadosCarteira.Id);
+            var carteira = BuscarPorCodigo(dadosCarteira.EmpresaId, dadosCarteira.Id);            
+            carteira.AlterarDescricao(dadosCarteira.Descricao);
+            carteira.AlterarAbreviacao(dadosCarteira.Abreviacao);
 
-            if(carteira is not null)
-            {
-                carteira.AlterarDescricao(dadosCarteira.Descricao);
-                carteira.AlterarAbreviacao(dadosCarteira.Abreviacao);
-
-                Atualizar(carteira);
-            }            
-
+            Atualizar(carteira);
             return carteira;
+
+
         }
 
         public List<Carteira> BuscarCarteiras(int codigoEmpresa)
-        => _carteiraRepositorio.BuscarCarteiras(codigoEmpresa);
+        {
+            var dados = _carteiraRepositorio.BuscarCarteiras(codigoEmpresa);
+
+            if (dados is null || dados.Count == 0)
+                throw new Exception("Nenhuma carteira encontrada");
+
+            return dados;           
+        }
 
         public Carteira BuscarPorCodigo(int codigoEmpresa, int codigo)
-        => _carteiraRepositorio.BuscarPorCodigo(codigoEmpresa, codigo);
-
-        public void Excluir(FormaPagamento obj)
         {
-            throw new NotImplementedException();
+            var carteira = _carteiraRepositorio.BuscarPorCodigo(codigoEmpresa, codigo);
+
+            if (carteira is null)
+                throw new Exception("Nenhuma carteira encontrada");
+
+             return carteira;
         }
+        
     }
 }

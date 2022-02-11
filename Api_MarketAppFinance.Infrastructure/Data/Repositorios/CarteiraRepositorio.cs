@@ -8,23 +8,18 @@ namespace Api_MarketAppFinance.Infrastructure.Data.Repositories
 {
     public class CarteiraRepositorio : BaseRepositorio<Carteira>, ICarteiraRepositorio<Carteira>
     {
-        private readonly ContextoBase _contexto;
+        private new readonly ContextoBase _contexto;
 
         public CarteiraRepositorio(ContextoBase sqlContext) : base(sqlContext)
         {
             _contexto = sqlContext;
         }
 
-        public Carteira BuscarPorCodigo(int idEmpresa, int codigo)
+        public Carteira? BuscarPorCodigo(int idEmpresa, int codigo)
         {            
             try
             {
-                var dados = _contexto.Carteiras.FirstOrDefault(x => x.Id == codigo && x.EmpresaId == idEmpresa);
-
-                if (dados is null)
-                    throw new Exception("Nenhuma carteira encontrada");
-
-                return dados;
+                return _contexto.Carteiras.FirstOrDefault(x => x.Id == codigo && x.EmpresaId == idEmpresa);
             }
             catch (Exception e)
             {
@@ -36,12 +31,7 @@ namespace Api_MarketAppFinance.Infrastructure.Data.Repositories
         {   
             try
             {
-                var dados = _contexto.Carteiras.Include(x => x.Empresa).Where(x => x.EmpresaId == idEmpresa).ToList();
-
-                if (dados is null || dados.Count == 0)
-                    throw new Exception("Nenhuma carteira encontrada");
-
-                return dados;
+                return _contexto.Carteiras.Include(x => x.Empresa).Where(x => x.EmpresaId == idEmpresa).ToList();
             }
             catch (Exception e)
             {

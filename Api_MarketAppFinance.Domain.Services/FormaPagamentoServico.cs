@@ -17,27 +17,12 @@ namespace Api_MarketAppFinance.Domain.Services
         
         #endregion       
 
-        public FormaPagamento AdicionarFormaPagamento(FormaPagamento dados)
+        public FormaPagamento AdicionarFormaPagamento(FormaPagamento dadosFormaPagamento)
         {
-            var formaPagamento = new FormaPagamento(
-                desc: dados.Descricao,
-                empresa: dados.Empresa,
-                tipoPagamento: dados.TipoPagamento,
-                carteira: dados.Carteira,
-                abreviacao: dados.Abreviacao,
-                valorAcrescimo: dados.ValorAcrescimo,
-                valorDesconto: dados.ValorDesconto,
-                prDesconto: dados.PrDesconto,
-                prAcrescimo: dados.PrAcrescimo,
-                nrDiasIntervalo: dados.NrDiasIntervalo,
-                nrDiasLimiteIntervalo: dados.NrDiasLimiteIntervalo,
-                nrIntervalos: dados.NrIntervalos,
-                diaPadraoVencimento: dados.DiaPadraoVencimento,
-                gerarFinanceiro: dados.GerarFinanceiro
-                );
+            dadosFormaPagamento.Validar();
 
-            Adicionar(formaPagamento);
-            return BuscarFormasPagamento(dados.Empresa.Id).Last();
+            Adicionar(dadosFormaPagamento);
+            return BuscarFormasPagamento(dadosFormaPagamento.EmpresaId).Last();
         }
               
 

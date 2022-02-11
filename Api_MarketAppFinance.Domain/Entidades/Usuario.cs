@@ -23,18 +23,12 @@
             NumeroDocumento = documento;
             Imagem = imagem;
             Ativo = true;
-
-            //_dispositivos = new List<LicencaDispositivo>();
-
-            Validate();
         }
 
         #endregion Constructos
 
         #region Actributes Private
-
-        //private IList<LicencaDispositivo> _dispositivos;
-
+        
         #endregion Actributes Private
 
         #region Actributes Public
@@ -55,14 +49,16 @@
 
         public string? Imagem { get; private set; }
 
-        //public IEnumerable<LicencaDispositivo> Devices
-        //{ get { return _dispositivos.ToList(); } }
 
         #endregion Actributes Public
 
-        #region Private Method
+        #region Private Method        
 
-        private void Validate()
+        #endregion Private Method
+
+        #region Metodos Publicos
+
+        public void Validar()
         {
             if (string.IsNullOrEmpty(Nome))
                 throw new Exception("Obrigatório informar o nome do usuário.");
@@ -72,15 +68,11 @@
 
             if (string.IsNullOrEmpty(Email))
                 throw new Exception("Obrigatório informar o e-mail.");
-            
+
             if (string.IsNullOrEmpty(NumeroDocumento))
                 throw new Exception("Obrigatório informar o documento.");
 
         }
-
-        #endregion Private Method
-
-        #region Metodos Publicos
 
         public void Ativar() => Ativo = true;
 
@@ -88,7 +80,7 @@
 
         public void GerarDispositivoLicenca(LicencaDispositivo device)
         {
-            //_dispositivos.Add(device);
+            
         }
 
         public void AlterarNome(string nome)

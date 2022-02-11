@@ -30,8 +30,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
             Observacao = observacao;
             Ativo = ativo;
             ClienteId = cliente.Id;
-
-            Validar();
         }
 
         #endregion Construtores
@@ -67,8 +65,11 @@ namespace Api_MarketAppFinance.Domain.Entidades
         #endregion Atributos Publicos
 
         #region Metodos Privados
+        #endregion Metodos Privados
 
-        private void Validar()
+        #region Metodos Publicos
+
+        public void Validar()
         {
             /*if (string.IsNullOrEmpty(Descricao))
                 throw new Exception("Obrigatório informar a descrição.");
@@ -79,11 +80,7 @@ namespace Api_MarketAppFinance.Domain.Entidades
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida");
             */
-        }
-
-        #endregion Metodos Privados
-
-        #region Metodos Publicos
+        }        
 
         public void Ativar() => Ativo = true;
 

@@ -27,8 +27,6 @@
             Complemento = complemento;
             CodigoEntidade = codigoEntidade;
             CidadeId = cidade.Id;
-
-            Validar();
         }
 
         #endregion Constructos
@@ -61,7 +59,11 @@
 
         #region Private Methods
 
-        private void Validar()
+        #endregion Private Methods
+
+        #region Public Methods
+
+        public void Validar()
         {
             if (string.IsNullOrEmpty(Rua))
                 throw new Exception("Obrigatório informar a rua.");
@@ -75,10 +77,6 @@
             if (EmpresaId == default)
                 throw new Exception("Obrigatório informar uma empresa válida");
         }
-
-        #endregion Private Methods
-
-        #region Public Methods
 
         public void AlterarRua(string rua)
         {

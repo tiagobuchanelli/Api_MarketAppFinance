@@ -49,8 +49,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
             ValorMinimoVenda = valorMinimoVenda ?? 0;
             ValorLimiteVenda = valorLimiteVenda ?? 0;
             PrDesconto = prDesconto ?? 0;
-
-            Validar();
         }
 
         #endregion Constructos
@@ -103,7 +101,11 @@ namespace Api_MarketAppFinance.Domain.Entidades
 
         #region Private Methods
 
-        private void Validar()
+        #endregion Private Methods
+
+        #region Public Methods
+
+        public void Validar()
         {
             if (string.IsNullOrEmpty(NomeFantasia))
                 throw new Exception("Obrigatório informar o nome da empresa.");
@@ -115,9 +117,6 @@ namespace Api_MarketAppFinance.Domain.Entidades
                 throw new Exception("Obrigatório informar um usuário valido");
         }
 
-        #endregion Private Methods
-
-        #region Public Methods
 
         public void Ativar() => Ativo = true;
 
