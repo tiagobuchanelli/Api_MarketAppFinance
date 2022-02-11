@@ -18,10 +18,7 @@ namespace Api_MarketAppFinance.Testes
     {
         private IMapper _mapper;
 
-        public CarteiraAplicacaoServicoTest()
-        {
-            _mapper = new MockMapper().ObterMappers();
-        }
+        public CarteiraAplicacaoServicoTest() => _mapper = new MockMapper().ObterMappers();
 
         [Fact]
         public void Adicionar_Carteira_RetornarExcecaoNome()
