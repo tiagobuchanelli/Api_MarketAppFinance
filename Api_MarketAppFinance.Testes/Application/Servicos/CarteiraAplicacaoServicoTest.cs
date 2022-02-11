@@ -44,7 +44,6 @@ namespace Api_MarketAppFinance.Testes
             Assert.Equal("Obrigatório informar uma empresa válida.", excecao.Message);
         }
 
-
         [Fact]
         public void Atualizar_Carteira_RetornarExcecao()
         {
