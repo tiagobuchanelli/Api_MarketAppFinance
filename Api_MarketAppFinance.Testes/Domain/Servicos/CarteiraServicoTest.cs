@@ -61,7 +61,6 @@ namespace Api_MarketAppFinance.Testes
             var retorno = mockServico.AtualizarCarteira(carteira);
 
             Assert.True(retorno is not null);
-
         }
 
         [Fact]
@@ -79,18 +78,14 @@ namespace Api_MarketAppFinance.Testes
             var retorno = mockServico.AtualizarCarteira(carteira);
 
             Assert.True(retorno.Descricao == "Cheque");
-
         }        
 
         [Fact]
         public void Buscar_Carteiras_RetornarCarteiras()
         {
-            var carteira = new Carteira("Dinheiro", 1);
-            var carteira2 = new Carteira("Dinheiro2", 1);
-
             var lista = new List<Carteira>();
-            lista.Add(carteira);
-            lista.Add(carteira2);
+            lista.Add(new Carteira("Dinheiro", 1));
+            lista.Add(new Carteira("Dinheiro2", 1));
 
             var mockRepositorio = new Mock<ICarteiraRepositorio<Carteira>>();
             mockRepositorio.Setup(x => x.BuscarCarteiras(1)).Returns(lista);
@@ -99,18 +94,14 @@ namespace Api_MarketAppFinance.Testes
             var retorno = mockServico.BuscarCarteiras(1);
 
             Assert.True(retorno.Count > 0);
-
         }
 
         [Fact]
         public void Buscar_Carteiras_RetornarExcecao()
         {
-            var carteira = new Carteira("Dinheiro", 1);
-            var carteira2 = new Carteira("Dinheiro2", 1);
-
             var lista = new List<Carteira>();
-            lista.Add(carteira);
-            lista.Add(carteira2);
+            lista.Add(new Carteira("Dinheiro", 1));
+            lista.Add(new Carteira("Dinheiro2", 1));
 
             var mockRepositorio = new Mock<ICarteiraRepositorio<Carteira>>();
             mockRepositorio.Setup(x => x.BuscarCarteiras(1)).Returns(lista);
@@ -119,7 +110,6 @@ namespace Api_MarketAppFinance.Testes
             var excecao = Assert.Throws<Exception>(() => mockServico.BuscarCarteiras(2));
 
             Assert.Equal("Nenhuma carteira encontrada", excecao.Message);
-
         }
 
         [Fact]
@@ -153,8 +143,5 @@ namespace Api_MarketAppFinance.Testes
 
             Assert.True(retorno is not null);
         }
-
-
-
     }
 }
