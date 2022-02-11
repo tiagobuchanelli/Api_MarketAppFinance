@@ -4,6 +4,7 @@ using Api_MarketAppFinance.Application.Mappers;
 using Api_MarketAppFinance.Domain.Entities;
 using Api_MarketAppFinance.Domain.Interrfaces.Repositories;
 using Api_MarketAppFinance.Domain.Services;
+using Api_MarketAppFinance.Testes.MapperMock;
 using AutoMapper;
 using Moq;
 using System;
@@ -17,23 +18,9 @@ namespace Api_MarketAppFinance.Testes
     {
         private IMapper _mapper;
 
-        public CarteiraAplicacaoServicoTest() 
+        public CarteiraAplicacaoServicoTest()
         {
-            SetMapper();
-        }
-
-        private void SetMapper()
-        {
-            var _autoMapperProfile = new DtoParaEntidadeCarteira();
-            var _autoMapperProfile2 = new EntidadeCarteiraParaDto();
-            var _configuration = new MapperConfiguration(x =>
-            {
-                x.AddProfile(_autoMapperProfile);
-                x.AddProfile(_autoMapperProfile2);
-            }
-
-            );
-            _mapper = new Mapper(_configuration);
+            _mapper = new MockMapper().ObterMappers();
         }
 
         [Fact]
