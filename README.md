@@ -1,6 +1,6 @@
 # Api MarketApp
 
-- Projeto em andamento
+=> Projeto em andamento
 
 # Resumo
 Api de projeto "Não Real" simulando um ERP, com recursos e rotinas básicas, como:
