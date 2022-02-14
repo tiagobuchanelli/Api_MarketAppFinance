@@ -8,11 +8,11 @@ Api de projeto "Não Real" simulando um ERP, com recursos e rotinas básicas:
 - Controle de Licenças e Acessos.
 
 # Objetivos:
-- Evoluir o conhecimento sobre as tecnologias envolvidas no negócio.
-- Aprimorar e criar a cultura de Testes Unitários
+- Consolidar e ampliar o conhecimento sobre as tecnologias envolvidas no negócio.
+- Aprimorar e criar a cultura de implementação de Testes Unitários
 - Praticar, estudar e aprender sobre arquitetura de projetos e outros padrões.
-- Realizar integrações entre stacks diferentes.
-- Trabalhar com ambiente em cloud, simulando ambiente em produção. (Ex: Google/Amazon/Azure)
+- Realizar integrações entre produtos de stacks diferentes.
+- Trabalhar com ambiente em cloud, simulando ambiente produção. (Ex: Google/Amazon/Azure)
 
 # Tecnoloogias:
 - EF Core
