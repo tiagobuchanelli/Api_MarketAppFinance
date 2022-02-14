@@ -19,6 +19,8 @@ Api de projeto "Não Real" simulando um ERP, com recursos e rotinas básicas:
 - Postgre SQL
 - DotNet 6
 - Docker
+- Angular
+- Flutter
 
 # Integrações
 - Banco de Dados: PostgreSQL
