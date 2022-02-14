@@ -9,12 +9,20 @@ Api de projeto "Não Real" simulando um ERP, com recursos e rotinas básicas, co
 - Cadastros de Clientes e Usuários.
 - Controle de Licenças e Acessos.
 
+# Objetivos:
+- Evoluir o conhecimento sobre as tecnologias envolvidas no negócio.
+- Aprimorar e criar a cultura de Testes Unitários
+- Praticar, estudar e aprender sobre arquitetura de projetos e outros padrões.
+- Realizar integrações entre stacks diferentes.
+- Trabalhar com ambiente em cloud, simulando ambiente em produção. (Ex: Google/Amazon/Azure)
+
 # Tecnoloogias:
 - EF Core
 - Postgre SQL
-- .Net 6
+- DotNet 6
 
 # Integrações
-Objetivo da Api é servir de integração aos projetos: 
+- Banco de Dados: PostgreSQL
+- API Back End: C#/ASPNET CORE
 - Front: Angular
 - Mobile: Flutter
