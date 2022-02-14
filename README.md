@@ -1,7 +1,5 @@
 # Api MarketApp
 
-=> Projeto em andamento
-
 # Resumo
 Api de projeto "Não Real" simulando um ERP, com recursos e rotinas básicas, como:
 - Estoque: Cadastros de Proudos, Categorias, Marcas, Movimentações de Estoque, etc..
@@ -26,3 +24,6 @@ Api de projeto "Não Real" simulando um ERP, com recursos e rotinas básicas, co
 - API Back End: C#/ASPNET CORE
 - Front: Angular
 - Mobile: Flutter
+
+
+=> Projeto em andamento
