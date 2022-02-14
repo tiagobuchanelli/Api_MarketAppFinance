@@ -14,10 +14,11 @@ Api de projeto "Não Real" simulando um ERP, com recursos e rotinas básicas:
 - Realizar integrações entre produtos de stacks diferentes.
 - Trabalhar com ambiente em cloud, simulando ambiente produção. (Ex: Google/Amazon/Azure)
 
-# Tecnoloogias:
+# Stack:
 - EF Core
 - Postgre SQL
 - DotNet 6
+- Docker
 
 # Integrações
 - Banco de Dados: PostgreSQL
