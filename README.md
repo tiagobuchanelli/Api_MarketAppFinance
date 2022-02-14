@@ -21,7 +21,7 @@ Api de projeto "Não Real" simulando um ERP, com recursos e rotinas básicas:
 
 # Integrações
 - Banco de Dados: PostgreSQL
-- API Back End: C#/ASPNET CORE
+- API REST: C#/ASPNET CORE
 - Front: Angular
 - Mobile: Flutter
 
