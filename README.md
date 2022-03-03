@@ -1,7 +1,7 @@
 # Api MarketApp
 
 # Resumo
-Api de projeto "Não Real" simulando um ERP, com recursos e rotinas básicas:
+Api de projeto "Não Real" simulando recursos e rotinas básicas de um ERP:
 - Estoque: Cadastros de Proudos, Categorias, Marcas, Movimentações de Estoque, etc..
 - Financeiro: Contas à Pagar/Receber, Vendas, Formas de Pagamento, Carteiras, etc..
 - Cadastros de Clientes e Usuários.
